@@ -3,7 +3,9 @@ import { PropTypes } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
 import { connect } from 'react-redux';
-import SyntaxHighlighter, { registerLanguage } from 'react-syntax-highlighter/prism-light';
+import SyntaxHighlighter, {
+  registerLanguage,
+} from 'react-syntax-highlighter/prism-light';
 import jsx from 'react-syntax-highlighter/languages/prism/jsx';
 import lightStyle from 'react-syntax-highlighter/styles/prism/prism';
 import darkStyle from 'react-syntax-highlighter/styles/prism/xonokai';
@@ -19,7 +21,7 @@ import codePreview from '../../config/codePreview';
 
 const url = '/api/docs?src=';
 
-const styles = theme => ({
+const styles = (theme) => ({
   button: {
     margin: '8px 5px',
   },
@@ -37,14 +39,14 @@ const styles = theme => ({
     margin: '0 -10px',
     '& pre': {
       paddingTop: '80px !important',
-      border: 'none !important'
-    }
+      border: 'none !important',
+    },
   },
   preloader: {
     position: 'absolute',
     top: 36,
     left: 0,
-    width: '100%'
+    width: '100%',
   },
   open: {
     height: 'auto',
@@ -70,9 +72,9 @@ const styles = theme => ({
       '& span': {
         marginRight: 5,
         top: 3,
-        position: 'relative'
-      }
-    }
+        position: 'relative',
+      },
+    },
   },
   toggleContainer: {
     height: 56,
@@ -81,13 +83,13 @@ const styles = theme => ({
     justifyContent: 'flex-start',
     marginTop: theme.spacing(3),
     '& button': {
-      color: '#a5a5a5'
-    }
+      color: '#a5a5a5',
+    },
   },
   selected: {
     background: theme.palette.primary.main + ' !important',
-    color: theme.palette.common.white + ' !important'
-  }
+    color: theme.palette.common.white + ' !important',
+  },
 });
 
 function SourceReader(props) {
@@ -100,7 +102,7 @@ function SourceReader(props) {
     const { componentName } = props;
     const name = componentName;
     setLoading(true);
-    Axios.get(url + name).then(result => {
+    Axios.get(url + name).then((result) => {
       setRaws(result.data.records);
       setLoading(false);
     });
@@ -116,15 +118,24 @@ function SourceReader(props) {
   if (codePreview.enable) {
     return (
       <div>
-        <Button onClick={sourceOpen} color="secondary" className={classes.button} size="small">
-          { open ? (
-            <Close className={classNames(classes.leftIcon, classes.iconSmall)} />
+        <Button
+          onClick={sourceOpen}
+          color="secondary"
+          className={classes.button}
+          size="small"
+        >
+          {open ? (
+            <Close
+              className={classNames(classes.leftIcon, classes.iconSmall)}
+            />
           ) : (
             <Code className={classNames(classes.leftIcon, classes.iconSmall)} />
           )}
-          { open ? 'Hide Code' : 'Show Code' }
+          {open ? 'Hide Code' : 'Show Code'}
         </Button>
-        <section className={classNames(classes.source, open ? classes.open : '')}>
+        <section
+          className={classNames(classes.source, open ? classes.open : '')}
+        >
           <div className={classes.src}>
             <p>
               <Icon className="description">description</Icon>
@@ -136,7 +147,7 @@ function SourceReader(props) {
                 <ToggleButton
                   value="light"
                   classes={{
-                    selected: classes.selected
+                    selected: classes.selected,
                   }}
                 >
                   Light
@@ -144,7 +155,7 @@ function SourceReader(props) {
                 <ToggleButton
                   value="dark"
                   classes={{
-                    selected: classes.selected
+                    selected: classes.selected,
                   }}
                 >
                   Dark
@@ -155,13 +166,17 @@ function SourceReader(props) {
           {loading && (
             <LinearProgress color="secondary" className={classes.preloader} />
           )}
-          {raws.map((raw, index) => ([
+          {raws.map((raw, index) => [
             <div key={index.toString()}>
-              <SyntaxHighlighter language="jsx" style={style === 'dark' ? darkStyle : lightStyle} showLineNumbers="true">
+              <SyntaxHighlighter
+                language="jsx"
+                style={style === 'dark' ? darkStyle : lightStyle}
+                showLineNumbers="true"
+              >
                 {raw.source.toString()}
               </SyntaxHighlighter>
-            </div>
-          ]))}
+            </div>,
+          ])}
         </section>
       </div>
     );
@@ -176,12 +191,10 @@ SourceReader.propTypes = {
 };
 
 const reducer = 'ui';
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   mode: state.getIn([reducer, 'type']),
 });
 
-const AppMapped = connect(
-  mapStateToProps,
-)(SourceReader);
+const AppMapped = connect(mapStateToProps)(SourceReader);
 
 export default withStyles(styles)(AppMapped);
