@@ -81,7 +81,7 @@ function RegisterForm(props) {
           Register
         </Typography>
         <Typography variant="caption" className={classes.subtitle} gutterBottom align="center">
-          Life Streaming Application
+          Lorem ipsum dolor sit amet
         </Typography>
         <Tabs
           value={tab}

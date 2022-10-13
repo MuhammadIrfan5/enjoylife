@@ -36,7 +36,8 @@ const styles = theme => ({
     transition: 'all .5s',
     margin: '0 -10px',
     '& pre': {
-      paddingTop: '80px !important'
+      paddingTop: '80px !important',
+      border: 'none !important'
     }
   },
   preloader: {
@@ -78,8 +79,15 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
+    '& button': {
+      color: '#a5a5a5'
+    }
   },
+  selected: {
+    background: theme.palette.primary.main + ' !important',
+    color: theme.palette.common.white + ' !important'
+  }
 });
 
 function SourceReader(props) {
@@ -125,10 +133,20 @@ function SourceReader(props) {
             </p>
             <div className={classes.toggleContainer}>
               <ToggleButtonGroup value={style} exclusive onChange={handleStyle}>
-                <ToggleButton value="light">
+                <ToggleButton
+                  value="light"
+                  classes={{
+                    selected: classes.selected
+                  }}
+                >
                   Light
                 </ToggleButton>
-                <ToggleButton value="dark">
+                <ToggleButton
+                  value="dark"
+                  classes={{
+                    selected: classes.selected
+                  }}
+                >
                   Dark
                 </ToggleButton>
               </ToggleButtonGroup>
