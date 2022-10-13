@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'Dandelion Pro',
-  desc: 'Dandelion Pro - React Website Template',
+  name: 'Enjoy Life',
+  desc: 'Enjoy Life with live streaming',
   prefix: 'dandelion',
-  footerText: 'Dandelion Pro All Rights Reserved 2018',
-  logoText: 'Dandelion Pro',
+  footerText: 'Enjoy Life All Rights Reserved 2022',
+  logoText: 'Enjoy Life',
 };

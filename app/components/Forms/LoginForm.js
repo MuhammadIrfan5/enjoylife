@@ -13,18 +13,18 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import AllInclusive from '@material-ui/icons/AllInclusive';
-import Brightness5 from '@material-ui/icons/Brightness5';
-import People from '@material-ui/icons/People';
+// import AllInclusive from '@material-ui/icons/AllInclusive';
+// import Brightness5 from '@material-ui/icons/Brightness5';
+// import People from '@material-ui/icons/People';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 import Paper from '@material-ui/core/Paper';
-import Icon from '@material-ui/core/Icon';
+// import Icon from '@material-ui/core/Icon';
 import Hidden from '@material-ui/core/Hidden';
 import brand from 'dan-api/dummy/brand';
 import logo from 'dan-images/logo.svg';
 import { TextFieldRedux, CheckboxRedux } from './ReduxFormMUI';
 import styles from './user-jss';
-import { ContentDivider } from '../Divider';
+// import { ContentDivider } from '../Divider';
 
 // validation functions
 const required = value => (value === null ? 'Required' : undefined);
@@ -71,19 +71,19 @@ function LoginForm(props) {
               <img src={logo} alt={brand.name} />
               {brand.name}
             </NavLink>
-            <Button size="small" className={classes.buttonLink} component={LinkBtn} to="/register">
+            {/* <Button size="small" className={classes.buttonLink} component={LinkBtn} to="/register">
               <Icon className={classes.icon}>arrow_forward</Icon>
               Create new account
-            </Button>
+            </Button> */}
           </div>
         </Hidden>
         <Typography variant="h4" className={classes.title} gutterBottom>
           Sign In
         </Typography>
         <Typography variant="caption" className={classes.subtitle} gutterBottom align="center">
-          Lorem ipsum dolor sit amet
+          Enjoy Life with live streaming !
         </Typography>
-        <section className={classes.socmedLogin}>
+        {/* <section className={classes.socmedLogin}>
           <div className={classes.btnArea}>
             <Button variant="outlined" size="small" className={classes.redBtn} type="button">
               <AllInclusive className={classNames(classes.leftIcon, classes.iconSmall)} />
@@ -99,7 +99,7 @@ function LoginForm(props) {
             </Button>
           </div>
           <ContentDivider content="Or sign in with email" />
-        </section>
+        </section> */}
         <section className={classes.formWrap}>
           <form onSubmit={handleSubmit}>
             <div>
