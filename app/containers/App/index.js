@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import NotFound from 'containers/Pages/Standalone/NotFoundDedicated';
 import Auth from './Auth';
 import Application from './Application';
-import LandingCorporate from './Landing';
+// import LandingCorporate from './Landing';
 import LandingCreative from './LandingCreative';
 import ArticleNews from './ArticleNews';
 import ThemeWrapper from './ThemeWrapper';
@@ -13,7 +13,8 @@ function App() {
   return (
     <ThemeWrapper>
       <Switch>
-        <Route path="/" exact component={LandingCorporate} />
+        {/* <Route path="/" exact component={LandingCorporate} /> */}
+        <Route path="/" exact component={Auth} />
         <Route path="/landing-creative" exact component={LandingCreative} />
         <Route path="/app" component={Application} />
         <Route path="/blog" component={ArticleNews} />

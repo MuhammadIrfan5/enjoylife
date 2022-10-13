@@ -13,7 +13,7 @@ function Auth() {
   return (
     <Outer>
       <Switch>
-        <Route path="/login" component={Login} />
+        <Route path="/" component={Login} />
         <Route path="/login-v2" component={LoginV2} />
         <Route path="/login-v3" component={LoginV3} />
         <Route path="/register" component={Register} />
