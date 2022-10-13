@@ -22,7 +22,7 @@ function CounterIconWidget(props) {
             start={0}
             end={207}
             duration={3}
-            title="Subscribers"
+            title="Gifts"
           >
             <OndemandVideo className={classes.counterIcon} />
           </CounterWidget>
@@ -33,7 +33,7 @@ function CounterIconWidget(props) {
             start={0}
             end={300}
             duration={3}
-            title="Followers"
+            title="Total Users"
           >
             <SupervisorAccount className={classes.counterIcon} />
           </CounterWidget>
@@ -44,7 +44,7 @@ function CounterIconWidget(props) {
             start={0}
             end={67}
             duration={3}
-            title="Total Posts"
+            title="Packages"
           >
             <Edit className={classes.counterIcon} />
           </CounterWidget>
@@ -53,9 +53,9 @@ function CounterIconWidget(props) {
           <CounterWidget
             color={colorfull[3]}
             start={0}
-            end={70}
+            end={10000}
             duration={3}
-            title="Total Articles"
+            title="Total Earning ($)"
           >
             <CollectionsBookmark className={classes.counterIcon} />
           </CounterWidget>

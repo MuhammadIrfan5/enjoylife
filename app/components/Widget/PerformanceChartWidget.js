@@ -6,10 +6,10 @@ import classNames from 'classnames';
 import Dvr from '@material-ui/icons/Dvr';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 import Healing from '@material-ui/icons/Healing';
-import FilterCenterFocus from '@material-ui/icons/FilterCenterFocus';
+// import FilterCenterFocus from '@material-ui/icons/FilterCenterFocus';
 import Avatar from '@material-ui/core/Avatar';
-import Divider from '@material-ui/core/Divider';
-import LinearProgress from '@material-ui/core/LinearProgress';
+// import Divider from '@material-ui/core/Divider';
+// import LinearProgress from '@material-ui/core/LinearProgress';
 import LocalActivity from '@material-ui/icons/LocalActivity';
 import Typography from '@material-ui/core/Typography';
 import 'dan-styles/vendors/rechart/styles.css';
@@ -48,7 +48,7 @@ function PerformanceChartWidget(props) {
               </Avatar>
               <Typography variant="h6">
                 <span className={classes.blueText}>40</span>
-                <Typography>Attends</Typography>
+                <Typography>Users</Typography>
               </Typography>
             </li>
             <li>
@@ -56,8 +56,8 @@ function PerformanceChartWidget(props) {
                 <CheckCircle />
               </Avatar>
               <Typography variant="h6">
-                <span className={classes.tealText}>125</span>
-                <Typography>Tasks Done</Typography>
+                <span className={classes.tealText}>10:00 pm</span>
+                <Typography>Most Online At</Typography>
               </Typography>
             </li>
             <li>
@@ -89,8 +89,8 @@ function PerformanceChartWidget(props) {
                   <YAxis axisLine={false} tickSize={3} tickLine={false} tick={{ stroke: 'none' }} />
                   <CartesianGrid vertical={false} strokeDasharray="3 3" />
                   <Tooltip />
-                  <Area type="basis" stackId="2" dataKey="Task" stroke="none" fill={color.secondary} />
-                  <Area type="monotone" stackId="1" stroke="none" dataKey="Attend" fill={color.fourth} />
+                  <Area type="basis" stackId="2" dataKey="MostOnlineAt" stroke="none" fill={color.secondary} />
+                  <Area type="monotone" stackId="1" stroke="none" dataKey="Users" fill={color.fourth} />
                   <Area type="monotone" stackId="3" dataKey="Referrals" stroke="none" fill={color.main} />
                   <Line type="monotone" dataKey="Complaint" strokeWidth={2} stroke={color.third} />
                 </ComposedChart>
@@ -98,7 +98,7 @@ function PerformanceChartWidget(props) {
             </div>
           </div>
         </Grid>
-        <Grid item md={4} xs={12}>
+        {/* <Grid item md={4} xs={12}>
           <Typography className={classes.smallTitle} variant="button">
             <FilterCenterFocus className={classes.leftIcon} />
               Achievement Target
@@ -126,7 +126,7 @@ function PerformanceChartWidget(props) {
               <LinearProgress variant="determinate" className={classNames(classes.progress, classes.blueProgress)} value={80} />
             </li>
           </ul>
-        </Grid>
+        </Grid> */}
       </Grid>
     </PapperBlock>
   );

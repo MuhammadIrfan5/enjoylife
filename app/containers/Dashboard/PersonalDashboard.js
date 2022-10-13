@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import brand from 'dan-api/dummy/brand';
 import { Helmet } from 'react-helmet';
 import { withStyles } from '@material-ui/core/styles';
-import Hidden from '@material-ui/core/Hidden';
+// import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import {
@@ -11,11 +11,11 @@ import {
   CounterIconsWidget,
   PerformanceChartWidget,
   DateWidget,
-  TaskWidget,
+  // TaskWidget,
   WeatherWidget,
-  ContactWidget,
-  TimelineWidget,
-  FilesWidget,
+  // ContactWidget,
+  // TimelineWidget,
+  // FilesWidget,
 } from 'dan-components';
 import styles from './dashboard-jss';
 
@@ -56,23 +56,24 @@ function PersonalDashboard(props) {
       <Grid container spacing={3} className={classes.root}>
         <Grid item md={6} xs={12}>
           <Divider className={classes.divider} />
-          <ContactWidget />
-          <Divider className={classes.divider} />
-          <TaskWidget />
+          {/* <ContactWidget /> */}
+          <WeatherWidget />
+          {/* <Divider className={classes.divider} /> */}
+          {/* <TaskWidget /> */}
         </Grid>
         <Grid item md={6} xs={12}>
-          <Hidden mdDown>
+          {/* <Hidden mdDown>
             <Divider className={classes.divider} />
-          </Hidden>
-          <WeatherWidget />
+          </Hidden> */}
+          {/* <WeatherWidget /> */}
           <Divider className={classes.divider} />
           <DateWidget />
-          <Divider className={classes.divider} />
-          <TimelineWidget />
+          {/* <Divider className={classes.divider} /> */}
+          {/* <TimelineWidget /> */}
         </Grid>
       </Grid>
       <Divider className={classes.divider} />
-      <FilesWidget />
+      {/* <FilesWidget /> */}
     </div>
   );
 }

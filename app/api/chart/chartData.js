@@ -264,85 +264,85 @@ export const data9 = [
 export const dataPerformance = [
   {
     name: 'Jan',
-    Attend: 40,
-    Task: 124,
+    MostOnlineAt: 40,
+    Users: 124,
     Complaint: 17,
     Referrals: 20
   },
   {
     name: 'Feb',
-    Attend: 45,
-    Task: 100,
+    MostOnlineAt: 45,
+    Users: 100,
     Complaint: 2,
     Referrals: 100
   },
   {
     name: 'Mar',
-    Attend: 27,
-    Task: 20,
+    MostOnlineAt: 27,
+    Users: 20,
     Complaint: 0,
     Referrals: 80
   },
   {
     name: 'Apr',
-    Attend: 50,
-    Task: 120,
+    MostOnlineAt: 50,
+    Users: 120,
     Complaint: 29,
     Referrals: 14
   },
   {
     name: 'May',
-    Attend: 32,
-    Task: 117,
+    MostOnlineAt: 32,
+    Users: 117,
     Complaint: 20,
     Referrals: 86
   },
   {
     name: 'Jun',
-    Attend: 50,
-    Task: 34,
+    MostOnlineAt: 50,
+    Users: 34,
     Complaint: 11,
     Referrals: 29
   },
   {
     name: 'Jul',
-    Attend: 24,
-    Task: 40,
+    MostOnlineAt: 24,
+    Users: 40,
     Complaint: 3,
     Referrals: 40
   },
   {
     name: 'Aug',
-    Attend: 32,
-    Task: 117,
+    MostOnlineAt: 32,
+    Users: 117,
     Complaint: 20,
     Referrals: 86
   },
   {
     name: 'Sept',
-    Attend: 40,
-    Task: 20,
+    MostOnlineAt: 40,
+    Users: 20,
     Complaint: 24,
     Referrals: 100
   },
   {
     name: 'Sept',
-    Attend: 27,
-    Task: 20,
+    MostOnlineAt: 27,
+    Users: 20,
     Complaint: 0,
     Referrals: 80
   },
   {
     name: 'Oct',
-    Attend: 50,
-    Task: 113,
+    MostOnlineAt: 50,
+    Users: 113,
     Complaint: 29,
     Referrals: 14
   },
   {
     name: 'Dec',
-    Attend: 79,
-    Task: 101,
+    MostOnlineAt: 79,
+    Users: 101,
     Complaint: 4,
     Referrals: 3
   },
