@@ -14,7 +14,7 @@ const styles = {
   },
 };
 
-function AdvancedTable() {
+function AdvancedTable(props) {
   const title = brand.name + ' - Table';
   const description = brand.desc;
   // const docSrc = "containers/Tables/demos/";
@@ -37,11 +37,11 @@ function AdvancedTable() {
       <PapperBlock
         whiteBg
         icon="ion-ios-clipboard-outline"
-        title="Users Table"
+        title={props.tbl_title}
         desc=""
       >
         <div>
-          <AdvFilter />
+          <AdvFilter tbl_title={props.tbl_title} />
           {/* <SourceReader componentName={docSrc + "AdvFilter.js"} /> */}
         </div>
       </PapperBlock>

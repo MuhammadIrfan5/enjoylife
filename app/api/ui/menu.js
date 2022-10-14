@@ -17,6 +17,18 @@ module.exports = [
     ],
   },
   {
+    key: 'gifts',
+    name: 'GIfts',
+    icon: 'ion-ios-ionitron-outline',
+    child: [
+      {
+        key: 'listGifts',
+        name: 'List Gifts',
+        link: '/app/gifts/list-gifts',
+      }
+    ],
+  },
+  {
     key: 'home',
     name: 'Home',
     icon: 'ion-ios-home-outline',
@@ -47,7 +59,7 @@ module.exports = [
       {
         key: 'personal',
         name: 'Personal',
-        link: '/app',
+        link: '/dashboard',
         icon: 'ion-ios-contact-outline',
       },
       {

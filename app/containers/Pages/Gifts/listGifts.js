@@ -4,7 +4,7 @@ import brand from 'dan-api/dummy/brand';
 // import { PapperBlock } from 'dan-components';
 import { AdvancedTable } from '../../pageListAsync';
 
-function listUser() {
+function listGifts() {
   const title = brand.name + ' - Blank Page';
   const description = brand.desc;
   return (
@@ -20,9 +20,9 @@ function listUser() {
       {/* <PapperBlock title="Blank Page" desc="Some text description">
         List User
       </PapperBlock> */}
-      <AdvancedTable tbl_title="User List" />
+      <AdvancedTable tbl_title="Gifts List" />
     </div>
   );
 }
 
-export default listUser;
+export default listGifts;

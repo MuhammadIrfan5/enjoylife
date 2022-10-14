@@ -93,6 +93,7 @@ import {
   NotFound,
   addUser,
   listUser,
+  listGifts,
 } from '../pageListAsync';
 // import listUser from '../Pages/User/listUser';
 
@@ -102,12 +103,14 @@ function Application(props) {
   return (
     <Dashboard history={history} changeMode={changeMode}>
       <Switch>
-        {/* New Routes */}
+        {/* User Routes */}
         <Route path="/app/user/add-user" component={addUser} />
         <Route path="/app/user/list-user" component={listUser} />
+        {/* User Routes */}
+        <Route path="/app/gifts/list-gifts" component={listGifts} />
 
         {/* Home */}
-        <Route exact path="/app" component={PersonalDashboard} />
+        <Route exact path="/dashboard" component={PersonalDashboard} />
         <Route path="/app/crm-dashboard" component={CrmDashboard} />
         <Route path="/app/crypto-dashboard" component={CryptoDashboard} />
         {/* Widgets */}
