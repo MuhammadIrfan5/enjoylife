@@ -14,6 +14,11 @@ module.exports = [
         name: 'List User',
         link: '/app/user/list-user',
       },
+      {
+        key: 'userSettings',
+        name: 'User Settings',
+        link: '/app/user/user-settings',
+      },
     ],
   },
   {

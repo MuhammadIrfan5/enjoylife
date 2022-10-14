@@ -94,6 +94,7 @@ import {
   addUser,
   listUser,
   listGifts,
+  userSettings,
 } from '../pageListAsync';
 // import listUser from '../Pages/User/listUser';
 
@@ -108,6 +109,7 @@ function Application(props) {
         <Route path="/app/user/list-user" component={listUser} />
         {/* User Routes */}
         <Route path="/app/gifts/list-gifts" component={listGifts} />
+        <Route path="/app/user/user-settings" component={userSettings} />
 
         {/* Home */}
         <Route exact path="/dashboard" component={PersonalDashboard} />
