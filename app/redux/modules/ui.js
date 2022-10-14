@@ -27,8 +27,12 @@ const initialState = {
   layout: 'left-sidebar', // big-sidebar, left-sidebar, top-navigation, mega-menu
   /* End settings */
   palette: List([
+    { name: 'Magenta', value: 'magentaTheme' },
     { name: 'Mint', value: 'blueCyanTheme' },
     { name: 'Monochrome', value: 'greyTheme' },
+    { name: 'Pink', value: 'pinkBlueTheme' },
+    { name: 'Orange', value: 'greenOrangeTheme' },
+    { name: 'Purple', value: 'purpleRedTheme' }
   ]),
   sidebarOpen: true,
   pageLoaded: false,

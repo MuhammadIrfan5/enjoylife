@@ -10,6 +10,7 @@ const avatars = [
   '/images/avatars/pp_boy3.svg',
   '/images/avatars/pp_boy4.svg',
   '/images/avatars/pp_boy5.svg',
+  '/images/avatars/rabbithead.png',
 ];
 
 export default avatars;

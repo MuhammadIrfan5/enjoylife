@@ -138,7 +138,7 @@ function TemplateSettings(props) {
       className={
         classNames(
           classes.themeField,
-          index > 7 && !showAllThemes ? classes.hide : ''
+          index > 1 && !showAllThemes ? classes.hide : ''
         )
       }
       control={(
@@ -146,7 +146,7 @@ function TemplateSettings(props) {
           value={item.value}
           selectedValue={selectedValue}
           handleChange={changeTheme}
-          name={item.name}
+          name={item.value}
         />
       )}
     />

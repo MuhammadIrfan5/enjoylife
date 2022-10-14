@@ -37,8 +37,8 @@ function AdvancedTable() {
       <PapperBlock
         whiteBg
         icon="ion-ios-clipboard-outline"
-        title="Advanced Data Table"
-        desc="It uses npm mui-datatables. It's easy to use, you just describe columns and data collection. After that it will magically build features such as filtering, viewing / hiding columns, exporting to CSV downloads, printing, and more."
+        title="Users Table"
+        desc=""
       >
         <div>
           <AdvFilter />

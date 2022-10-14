@@ -7,7 +7,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import brand from 'dan-api/dummy/brand';
-import logo from 'dan-images/logo.svg';
+// import logo from 'dan-images/logo.svg';
+import logo from 'dan-images/rabbithead.svg';
 import styles from '../Sidebar/sidebar-jss';
 
 function MenuContent(props) {
@@ -43,7 +44,7 @@ function MenuContent(props) {
           {getMenus(menuList)}
         </List>
         <Typography variant="caption" className={classes.copyright}>
-          &copy; 2020 Dandelion Designs
+          &copy; Enjoy Life
           <br />
           All Right Reserved
         </Typography>

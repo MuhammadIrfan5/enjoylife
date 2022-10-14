@@ -32,7 +32,7 @@ const styles = theme => ({
 function AdvFilter(props) {
   const columns = [
     {
-      name: 'Name',
+      name: 'Full Name',
       options: {
         filter: true
       }
@@ -68,7 +68,7 @@ function AdvFilter(props) {
       }
     },
     {
-      name: 'Salary',
+      name: 'Earnings',
       options: {
         filter: true,
         customBodyRender: (value) => {
@@ -131,7 +131,7 @@ function AdvFilter(props) {
   return (
     <div className={classes.table}>
       <MUIDataTable
-        title="Employee list"
+        title="User List"
         data={data}
         columns={columns}
         options={options}

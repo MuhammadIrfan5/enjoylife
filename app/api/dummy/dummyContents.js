@@ -3,7 +3,7 @@ const dummyContents = {
   user: {
     name: 'Irfan',
     title: 'Administrator',
-    avatar: avatarApi[6],
+    avatar: avatarApi[10],
     status: 'online'
   },
   text: {
