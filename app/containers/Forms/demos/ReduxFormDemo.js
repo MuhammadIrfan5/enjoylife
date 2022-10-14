@@ -19,7 +19,7 @@ import {
   CheckboxRedux,
   SelectRedux,
   TextFieldRedux,
-  SwitchRedux
+  SwitchRedux,
 } from 'dan-components/Forms/ReduxFormMUI';
 import { initAction, clearAction } from 'dan-redux/actions/reduxFormActions';
 
@@ -33,34 +33,32 @@ const renderRadioGroup = ({ input, ...rest }) => (
 );
 
 // validation functions
-const required = value => (value == null ? 'Required' : undefined);
-const email = value => (
-  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? 'Invalid email'
-    : undefined
-);
+const required = (value) => (value == null ? 'Required' : undefined);
+const email = (value) => (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+  ? 'Invalid email'
+  : undefined);
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
-    padding: 30
+    padding: 30,
   },
   field: {
     width: '100%',
-    marginBottom: 20
+    marginBottom: 20,
   },
   fieldBasic: {
     width: '100%',
     marginBottom: 20,
-    marginTop: 10
+    marginTop: 10,
   },
   inlineWrap: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   buttonInit: {
     margin: theme.spacing(4),
-    textAlign: 'center'
+    textAlign: 'center',
   },
 });
 
@@ -71,7 +69,7 @@ const initData = {
   selection: 'option1',
   onof: true,
   checkbox: true,
-  textarea: 'This is default text'
+  textarea: 'This is default text',
 };
 
 function ReduxFormDemo(props) {
@@ -83,21 +81,32 @@ function ReduxFormDemo(props) {
     reset,
     submitting,
     init,
-    clear
+    clear,
   } = props;
   return (
     <div>
-      <Grid container spacing={3} alignItems="flex-start" direction="row" justify="center">
+      <Grid
+        container
+        spacing={3}
+        alignItems="flex-start"
+        direction="row"
+        justify="center"
+      >
         <Grid item xs={12} md={6}>
           <Paper className={classes.root}>
             <Typography variant="h5" component="h3">
               Simple Form Example
             </Typography>
             <Typography component="p">
-              The delay between when you click (Submit) and when the alert dialog pops up is intentional, to simulate server latency.
+              The delay between when you click (Submit) and when the alert
+              dialog pops up is intentional, to simulate server latency.
             </Typography>
             <div className={classes.buttonInit}>
-              <Button onClick={() => init(initData)} color="secondary" type="button">
+              <Button
+                onClick={() => init(initData)}
+                color="secondary"
+                type="button"
+              >
                 Load Sample Data
               </Button>
               <Button onClick={() => clear()} type="button">
@@ -129,9 +138,21 @@ function ReduxFormDemo(props) {
               </div>
               <div className={classes.fieldBasic}>
                 <FormLabel component="label">Choose One Option</FormLabel>
-                <Field name="radio" className={classes.inlineWrap} component={renderRadioGroup}>
-                  <FormControlLabel value="option1" control={<Radio />} label="Option 1" />
-                  <FormControlLabel value="option2" control={<Radio />} label="Option 2" />
+                <Field
+                  name="radio"
+                  className={classes.inlineWrap}
+                  component={renderRadioGroup}
+                >
+                  <FormControlLabel
+                    value="option1"
+                    control={<Radio />}
+                    label="Option 1"
+                  />
+                  <FormControlLabel
+                    value="option2"
+                    control={<Radio />}
+                    label="Option 2"
+                  />
                 </Field>
               </div>
               <div>
@@ -152,8 +173,16 @@ function ReduxFormDemo(props) {
               <div className={classes.fieldBasic}>
                 <FormLabel component="label">Toggle Input</FormLabel>
                 <div className={classes.inlineWrap}>
-                  <FormControlLabel control={<Field name="onof" component={SwitchRedux} />} label="On/OF Switch" />
-                  <FormControlLabel control={<Field name="checkbox" component={CheckboxRedux} />} label="Checkbox" />
+                  <FormControlLabel
+                    control={<Field name="onof" component={SwitchRedux} />}
+                    label="On/OF Switch"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Field name="checkbox" component={CheckboxRedux} />
+                    }
+                    label="Checkbox"
+                  />
                 </div>
               </div>
               <div className={classes.field}>
@@ -168,7 +197,12 @@ function ReduxFormDemo(props) {
                 />
               </div>
               <div>
-                <Button variant="contained" color="secondary" type="submit" disabled={submitting}>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  type="submit"
+                  disabled={submitting}
+                >
                   Submit
                 </Button>
                 <Button
@@ -201,7 +235,7 @@ ReduxFormDemo.propTypes = {
   clear: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   init: bindActionCreators(initAction, dispatch),
   clear: () => dispatch(clearAction),
 });
@@ -213,11 +247,11 @@ const ReduxFormMapped = reduxForm({
 
 const reducer = 'initval';
 const FormInit = connect(
-  state => ({
+  (state) => ({
     force: state,
-    initialValues: state.getIn([reducer, 'formValues'])
+    initialValues: state.getIn([reducer, 'formValues']),
   }),
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ReduxFormMapped);
 
 export default withStyles(styles)(FormInit);

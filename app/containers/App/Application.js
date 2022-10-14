@@ -93,6 +93,7 @@ import {
   NotFound,
   addUser,
   listUser,
+  userSettings,
 } from '../pageListAsync';
 // import listUser from '../Pages/User/listUser';
 
@@ -105,6 +106,7 @@ function Application(props) {
         {/* New Routes */}
         <Route path="/app/user/add-user" component={addUser} />
         <Route path="/app/user/list-user" component={listUser} />
+        <Route path="/app/user/user-settings" component={userSettings} />
 
         {/* Home */}
         <Route exact path="/app" component={PersonalDashboard} />
