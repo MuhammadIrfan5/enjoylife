@@ -84,11 +84,17 @@ const [files] = useState([]);
             md={6}
             className={classes.demo}
             >
-                <Typography variant="button" className={classes.divider}>Gift Title</Typography>
+                {/* <Typography variant="button" className={classes.divider}>Gift Title</Typography> */}
                 <div className={classes.container}>
                     <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="giftTitle">Gift Title</InputLabel>
                     <Input id="giftTitle"  onChange={handleChange} />
+                    {/* value={name} */}
+                    {/* <FormHelperText>Disabled</FormHelperText> */}
+                    </FormControl>
+                    <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="noGifts">Number of Gifts</InputLabel>
+                    <Input id="noGifts"  onChange={handleChange} />
                     {/* value={name} */}
                     {/* <FormHelperText>Disabled</FormHelperText> */}
                     </FormControl>
