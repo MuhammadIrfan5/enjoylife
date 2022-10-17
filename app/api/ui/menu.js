@@ -23,13 +23,25 @@ module.exports = [
   },
   {
     key: 'gifts',
-    name: 'GIfts',
+    name: 'Gifts',
     icon: 'ion-ios-ionitron-outline',
     child: [
       {
-        key: 'listGifts',
-        name: 'List Gifts',
-        link: '/app/gifts/list-gifts',
+        key: 'addGifts',
+        name: 'Add Gifts',
+        link: '/app/gifts/add-gifts',
+      }
+    ],
+  },
+  {
+    key: 'banner',
+    name: 'Banner',
+    icon: 'ion-ios-card',
+    child: [
+      {
+        key: 'addBanner',
+        name: 'Add Banner',
+        link: '/app/banner/add-banner',
       }
     ],
   },

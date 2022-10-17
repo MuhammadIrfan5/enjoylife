@@ -93,8 +93,9 @@ import {
   NotFound,
   addUser,
   listUser,
-  listGifts,
   userSettings,
+  addBanner,
+  addGifts,
 } from '../pageListAsync';
 // import listUser from '../Pages/User/listUser';
 
@@ -108,9 +109,10 @@ function Application(props) {
         <Route path="/app/user/add-user" component={addUser} />
         <Route path="/app/user/list-user" component={listUser} />
         {/* User Routes */}
-        <Route path="/app/gifts/list-gifts" component={listGifts} />
+        <Route path="/app/gifts/add-gifts" component={addGifts} />
         <Route path="/app/user/user-settings" component={userSettings} />
-
+        { /* Banner Routes */}
+        <Route path="/app/banner/add-banner" component={addBanner} />
         {/* Home */}
         <Route exact path="/app" component={PersonalDashboard} />
         <Route path="/app/crm-dashboard" component={CrmDashboard} />

@@ -385,7 +385,7 @@ export const listUser = loadable(() => import("./Pages/User/listUser"), {
   fallback: <Loading />,
 });
 
-export const listGifts = loadable(() => import("./Pages/Gifts/listGifts"), {
+export const addGifts = loadable(() => import("./Pages/Gifts/addGifts"), {
   fallback: <Loading />,
 });
 export const userSettings = loadable(
@@ -394,3 +394,7 @@ export const userSettings = loadable(
     fallback: <Loading />,
   }
 );
+
+export const addBanner = loadable(() => import("./Pages/Banner/addBanner"), {
+  fallback: <Loading />,
+});
