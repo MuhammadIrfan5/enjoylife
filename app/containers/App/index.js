@@ -16,7 +16,7 @@ function App() {
         {/* <Route path="/" exact component={LandingCorporate} /> */}
         <Route path="/" exact component={Auth} />
         <Route path="/landing-creative" exact component={LandingCreative} />
-        <Route path="/dashboard" component={Application} />
+        <Route path="/app" component={Application} />
         <Route path="/blog" component={ArticleNews} />
         <Route component={Auth} />
         <Route component={NotFound} />

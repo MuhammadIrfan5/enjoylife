@@ -112,7 +112,7 @@ function Application(props) {
         <Route path="/app/user/user-settings" component={userSettings} />
 
         {/* Home */}
-        <Route exact path="/dashboard" component={PersonalDashboard} />
+        <Route exact path="/app" component={PersonalDashboard} />
         <Route path="/app/crm-dashboard" component={CrmDashboard} />
         <Route path="/app/crypto-dashboard" component={CryptoDashboard} />
         {/* Widgets */}
