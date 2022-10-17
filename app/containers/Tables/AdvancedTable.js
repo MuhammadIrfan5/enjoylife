@@ -1,12 +1,12 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import brand from 'dan-api/dummy/brand';
-import { withStyles } from '@material-ui/core/styles';
+import React from "react";
+import { Helmet } from "react-helmet";
+import brand from "dan-api/dummy/brand";
+import { withStyles } from "@material-ui/core/styles";
 // import { SourceReader, PapperBlock } from 'dan-components';
-import { PapperBlock } from 'dan-components';
+import { PapperBlock } from "dan-components";
 
 // import { AdvTableDemo, AdvFilter } from './demos';
-import { AdvFilter } from './demos';
+import { AdvFilter } from "./demos";
 
 const styles = {
   root: {
@@ -15,7 +15,7 @@ const styles = {
 };
 
 function AdvancedTable() {
-  const title = brand.name + ' - Table';
+  const title = brand.name + " - Table";
   const description = brand.desc;
   // const docSrc = "containers/Tables/demos/";
   return (
