@@ -13,6 +13,7 @@ import styles from './widget-jss';
 
 function CounterIconWidget(props) {
   const { classes } = props;
+  console.log("Props ",props)
   return (
     <div className={classes.rootCounterFull}>
       <Grid container spacing={2}>
@@ -22,7 +23,7 @@ function CounterIconWidget(props) {
             start={0}
             end={207}
             duration={3}
-            title="Gifts"
+            title={props.titleOne}
           >
             <OndemandVideo className={classes.counterIcon} />
           </CounterWidget>
@@ -33,7 +34,7 @@ function CounterIconWidget(props) {
             start={0}
             end={300}
             duration={3}
-            title="Total Users"
+            title={props.titleTwo}
           >
             <SupervisorAccount className={classes.counterIcon} />
           </CounterWidget>
@@ -44,7 +45,7 @@ function CounterIconWidget(props) {
             start={0}
             end={67}
             duration={3}
-            title="Packages"
+            title={props.titleThree}
           >
             <Edit className={classes.counterIcon} />
           </CounterWidget>
@@ -55,7 +56,7 @@ function CounterIconWidget(props) {
             start={0}
             end={10000}
             duration={3}
-            title="Total Earning ($)"
+            title={props.titleFour}
           >
             <CollectionsBookmark className={classes.counterIcon} />
           </CounterWidget>

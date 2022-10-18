@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
 import { PapperBlock } from 'dan-components';
@@ -23,10 +23,22 @@ import TextField from '@material-ui/core/TextField';
 // import Checkbox from "@material-ui/core/Checkbox";
 import Button from '@material-ui/core/Button';
 
-function userSettings() {
+function userSettings(props) {
+  // console.log(props.location.state.data.name, "page data");
+
+  useEffect(() => {
+    if (props.location.state.data) {
+      setName(props.location.state.data.name);
+      setEmail(props.location.state.data.email);
+      setStatus(props.location.state.data.status);
+    }
+  }, []);
+
   const title = brand.name + ' - Blank Page';
   const description = brand.desc;
-  const [firstname, setFirstName] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,7 +67,7 @@ function userSettings() {
               User Settings form
             </Typography>
             <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={12}>
                 <TextField
                   required
                   id="firstName"
@@ -63,12 +75,44 @@ function userSettings() {
                   label="First name"
                   fullWidth
                   autoComplete="fname"
-                  value={firstname}
-                  onChange={(e) => {
-                    setFirstName(e.target.value);
-                  }}
+                  value={name}
+                  disabled
+                  // onChange={(e) => {
+                  //   setFirstName(e.target.value);
+                  // }}
                 />
               </Grid>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  required
+                  id="firstName"
+                  name="firstName"
+                  label="Email"
+                  fullWidth
+                  autoComplete="fname"
+                  value={email}
+                  disabled
+                  // onChange={(e) => {
+                  //   setFirstName(e.target.value);
+                  // }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  required
+                  id="firstName"
+                  name="firstName"
+                  label="Status"
+                  fullWidth
+                  autoComplete="fname"
+                  value={status}
+                  disabled
+                  // onChange={(e) => {
+                  //   setFirstName(e.target.value);
+                  // }}
+                />
+              </Grid>
+
               {/* <Grid item xs={12} sm={6}>
                 <TextField
                   required

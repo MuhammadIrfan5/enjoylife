@@ -14,11 +14,11 @@ module.exports = [
         name: 'List User',
         link: '/app/user/list-user',
       },
-      {
-        key: 'userSettings',
-        name: 'User Settings',
-        link: '/app/user/user-settings',
-      },
+      // {
+      //   key: 'userSettings',
+      //   name: 'User Settings',
+      //   link: '/app/user/user-settings',
+      // },
     ],
   },
   {
@@ -42,6 +42,30 @@ module.exports = [
         key: 'addBanner',
         name: 'Add Banner',
         link: '/app/banner/add-banner',
+      }
+    ],
+  },
+  {
+    key: 'promotions',
+    name: 'Promotions',
+    icon: 'ion-ios-paper-plane',
+    child: [
+      {
+        key: 'addPromotions',
+        name: 'Add Promotions',
+        link: '/app/promotion/add-promotions',
+      }
+    ],
+  },
+  {
+    key: 'broadcasts',
+    name: 'Broadcasts',
+    icon: 'ion-ios-videocam',
+    child: [
+      {
+        key: 'listBroadcasts',
+        name: 'List Broadcasts',
+        link: '/app/broadcasts/list-broadcast',
       }
     ],
   },
@@ -76,7 +100,7 @@ module.exports = [
       {
         key: 'personal',
         name: 'Personal',
-        link: '/dashboard',
+        link: '/app',
         icon: 'ion-ios-contact-outline',
       },
       {
@@ -152,6 +176,9 @@ module.exports = [
     ],
   },
   {
+    key: 'home',
+    name: 'Home',
+    icon: 'ion-ios-home-outline',
     key: 'apps',
     name: 'Applications',
     icon: 'ion-ios-appstore-outline',
@@ -178,6 +205,12 @@ module.exports = [
         key: 'social_apps',
         name: 'Social',
         title: true,
+      },
+      {
+        key: 'personal',
+        name: 'Personal',
+        link: '/dashboard',
+        icon: 'ion-ios-contact-outline',
       },
       {
         key: 'timeline',

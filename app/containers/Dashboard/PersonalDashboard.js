@@ -37,7 +37,12 @@ function PersonalDashboard(props) {
       {/* 1st Section */}
       <Grid container spacing={3} className={classes.root}>
         <Grid item md={12} xs={12}>
-          <CounterIconsWidget />
+          <CounterIconsWidget 
+             titleOne="Total Broadcasts"
+             titleTwo="Total Users" 
+             titleThree="Total Blocked Users" 
+             titleFour="Total Earnings ($)"
+          />
         </Grid>
         {/* <Grid item md={6} sm={12} xs={12}>
           <div className={classes.sliderWrap}>

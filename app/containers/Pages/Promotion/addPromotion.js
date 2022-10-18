@@ -9,7 +9,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 // import { MaterialDropZone } from 'dan-components';
 import MaterialDropZone from '../../../components/Forms/MaterialDropZone';
@@ -17,7 +16,6 @@ import { AdvancedTable } from '../../pageListAsync';
 import Save from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
-
 const styles = theme => ({
   demo: {
     height: 'auto',
@@ -52,17 +50,15 @@ const styles = theme => ({
   },
 });
 
-function addBanner(props) {
+function addPromotion(props) {
   const title = brand.name + ' - Blank Page';
   const description = brand.desc;
 //   const [name, setName] = useState('Title');
-const [bannerTitle, setBannerTitle] = useState('');
 const [files] = useState([]);
   const { classes } = props;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(bannerTitle, 'Banner');
+  const handleChange = event => {
+    setName(event.target.value);
   };
   return (
     <div>
@@ -74,9 +70,8 @@ const [files] = useState([]);
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
       </Helmet>
-      <PapperBlock title="Add Banner" icon="ion-ios-card-outline" desc="Add Banner Details">
-      <form onSubmit={handleSubmit}>
-        <Fragment>
+      <PapperBlock title="Add Promotion" icon="ion-ios-paper-plane" desc="Add Promotion Details">
+        {/* <Fragment>
         <Grid
             container
             alignItems="flex-start"
@@ -87,24 +82,22 @@ const [files] = useState([]);
             <Grid
             item
             md={6}
-            sm={12}
             className={classes.demo}
             >
-                <Typography variant="button" className={classes.divider}>Banner Title</Typography>
                 <div className={classes.container}>
-                        <TextField
-                            required
-                            id="bannerTitle"
-                            name="bannerTitle"
-                            label="Banner Title"
-                            fullWidth
-                            autoComplete="Title"
-                    />
+                    <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="giftTitle">Gift Title</InputLabel>
+                    <Input id="giftTitle"  onChange={handleChange} />
+                    </FormControl>
+                    <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="noGifts">Number of Diamonds</InputLabel>
+                    <Input id="noGifts"  onChange={handleChange} />
+                    </FormControl>
                 </div>
             </Grid>
         </Grid>
-        </Fragment>
-        <Typography variant="button" className={classes.divider}>Banner Image</Typography>
+        </Fragment> */}
+        <Typography variant="button" className={classes.divider}>Promotion File</Typography>
             <Fragment>
                 <div>
                     <MaterialDropZone
@@ -122,17 +115,16 @@ const [files] = useState([]);
             <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
                 Save
         </Button>
-    </form>
     </PapperBlock>
     {/* <PapperBlock title="Banner List" icon="ion-ios-card-outline" desc="Banner Details"> */}
-        <AdvancedTable tbl_title="Banner List" />
+        {/* <AdvancedTable tbl_title="Promotions List" /> */}
     {/* </PapperBlock> */}
+
     </div>
   );
 }
+addPromotion.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
-addBanner.propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
-
-export default withStyles(styles)(addBanner);
+export default withStyles(styles)(addPromotion);

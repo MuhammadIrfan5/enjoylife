@@ -398,3 +398,11 @@ export const userSettings = loadable(
 export const addBanner = loadable(() => import("./Pages/Banner/addBanner"), {
   fallback: <Loading />,
 });
+
+export const addPromotion = loadable(() => import("./Pages/Promotion/addPromotion"), {
+  fallback: <Loading />,
+});
+
+export const listBroadcast = loadable(() => import("./Pages/Broadcasts/listBroadcasts"), {
+  fallback: <Loading />,
+});
