@@ -20,7 +20,7 @@ function listUser() {
       {/* <PapperBlock title="Blank Page" desc="Some text description">
         List User
       </PapperBlock> */}
-      <AdvancedTable />
+      <AdvancedTable tbl_title="User List" />
     </div>
   );
 }

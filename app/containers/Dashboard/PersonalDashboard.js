@@ -36,22 +36,22 @@ function PersonalDashboard(props) {
       </Helmet>
       {/* 1st Section */}
       <Grid container spacing={3} className={classes.root}>
-        <Grid item md={6} xs={12}>
+        <Grid item md={12} xs={12}>
           <CounterIconsWidget />
         </Grid>
-        <Grid item md={6} sm={12} xs={12}>
+        {/* <Grid item md={6} sm={12} xs={12}>
           <div className={classes.sliderWrap}>
             <SliderWidget />
           </div>
-        </Grid>
+        </Grid> */}
       </Grid>
       <Divider className={classes.divider} />
       {/* 2nd Section */}
-      <Grid container spacing={2} className={classes.root}>
+      {/* <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12}>
           <PerformanceChartWidget />
         </Grid>
-      </Grid>
+      </Grid> */}
       {/* 3rd Section */}
       <Grid container spacing={3} className={classes.root}>
         <Grid item md={6} xs={12}>

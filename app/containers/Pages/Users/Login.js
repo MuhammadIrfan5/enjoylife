@@ -14,7 +14,7 @@ function Login(props) {
     }, 500); // simulate server latency
   };
 
-  const title = brand.name + ' - Login';
+  const title = brand.name + '- Login';
   const description = brand.desc;
   const { classes } = props;
   return (
