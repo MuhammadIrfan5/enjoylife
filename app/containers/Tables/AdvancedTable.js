@@ -15,6 +15,7 @@ const styles = {
 };
 
 function AdvancedTable(props) {
+  console.log(props);
   const title = brand.name + ' - Table';
   const description = brand.desc;
   // const docSrc = "containers/Tables/demos/";
@@ -41,7 +42,7 @@ function AdvancedTable(props) {
         desc=""
       >
         <div>
-          <AdvFilter tbl_title={props.tbl_title} />
+          <AdvFilter tbl_title={props.tbl_title}  />
           {/* <SourceReader componentName={docSrc + "AdvFilter.js"} /> */}
         </div>
       </PapperBlock>

@@ -3,8 +3,9 @@ import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
 // import { PapperBlock } from 'dan-components';
 import { AdvancedTable } from '../../pageListAsync';
-
-function listUser() {
+import AdvFilter from '../../Tables/demos/AdvFilter';
+import { PapperBlock } from 'dan-components';
+function listUser(props) {
   const title = brand.name + ' - Blank Page';
   const description = brand.desc;
   return (
@@ -20,7 +21,11 @@ function listUser() {
       {/* <PapperBlock title="Blank Page" desc="Some text description">
         List User
       </PapperBlock> */}
-      <AdvancedTable tbl_title="User List" />
+      {/* <AdvancedTable tbl_title="User List" /> */}
+      <PapperBlock title="User List" icon="ion-ios-card-outline" desc="User Details">
+           {/* <AdvancedTable tbl_title="Braodcasts List" /> */}
+           <AdvFilter pageRoute="/app/user/user-settings" />
+    </PapperBlock>
     </div>
   );
 }

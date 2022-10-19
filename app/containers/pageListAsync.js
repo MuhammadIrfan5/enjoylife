@@ -406,3 +406,7 @@ export const addPromotion = loadable(() => import("./Pages/Promotion/addPromotio
 export const listBroadcast = loadable(() => import("./Pages/Broadcasts/listBroadcasts"), {
   fallback: <Loading />,
 });
+
+export const viewBroadcast = loadable(() => import("./Pages/Broadcasts/viewBroadcast"), {
+  fallback: <Loading />,
+});

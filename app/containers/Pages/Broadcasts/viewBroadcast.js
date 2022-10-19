@@ -3,13 +3,12 @@ import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
 import { PapperBlock,CounterIconsWidget } from 'dan-components';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-import { AdvancedTable } from '../../pageListAsync';
-// import { AdvFilter } from './demos';
+import ReactPlayer from 'react-player'
 import AdvFilter from '../../Tables/demos/AdvFilter';
 import classNames from 'classnames';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 const styles = theme => ({
   demo: {
     height: 'auto',
@@ -17,21 +16,12 @@ const styles = theme => ({
   divider: {
     margin: `${theme.spacing(3)}px 0`,
   },
-  input: {
-    margin: theme.spacing(3),
-  },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
   },
-  formControl: {
-    margin: theme.spacing(3),
-  },
   button: {
     margin: theme.spacing(1),
-  },
-  inputUpload: {
-    display: 'none',
   },
   leftIcon: {
     marginRight: theme.spacing(1),
@@ -41,10 +31,10 @@ const styles = theme => ({
   },
   iconSmall: {
     fontSize: 20,
-  },
+  }
 });
 
-function listBroadcast(props) {
+function viewBroadcast(props) {
   const title = brand.name + ' - Blank Page';
   const description = brand.desc;
   const { classes } = props;
@@ -72,23 +62,39 @@ function listBroadcast(props) {
               sm={12}
               className={classes.demo}
               > */}
-              <PapperBlock title="Live Braodcast" icon="ion-ios-videocam" desc="Live Broadcast Insights">
+              <PapperBlock title="Live Braodcasting" icon="ion-ios-videocam" desc="Live Broadcasting">
+                    <Button className={classes.button} variant="contained" color="primary">
+                        Block
+                        <Icon className={classes.rightIcon}>send</Icon>
+                    </Button>
+                    <Button className={classes.button} variant="contained" color="primary">
+                        Unblock
+                        <Icon className={classes.rightIcon}>send</Icon>
+                    </Button>
                 <div className={classes.container}>
-                    <CounterIconsWidget titleOne="Live Broadcasts" titleTwo="Total Blocked Broadcasts" titleThree="Total Active Broadcasts" titleFour="Total Active Users"/>
+                    {/* <CounterIconsWidget titleOne="Live Broadcasts" titleTwo="Total Blocked Broadcasts" titleThree="Total Active Broadcasts" titleFour="Total Active Users"/> */}
+                    {/* <div className='player-wrapper'> */}
+                        <ReactPlayer
+                        className='react-player'
+                        url='https://www.youtube.com/watch?v=t3sObLKyGWI&t=406s'
+                        width='100%'
+                        height='500px'
+                        />
+                    {/* </div> */}
+
                 </div>
             </PapperBlock>
             {/* </Grid>
       </Grid> */}
-    <PapperBlock title="Broadcast List" icon="ion-ios-card-outline" desc="Braodcast Details">
-           {/* <AdvancedTable tbl_title="Braodcasts List" /> */}
+    {/* <PapperBlock title="View Broadcast" icon="ion-ios-card-outline" desc="Braodcast Details">
            <AdvFilter pageRoute="/app/broadcasts/view-broadcast" />
-    </PapperBlock>
+    </PapperBlock> */}
 
     </div>
   );
 }
-listBroadcast.propTypes = {
+viewBroadcast.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(listBroadcast);
+export default withStyles(styles)(viewBroadcast);

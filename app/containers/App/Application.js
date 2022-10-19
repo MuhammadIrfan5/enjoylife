@@ -98,6 +98,7 @@ import {
   addGifts,
   addPromotion,
   listBroadcast,
+  viewBroadcast,
 } from '../pageListAsync';
 // import listUser from '../Pages/User/listUser';
 
@@ -117,7 +118,9 @@ function Application(props) {
         <Route path="/app/banner/add-banner" component={addBanner} />
         { /* Promotions Routes */}
         <Route path="/app/promotion/add-promotions" component={addPromotion} />
+        { /* Broadcast Routes */}
         <Route path="/app/broadcasts/list-broadcast" component={listBroadcast} />
+        <Route path="/app/broadcasts/view-broadcast" component={viewBroadcast} />
         {/* Home */}
         <Route exact path="/app" component={PersonalDashboard} />
         <Route path="/app/crm-dashboard" component={CrmDashboard} />

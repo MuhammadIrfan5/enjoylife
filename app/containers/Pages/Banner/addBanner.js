@@ -17,6 +17,7 @@ import { AdvancedTable } from '../../pageListAsync';
 import Save from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
+import AdvFilter from '../../Tables/demos/AdvFilter';
 
 const styles = theme => ({
   demo: {
@@ -124,9 +125,10 @@ const [files] = useState([]);
         </Button>
     </form>
     </PapperBlock>
-    {/* <PapperBlock title="Banner List" icon="ion-ios-card-outline" desc="Banner Details"> */}
-        <AdvancedTable tbl_title="Banner List" />
-    {/* </PapperBlock> */}
+    <PapperBlock title="Banners List" icon="ion-ios-card-outline" desc="Banner Details">
+        {/* <AdvancedTable tbl_title="Banner List" /> */}
+        <AdvFilter  />
+    </PapperBlock>
     </div>
   );
 }

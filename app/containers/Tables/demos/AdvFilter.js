@@ -31,6 +31,7 @@ const styles = (theme) => ({
   https://github.com/gregnb/mui-datatables/blob/master/README.md
 */
 function AdvFilter(props) {
+  console.log(props.pageRoute);
   const history = useHistory();
   const columns = [
     {
@@ -156,7 +157,7 @@ function AdvFilter(props) {
     // <Link to="/app/user/user-settings" className="btn btn-primary" />;
     // history.push("/app/user/user-settings");
     history.push({
-      pathname: '/app/user/user-settings',
+      pathname: props.pageRoute,
       // search: '?query=abc',
       state: {
         data: {

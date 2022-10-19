@@ -13,6 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 // import { MaterialDropZone } from 'dan-components';
 import MaterialDropZone from '../../../components/Forms/MaterialDropZone';
 import TextField from '@material-ui/core/TextField';
+import AdvFilter from '../../Tables/demos/AdvFilter';
 import { AdvancedTable } from '../../pageListAsync';
 import Save from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
@@ -142,9 +143,10 @@ const [files] = useState([]);
           </Button>
       </PapperBlock>
     </form>
-    {/* <PapperBlock title="Banner List" icon="ion-ios-card-outline" desc="Banner Details"> */}
-        <AdvancedTable tbl_title="Gifts List" />
-    {/* </PapperBlock> */}
+    <PapperBlock title="Gifts List" icon="ion-ios-card-outline" desc="Gifts Details">
+        {/* <AdvancedTable tbl_title="Gifts List" /> */}
+        <AdvFilter  />
+    </PapperBlock>
 
     </div>
   );
