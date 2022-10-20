@@ -89,10 +89,10 @@ function UserMenu(props) {
           <div className={messageStyles.messageInfo}>
             <ListItemAvatar>
               <Avatar className={messageStyles.icon}>
-                <Info />
+                <Error />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={dummy.text.sentences} className={classes.textNotif} secondary={dummy.text.date} />
+            <ListItemText primary="jhon@gmail.com has been blocked" className={classes.textNotif} secondary={dummy.text.date} />
           </div>
         </MenuItem>
         <Divider variant="inset" />
@@ -100,10 +100,11 @@ function UserMenu(props) {
           <div className={messageStyles.messageSuccess}>
             <ListItemAvatar>
               <Avatar className={messageStyles.icon}>
-                <Check />
+                {/* <Check /> */}
+                <Error />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={dummy.text.subtitle} className={classes.textNotif} secondary={dummy.text.date} />
+            <ListItemText primary="Walter@gmail.com has been blocked" className={classes.textNotif} secondary={dummy.text.date} />
           </div>
         </MenuItem>
         <Divider variant="inset" />
@@ -114,7 +115,7 @@ function UserMenu(props) {
                 <Warning />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={dummy.text.subtitle} className={classes.textNotif} secondary={dummy.text.date} />
+            <ListItemText primary="300$ has been transferedto your account" className={classes.textNotif} secondary={dummy.text.date} />
           </div>
         </MenuItem>
         <Divider variant="inset" />
@@ -122,10 +123,10 @@ function UserMenu(props) {
           <div className={messageStyles.messageError}>
             <ListItemAvatar>
               <Avatar className={messageStyles.icon}>
-                <Error />
+                <Info />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary="Suspendisse pharetra pulvinar sollicitudin. Aenean ut orci eu odio cursus lobortis eget tempus velit. " className={classes.textNotif} secondary="Jan 9, 2016" />
+            <ListItemText primary="user@gmail.com has registered" className={classes.textNotif} secondary="Oct 9, 2022" />
           </div>
         </MenuItem>
       </Menu>
