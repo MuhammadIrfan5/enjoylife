@@ -22,9 +22,57 @@ import TextField from "@material-ui/core/TextField";
 // import FormControlLabel from "@material-ui/core/FormControlLabel";
 // import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
+import classNames from "classnames";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+
+// import Typography from '@material-ui/core/Typography';
+// import Grid from '@material-ui/core/Grid';
+import Icon from "@material-ui/core/Icon";
+// import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from "@material-ui/icons/Delete";
+// import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+// import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import FileUpload from "@material-ui/icons/CloudUpload";
+import KeyboardVoice from "@material-ui/icons/KeyboardVoice";
+import Save from "@material-ui/icons/Save";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+
+const styles = (theme) => ({
+  demo: {
+    height: "auto",
+  },
+  divider: {
+    margin: `${theme.spacing(3)}px 0`,
+  },
+  field: {
+    margin: `${theme.spacing(3)}px 5px`,
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+  inputUpload: {
+    display: "none",
+  },
+  leftIcon: {
+    marginRight: theme.spacing(1),
+  },
+  rightIcon: {
+    marginLeft: theme.spacing(1),
+  },
+  iconSmall: {
+    fontSize: 20,
+  },
+});
 
 function userSettings(props) {
   // console.log(props.location.state.data.name, "page data");
+
+  const { classes } = props;
 
   useEffect(() => {
     if (props.location.state.data) {
@@ -39,10 +87,19 @@ function userSettings(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(firstname, "name");
+    console.log("name");
   };
 
   return (
@@ -112,100 +169,107 @@ function userSettings(props) {
                   // }}
                 />
               </Grid>
-
-              {/* <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  id="lastName"
-                  name="lastName"
-                  label="Last name"
-                  fullWidth
-                  autoComplete="lname"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  id="address1"
-                  name="address1"
-                  label="Address line 1"
-                  fullWidth
-                  autoComplete="billing address-line1"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  id="addiress2"
-                  name="addiress2"
-                  label="Address line 2"
-                  fullWidth
-                  autoComplete="billing address-line2"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  id="city"
-                  name="city"
-                  label="City"
-                  fullWidth
-                  autoComplete="billing address-level2"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  id="state"
-                  name="state"
-                  label="State/Province/Region"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  id="zip"
-                  name="zip"
-                  label="Zip / Postal code"
-                  fullWidth
-                  autoComplete="billing postal-code"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  id="country"
-                  name="country"
-                  label="Country"
-                  fullWidth
-                  autoComplete="billing country"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      color="secondary"
-                      name="saveAddress"
-                      value="yes"
-                    />
-                  }
-                  label="Use this address for payment details"
-                />
-              </Grid> */}
             </Grid>
           </Fragment>
+        </form>
+
+        <Grid item md={12} className={classes.demo}>
           <Button
+            className={classes.button}
             variant="contained"
             color="secondary"
-            type="submit"
-            // disabled={submitting}
           >
-            Submit
+            Update
+            <DeleteIcon className={classes.rightIcon} />
           </Button>
-        </form>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary"
+          >
+            Activate
+            <Icon className={classes.rightIcon}>send</Icon>
+          </Button>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="default"
+          >
+            Deactivate
+            <FileUpload className={classes.rightIcon} />
+          </Button>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="default"
+          >
+            Block
+            <FileUpload className={classes.rightIcon} />
+          </Button>
+
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="default"
+          >
+            Un-Block
+            <FileUpload className={classes.rightIcon} />
+          </Button>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="default"
+            onClick={handleClickOpen}
+          >
+            Permanently Block
+            <FileUpload className={classes.rightIcon} />
+          </Button>
+          {/* <Button
+            className={classes.button}
+            variant="contained"
+            disabled
+            color="secondary"
+          >
+            <KeyboardVoice className={classes.leftIcon} />
+            Block
+          </Button> */}
+          {/* <Button className={classes.button} variant="contained" size="small">
+            <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
+            Save
+          </Button> */}
+        </Grid>
       </PapperBlock>
+
+      {/* Permanently block ths user Dialog box */}
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Block User"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to permanently block this user ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Disagree
+          </Button>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
 
-export default userSettings;
+// export default userSettings;
+
+userSettings.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(userSettings);

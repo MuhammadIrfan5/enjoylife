@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { PropTypes } from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
-import { ThemeContext } from './ThemeWrapper';
-import Dashboard from '../Templates/Dashboard';
+import React, { useContext } from "react";
+import { PropTypes } from "prop-types";
+import { Switch, Route } from "react-router-dom";
+import { ThemeContext } from "./ThemeWrapper";
+import Dashboard from "../Templates/Dashboard";
 import {
   PersonalDashboard,
   CrmDashboard,
@@ -96,7 +96,8 @@ import {
   userSettings,
   addBanner,
   addGifts,
-} from '../pageListAsync';
+  changePassword,
+} from "../pageListAsync";
 // import listUser from '../Pages/User/listUser';
 
 function Application(props) {
@@ -111,8 +112,13 @@ function Application(props) {
         {/* User Routes */}
         <Route path="/app/gifts/add-gifts" component={addGifts} />
         <Route path="/app/user/user-settings" component={userSettings} />
-        { /* Banner Routes */}
+        {/* Banner Routes */}
         <Route path="/app/banner/add-banner" component={addBanner} />
+        {/* Password Routes */}
+        <Route
+          path="/app/password/change-password"
+          component={changePassword}
+        />
         {/* Home */}
         <Route exact path="/app" component={PersonalDashboard} />
         <Route path="/app/crm-dashboard" component={CrmDashboard} />
