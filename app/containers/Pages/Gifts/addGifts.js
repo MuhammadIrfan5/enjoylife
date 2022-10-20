@@ -1,4 +1,4 @@
-import React,{useState,Fragment} from 'react';
+import React, { useState, Fragment } from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
 import { PapperBlock } from 'dan-components';
@@ -18,6 +18,8 @@ import { AdvancedTable } from '../../pageListAsync';
 import Save from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
+import { AdvancedTable } from '../../pageListAsync';
+import MaterialDropZone from '../../../components/Forms/MaterialDropZone';
 const styles = theme => ({
   demo: {
     height: 'auto',

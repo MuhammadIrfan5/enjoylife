@@ -30,7 +30,7 @@ module.exports = [
         key: 'addGifts',
         name: 'Add Gifts',
         link: '/app/gifts/add-gifts',
-      }
+      },
     ],
   },
   {
@@ -42,7 +42,7 @@ module.exports = [
         key: 'addBanner',
         name: 'Add Banner',
         link: '/app/banner/add-banner',
-      }
+      },
     ],
   },
   {
@@ -209,7 +209,7 @@ module.exports = [
       {
         key: 'personal',
         name: 'Personal',
-        link: '/dashboard',
+        link: '/app',
         icon: 'ion-ios-contact-outline',
       },
       {
