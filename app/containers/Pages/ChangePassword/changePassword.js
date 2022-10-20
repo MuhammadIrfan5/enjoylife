@@ -7,8 +7,27 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+const styles = theme => ({
+  demo: {
+    height: 'auto',
+  },
+  divider: {
+    margin: `${theme.spacing(3)}px 0`,
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin:{
+    marginTop:"20px",
+  }
+});
 
-function changePassword() {
+function changePassword(props) {
+  const { classes } = props;
   const title = brand.name + " - Blank Page";
   const description = brand.desc;
 
@@ -20,6 +39,7 @@ function changePassword() {
     e.preventDefault();
     console.log(oldPassword, newPassword, confirmPassword, "password");
   };
+  
 
   return (
     <div>
@@ -31,7 +51,7 @@ function changePassword() {
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
       </Helmet>
-      <PapperBlock title="Password Form" desc="Some text description">
+      <PapperBlock title="Password Form" desc="Change Your password from here">
         <form onSubmit={handleSubmit}>
           <Fragment>
             <Typography variant="h5" gutterBottom>
@@ -39,9 +59,9 @@ function changePassword() {
             </Typography>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={12}>
-                <Typography variant="h5" gutterBottom>
+                {/* <Typography variant="h5" gutterBottom>
                   Old Password
-                </Typography>
+                </Typography> */}
                 <TextField
                   required
                   id="firstName"
@@ -88,15 +108,17 @@ function changePassword() {
               </Grid>
             </Grid>
             <Grid item md={12} sm={12}>
-              <Button
-                variant="contained"
-                color="primary"
-                // value="submit"
-                type="submit"
-                // className={classes.button}
-              >
-                Update password
-              </Button>
+              <div className="fluid-container mt-10">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  // value="submit"
+                  type="submit"
+                  className={classes.margin}
+                >
+                  Update password
+                </Button>
+              </div>
             </Grid>
           </Fragment>
         </form>
@@ -105,4 +127,10 @@ function changePassword() {
   );
 }
 
-export default changePassword;
+// export default changePassword;
+
+changePassword.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(changePassword);

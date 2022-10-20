@@ -21,9 +21,6 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 // import FormControlLabel from "@material-ui/core/FormControlLabel";
 // import Checkbox from "@material-ui/core/Checkbox";
-<<<<<<< HEAD
-import Button from '@material-ui/core/Button';
-=======
 import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 import PropTypes from "prop-types";
@@ -71,7 +68,6 @@ const styles = (theme) => ({
     fontSize: 20,
   },
 });
->>>>>>> c7d9a3e99be00ed96b26041d1534c09873a9f72c
 
 function userSettings(props) {
   // console.log(props.location.state.data.name, "page data");
@@ -88,15 +84,6 @@ function userSettings(props) {
 
   const title = brand.name + ' - Blank Page';
   const description = brand.desc;
-<<<<<<< HEAD
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(firstname, 'name');
-=======
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
@@ -113,7 +100,6 @@ function userSettings(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("name");
->>>>>>> c7d9a3e99be00ed96b26041d1534c09873a9f72c
   };
 
   return (

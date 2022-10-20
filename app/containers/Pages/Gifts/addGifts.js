@@ -14,12 +14,10 @@ import FormControl from '@material-ui/core/FormControl';
 import MaterialDropZone from '../../../components/Forms/MaterialDropZone';
 import TextField from '@material-ui/core/TextField';
 import AdvFilter from '../../Tables/demos/AdvFilter';
-import { AdvancedTable } from '../../pageListAsync';
 import Save from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
 import { AdvancedTable } from '../../pageListAsync';
-import MaterialDropZone from '../../../components/Forms/MaterialDropZone';
 const styles = theme => ({
   demo: {
     height: 'auto',
