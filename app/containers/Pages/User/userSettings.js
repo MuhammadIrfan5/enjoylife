@@ -1,41 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
-import { PapperBlock } from 'dan-components';
-// import PropTypes from 'prop-types';
-// import { withStyles } from '@material-ui/core/styles';
-// import Paper from '@material-ui/core/Paper';
-// import { Field, reduxForm } from 'redux-form/immutable';
-// import MenuItem from '@material-ui/core/MenuItem';
-// import InputLabel from '@material-ui/core/InputLabel';
+import { PapperBlock ,CounterIconsWidget} from 'dan-components';
 import Grid from '@material-ui/core/Grid';
-// import Radio from '@material-ui/core/Radio';
-// import RadioGroup from '@material-ui/core/RadioGroup';
-// import FormControl from '@material-ui/core/FormControl';
-// import FormLabel from '@material-ui/core/FormLabel';
-// import FormControlLabel from "@material-ui/core/FormControlLabel";
-// import Typography from "@material-ui/core/Typography";
 import { Fragment } from 'react';
-// import Grid from "@material-ui/core/Grid";
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-// import FormControlLabel from "@material-ui/core/FormControlLabel";
-// import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-
-// import Typography from '@material-ui/core/Typography';
-// import Grid from '@material-ui/core/Grid';
 import Icon from "@material-ui/core/Icon";
-// import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from "@material-ui/icons/Delete";
-// import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-// import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import FileUpload from "@material-ui/icons/CloudUpload";
-import KeyboardVoice from "@material-ui/icons/KeyboardVoice";
-import Save from "@material-ui/icons/Save";
+// import KeyboardVoice from "@material-ui/icons/KeyboardVoice";
+// import Save from "@material-ui/icons/Save";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -112,6 +91,11 @@ function userSettings(props) {
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
       </Helmet>
+      <PapperBlock title="Diamonds" icon="ion-ios-videocam" desc="User Diamond Info">
+          <div className={classes.container}>
+            <CounterIconsWidget titleOne="Total Sent Diamonds" titleTwo="Total Recieved Diamonds" titleThree="" titleFour="" pageKey="user-settings"/>
+          </div>
+      </PapperBlock>
       <PapperBlock
         title="User Settings form"
         desc="Please fill in the form details"

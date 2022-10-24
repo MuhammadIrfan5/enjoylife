@@ -39,28 +39,30 @@ function CounterIconWidget(props) {
             <SupervisorAccount className={classes.counterIcon} />
           </CounterWidget>
         </Grid>
-        <Grid item xs={6} md={6}>
-          <CounterWidget
-            color={colorfull[2]}
-            start={0}
-            end={67}
-            duration={3}
-            title={props.titleThree}
-          >
-            <Edit className={classes.counterIcon} />
-          </CounterWidget>
-        </Grid>
-        <Grid item xs={6} md={6}>
-          <CounterWidget
-            color={colorfull[3]}
-            start={0}
-            end={10000}
-            duration={3}
-            title={props.titleFour}
-          >
-            <CollectionsBookmark className={classes.counterIcon} />
-          </CounterWidget>
-        </Grid>
+        {props.pageKey == 'user-settings' ? (null) : (<>
+          <Grid item xs={6} md={6}>
+            <CounterWidget
+              color={colorfull[2]}
+              start={0}
+              end={67}
+              duration={3}
+              title={props.titleThree}
+            >
+              <Edit className={classes.counterIcon} />
+            </CounterWidget>
+          </Grid>
+          <Grid item xs={6} md={6}>
+            <CounterWidget
+              color={colorfull[3]}
+              start={0}
+              end={10000}
+              duration={3}
+              title={props.titleFour}
+            >
+              <CollectionsBookmark className={classes.counterIcon} />
+            </CounterWidget>
+          </Grid>
+        </>)}
       </Grid>
     </div>
   );

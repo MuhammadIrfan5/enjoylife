@@ -79,6 +79,8 @@ function viewBroadcast(props) {
                         url='https://www.youtube.com/watch?v=t3sObLKyGWI&t=406s'
                         width='100%'
                         height='500px'
+                        muted={true}
+                        playing = {true}
                         />
                     {/* </div> */}
 

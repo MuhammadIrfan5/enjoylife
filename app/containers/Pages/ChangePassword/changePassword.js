@@ -8,6 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { withStyles } from '@material-ui/core/styles';
+import swal from 'sweetalert';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 const styles = theme => ({
@@ -37,8 +38,18 @@ function changePassword(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     console.log(oldPassword, newPassword, confirmPassword, "password");
   };
+
+  const onClickButton = (e) => {
+    swal({
+      title: "Good job!",
+      text: "Password Chnaged Successfully!",
+      icon: "success",
+      button: "Okay!",
+    });
+  }
   
 
   return (
@@ -51,6 +62,7 @@ function changePassword(props) {
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
       </Helmet>
+
       <PapperBlock title="Password Form" desc="Change Your password from here">
         <form onSubmit={handleSubmit}>
           <Fragment>
@@ -113,6 +125,7 @@ function changePassword(props) {
                   variant="contained"
                   color="primary"
                   // value="submit"
+                  onClick={onClickButton}
                   type="submit"
                   className={classes.margin}
                 >
