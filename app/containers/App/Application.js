@@ -3,6 +3,8 @@ import { PropTypes } from "prop-types";
 import { Switch, Route } from "react-router-dom";
 import { ThemeContext } from "./ThemeWrapper";
 import Dashboard from "../Templates/Dashboard";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   PersonalDashboard,
   CrmDashboard,
@@ -108,6 +110,7 @@ function Application(props) {
   const changeMode = useContext(ThemeContext);
   return (
     <Dashboard history={history} changeMode={changeMode}>
+      <ToastContainer />
       <Switch>
         {/* User Routes */}
         <Route path="/app/user/add-user" component={addUser} />

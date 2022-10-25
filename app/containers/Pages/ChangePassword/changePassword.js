@@ -11,6 +11,8 @@ import { withStyles } from '@material-ui/core/styles';
 import swal from 'sweetalert';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const styles = theme => ({
   demo: {
     height: 'auto',
@@ -43,12 +45,23 @@ function changePassword(props) {
   };
 
   const onClickButton = (e) => {
-    swal({
-      title: "Good job!",
-      text: "Password Chnaged Successfully!",
-      icon: "success",
-      button: "Okay!",
-    });
+    // swal({
+    //   title: "Good job!",
+    //   text: "Password Chnaged Successfully!",
+    //   icon: "success",
+    //   button: "Okay!",
+    // });
+    toast('🦄 Password Changed Successfully!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+
   }
   
 

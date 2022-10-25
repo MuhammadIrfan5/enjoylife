@@ -46,6 +46,9 @@ const styles = (theme) => ({
   iconSmall: {
     fontSize: 20,
   },
+  Margin_top:{
+    marginTop:'20px',
+  },
 });
 
 function userSettings(props) {
@@ -157,7 +160,7 @@ function userSettings(props) {
           </Fragment>
         </form>
 
-        <Grid item md={12} className={classes.demo}>
+        <Grid item md={12} className={classes.demo,classes.Margin_top}>
           <Button
             className={classes.button}
             variant="contained"
