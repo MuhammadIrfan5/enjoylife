@@ -1,29 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
-import { PapperBlock ,CounterIconsWidget} from 'dan-components';
+import { PapperBlock } from 'dan-components';
+// import PropTypes from 'prop-types';
+// import { withStyles } from '@material-ui/core/styles';
+// import Paper from '@material-ui/core/Paper';
+// import { Field, reduxForm } from 'redux-form/immutable';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import InputLabel from '@material-ui/core/InputLabel';
 import Grid from '@material-ui/core/Grid';
+// import Radio from '@material-ui/core/Radio';
+// import RadioGroup from '@material-ui/core/RadioGroup';
+// import FormControl from '@material-ui/core/FormControl';
+// import FormLabel from '@material-ui/core/FormLabel';
+// import FormControlLabel from "@material-ui/core/FormControlLabel";
+// import Typography from "@material-ui/core/Typography";
 import { Fragment } from 'react';
+// import Grid from "@material-ui/core/Grid";
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import Button from "@material-ui/core/Button";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Icon from "@material-ui/core/Icon";
-import DeleteIcon from "@material-ui/icons/Delete";
-import FileUpload from "@material-ui/icons/CloudUpload";
-// import KeyboardVoice from "@material-ui/icons/KeyboardVoice";
-// import Save from "@material-ui/icons/Save";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+// import FormControlLabel from "@material-ui/core/FormControlLabel";
+// import Checkbox from "@material-ui/core/Checkbox";
+import Button from '@material-ui/core/Button';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+
+// import Typography from '@material-ui/core/Typography';
+// import Grid from '@material-ui/core/Grid';
+import Icon from '@material-ui/core/Icon';
+// import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+// import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+// import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import FileUpload from '@material-ui/icons/CloudUpload';
+import KeyboardVoice from '@material-ui/icons/KeyboardVoice';
+import Save from '@material-ui/icons/Save';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from '../../../redux/actions/userActions';
 
 const styles = (theme) => ({
   demo: {
-    height: "auto",
+    height: 'auto',
   },
   divider: {
     margin: `${theme.spacing(3)}px 0`,
@@ -35,7 +58,7 @@ const styles = (theme) => ({
     margin: theme.spacing(1),
   },
   inputUpload: {
-    display: "none",
+    display: 'none',
   },
   leftIcon: {
     marginRight: theme.spacing(1),
@@ -53,6 +76,11 @@ const styles = (theme) => ({
 
 function userSettings(props) {
   // console.log(props.location.state.data.name, "page data");
+  // const eventData = useSelector(state => state.getIn([reducer, 'events']));
+  const data = useSelector((state) => state._root.entries[6]);
+  console.log(data[1], 'user page data');
+
+  const dispatch = useDispatch();
 
   const { classes } = props;
 
@@ -64,11 +92,14 @@ function userSettings(props) {
     }
   }, []);
 
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
   const title = brand.name + ' - Blank Page';
   const description = brand.desc;
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('');
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -81,7 +112,7 @@ function userSettings(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("name");
+    console.log('name');
   };
 
   return (
@@ -234,7 +265,7 @@ function userSettings(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Block User"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Block User</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Are you sure you want to permanently block this user ?
