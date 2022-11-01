@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
-import { PapperBlock } from 'dan-components';
+import { PapperBlock,CounterIconsWidget } from 'dan-components';
 // import PropTypes from 'prop-types';
 // import { withStyles } from '@material-ui/core/styles';
 // import Paper from '@material-ui/core/Paper';
@@ -25,7 +25,6 @@ import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
 // import Typography from '@material-ui/core/Typography';
 // import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
