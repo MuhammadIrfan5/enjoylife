@@ -7,17 +7,17 @@ module.exports = [
       {
         key: 'addUser',
         name: 'Add User',
-        link: '/app/user/add-user',
+        link: '/dashboard/user/add-user',
       },
       {
         key: 'listUser',
         name: 'List User',
-        link: '/app/user/list-user',
+        link: '/dashboard/user/list-user',
       },
       // {
       //   key: 'userSettings',
       //   name: 'User Settings',
-      //   link: '/app/user/user-settings',
+      //   link: '/dashboard/user/user-settings',
       // },
     ],
   },
@@ -29,7 +29,7 @@ module.exports = [
       {
         key: 'addGifts',
         name: 'Add Gifts',
-        link: '/app/gifts/add-gifts',
+        link: '/dashboard/gifts/add-gifts',
       },
     ],
   },
@@ -41,7 +41,7 @@ module.exports = [
       {
         key: 'addBanner',
         name: 'Add Banner',
-        link: '/app/banner/add-banner',
+        link: '/dashboard/banner/add-banner',
       },
     ],
   },
@@ -53,7 +53,7 @@ module.exports = [
       {
         key: 'addPromotions',
         name: 'Add Promotions',
-        link: '/app/promotion/add-promotions',
+        link: '/dashboard/promotion/add-promotions',
       }
     ],
   },
@@ -65,7 +65,7 @@ module.exports = [
       {
         key: 'listBroadcasts',
         name: 'List Broadcasts',
-        link: '/app/broadcasts/list-broadcast',
+        link: '/dashboard/broadcasts/list-broadcast',
       }
     ],
   },
@@ -106,13 +106,13 @@ module.exports = [
   //     {
   //       key: 'crm',
   //       name: 'CRM',
-  //       link: '/app/crm-dashboard',
+  //       link: '/dashboard/crm-dashboard',
   //       icon: 'ion-ios-card-outline',
   //     },
   //     {
   //       key: 'crypto',
   //       name: 'Cryptocurrency',
-  //       link: '/app/crypto-dashboard',
+  //       link: '/dashboard/crypto-dashboard',
   //       icon: 'ion-ios-medal-outline',
   //     },
   //     {
@@ -123,31 +123,31 @@ module.exports = [
   //     {
   //       key: 'infographics_wdiget',
   //       name: 'Infographics',
-  //       link: '/app/widgets/infographics',
+  //       link: '/dashboard/widgets/infographics',
   //       icon: 'ion-ios-card',
   //     },
   //     {
   //       key: 'status_widget',
   //       name: 'Status',
-  //       link: '/app/widgets/status',
+  //       link: '/dashboard/widgets/status',
   //       icon: 'ion-ios-notifications-outline',
   //     },
   //     {
   //       key: 'mini_apps_widget',
   //       name: 'Mini Apps',
-  //       link: '/app/widgets/mini-apps',
+  //       link: '/dashboard/widgets/mini-apps',
   //       icon: 'ion-ios-information-circle-outline',
   //     },
   //     {
   //       key: 'analytics_widget',
   //       name: 'Analytics',
-  //       link: '/app/widgets/analytics',
+  //       link: '/dashboard/widgets/analytics',
   //       icon: 'ion-ios-analytics-outline',
   //     },
   //     {
   //       key: 'info_updates_widget',
   //       name: 'Info & Updates',
-  //       link: '/app/widgets/info-updates',
+  //       link: '/dashboard/widgets/info-updates',
   //       icon: 'ion-ios-information-circle-outline',
   //     },
   //     {
@@ -158,19 +158,19 @@ module.exports = [
   //     {
   //       key: 'grid',
   //       name: 'Grid',
-  //       link: '/app/layouts/grid',
+  //       link: '/dashboard/layouts/grid',
   //       icon: 'ion-ios-apps-outline',
   //     },
   //     {
   //       key: 'application_layout',
   //       name: 'App Layout',
-  //       link: '/app/layouts/app-layout',
+  //       link: '/dashboard/layouts/app-layout',
   //       icon: 'ion-ios-photos-outline',
   //     },
   //     {
   //       key: 'responsive',
   //       name: 'Responsive',
-  //       link: '/app/layouts/responsive',
+  //       link: '/dashboard/layouts/responsive',
   //       icon: 'ion-ios-phone-portrait',
   //     },
   //   ],
@@ -191,13 +191,13 @@ module.exports = [
   //     {
   //       key: 'contact',
   //       name: 'Contact',
-  //       link: '/app/pages/contact',
+  //       link: '/dashboard/pages/contact',
   //       icon: 'ion-ios-contact-outline',
   //     },
   //     {
   //       key: 'email',
   //       name: 'Email',
-  //       link: '/app/pages/email',
+  //       link: '/dashboard/pages/email',
   //       badge: '2',
   //       icon: 'ion-ios-mail-outline',
   //     },
@@ -215,13 +215,13 @@ module.exports = [
   //     {
   //       key: 'timeline',
   //       name: 'Timeline',
-  //       link: '/app/pages/timeline',
+  //       link: '/dashboard/pages/timeline',
   //       icon: 'ion-ios-people-outline',
   //     },
   //     {
   //       key: 'chat',
   //       name: 'Chat',
-  //       link: '/app/pages/chat',
+  //       link: '/dashboard/pages/chat',
   //       badge: '4',
   //       icon: 'ion-ios-chatbubbles-outline',
   //     },
@@ -233,25 +233,25 @@ module.exports = [
   //     {
   //       key: 'Itemlist',
   //       name: 'Product Catalogues',
-  //       link: '/app/pages/ecommerce',
+  //       link: '/dashboard/pages/ecommerce',
   //       icon: 'ion-ios-apps-outline',
   //     },
   //     {
   //       key: 'item_detail',
   //       name: 'Product Detail',
-  //       link: '/app/pages/product-detail',
+  //       link: '/dashboard/pages/product-detail',
   //       icon: 'ion-ios-card',
   //     },
   //     {
   //       key: 'checkout',
   //       name: 'Checkout Page',
-  //       link: '/app/pages/checkout',
+  //       link: '/dashboard/pages/checkout',
   //       icon: 'ion-ios-cart-outline',
   //     },
   //     {
   //       key: 'dynamic_invoice',
   //       name: 'Dynamic Invoice',
-  //       link: '/app/pages/invoice',
+  //       link: '/dashboard/pages/invoice',
   //       icon: 'ion-ios-document-outline',
   //     },
   //     {
@@ -262,13 +262,13 @@ module.exports = [
   //     {
   //       key: 'calendar',
   //       name: 'Calendar',
-  //       link: '/app/pages/calendar',
+  //       link: '/dashboard/pages/calendar',
   //       icon: 'ion-ios-calendar-outline',
   //     },
   //     {
   //       key: 'task',
   //       name: 'Task Board',
-  //       link: '/app/pages/taskboard',
+  //       link: '/dashboard/pages/taskboard',
   //       icon: 'ion-ios-checkmark-circle-outline',
   //     },
   //   ],
@@ -339,37 +339,37 @@ module.exports = [
   //     {
   //       key: 'user_profile',
   //       name: 'User Profile',
-  //       link: '/app/pages/user-profile',
+  //       link: '/dashboard/pages/user-profile',
   //       icon: 'ion-ios-person-outline',
   //     },
   //     {
   //       key: 'blank',
   //       name: 'Blank Page',
-  //       link: '/app/pages/blank-page',
+  //       link: '/dashboard/pages/blank-page',
   //       icon: 'ion-ios-document-outline',
   //     },
   //     {
   //       key: 'pricing',
   //       name: 'Pricing Page',
-  //       link: '/app/pages/pricing',
+  //       link: '/dashboard/pages/pricing',
   //       icon: 'ion-ios-archive-outline',
   //     },
   //     {
   //       key: 'gallery',
   //       name: 'Photo Gallery',
-  //       link: '/app/pages/photo-gallery',
+  //       link: '/dashboard/pages/photo-gallery',
   //       icon: 'ion-ios-images-outline',
   //     },
   //     {
   //       key: 'settings',
   //       name: 'Settings',
-  //       link: '/app/pages/settings',
+  //       link: '/dashboard/pages/settings',
   //       icon: 'ion-ios-options-outline',
   //     },
   //     {
   //       key: 'help_support',
   //       name: 'Help & Support',
-  //       link: '/app/pages/help-support',
+  //       link: '/dashboard/pages/help-support',
   //       icon: 'ion-ios-help-circle-outline',
   //     },
   //     {
@@ -409,13 +409,13 @@ module.exports = [
   //     {
   //       key: 'not_found_page',
   //       name: 'Not Found Page',
-  //       link: '/app/pages/not-found',
+  //       link: '/dashboard/pages/not-found',
   //       icon: 'ion-ios-warning-outline',
   //     },
   //     {
   //       key: 'error_page',
   //       name: 'Error Page',
-  //       link: '/app/pages/error',
+  //       link: '/dashboard/pages/error',
   //       icon: 'ion-ios-warning-outline',
   //     },
   //   ],
@@ -433,19 +433,19 @@ module.exports = [
   //     {
   //       key: 'basic_table',
   //       name: 'Basic',
-  //       link: '/app/tables/basic-table',
+  //       link: '/dashboard/tables/basic-table',
   //       icon: 'ion-ios-grid-outline',
   //     },
   //     {
   //       key: 'data_table',
   //       name: 'Data Tables',
-  //       link: '/app/tables/data-table',
+  //       link: '/dashboard/tables/data-table',
   //       icon: 'ion-ios-cube-outline',
   //     },
   //     {
   //       key: 'table_playground',
   //       name: 'Table Playgound',
-  //       link: '/app/tables/table-playground',
+  //       link: '/dashboard/tables/table-playground',
   //       icon: 'ion-ios-list-box-outline',
   //     },
   //     {
@@ -456,13 +456,13 @@ module.exports = [
   //     {
   //       key: 'editable_cell',
   //       name: 'Table Edit',
-  //       link: '/app/tables/editable-cell',
+  //       link: '/dashboard/tables/editable-cell',
   //       icon: 'ion-ios-cube-outline',
   //     },
   //     {
   //       key: 'tree_table',
   //       name: 'Tree Table',
-  //       link: '/app/tables/tree-table',
+  //       link: '/dashboard/tables/tree-table',
   //       icon: 'ion-ios-git-merge',
   //     },
   //   ],
@@ -480,19 +480,19 @@ module.exports = [
   //     {
   //       key: 'buttons',
   //       name: 'Buttons',
-  //       link: '/app/forms/buttons',
+  //       link: '/dashboard/forms/buttons',
   //       icon: 'ion-ios-game-controller-a-outline',
   //     },
   //     {
   //       key: 'toggle_button',
   //       name: 'Toggle Button',
-  //       link: '/app/forms/toggle-button',
+  //       link: '/dashboard/forms/toggle-button',
   //       icon: 'ion-ios-switch-outline',
   //     },
   //     {
   //       key: 'dial_button',
   //       name: 'Dial Button',
-  //       link: '/app/forms/dial-button',
+  //       link: '/dashboard/forms/dial-button',
   //       icon: 'ion-ios-add-circle-outline',
   //     },
   //     {
@@ -503,25 +503,25 @@ module.exports = [
   //     {
   //       key: 'textfields',
   //       name: 'Textfields',
-  //       link: '/app/forms/textfields',
+  //       link: '/dashboard/forms/textfields',
   //       icon: 'ion-ios-list-box-outline',
   //     },
   //     {
   //       key: 'autocomplete',
   //       name: 'Autocomplete & Tag',
-  //       link: '/app/forms/autocomplete',
+  //       link: '/dashboard/forms/autocomplete',
   //       icon: 'ion-ios-list',
   //     },
   //     {
   //       key: 'datetimepicker',
   //       name: 'Date Time Picker',
-  //       link: '/app/forms/date-time-picker',
+  //       link: '/dashboard/forms/date-time-picker',
   //       icon: 'ion-ios-calendar-outline',
   //     },
   //     {
   //       key: 'reduxform',
   //       name: 'Redux Form',
-  //       link: '/app/forms/reduxform',
+  //       link: '/dashboard/forms/reduxform',
   //       icon: 'ion-ios-list-box-outline',
   //     },
   //     {
@@ -532,19 +532,19 @@ module.exports = [
   //     {
   //       key: 'checkbox_radio',
   //       name: 'Checkbox & Radio',
-  //       link: '/app/forms/checkbox-radio',
+  //       link: '/dashboard/forms/checkbox-radio',
   //       icon: 'ion-ios-checkbox-outline',
   //     },
   //     {
   //       key: 'switches',
   //       name: 'Switches',
-  //       link: '/app/forms/switches',
+  //       link: '/dashboard/forms/switches',
   //       icon: 'ion-ios-switch-outline',
   //     },
   //     {
   //       key: 'selectbox',
   //       name: 'Select',
-  //       link: '/app/forms/selectbox',
+  //       link: '/dashboard/forms/selectbox',
   //       icon: 'ion-ios-menu-outline',
   //     },
   //     {
@@ -555,25 +555,25 @@ module.exports = [
   //     {
   //       key: 'slider',
   //       name: 'Slider Range',
-  //       link: '/app/forms/slider-range',
+  //       link: '/dashboard/forms/slider-range',
   //       icon: 'ion-ios-options-outline',
   //     },
   //     {
   //       key: 'upload',
   //       name: 'Upload',
-  //       link: '/app/forms/upload',
+  //       link: '/dashboard/forms/upload',
   //       icon: 'ion-ios-cloud-upload-outline',
   //     },
   //     {
   //       key: 'ratting',
   //       name: 'Ratting',
-  //       link: '/app/forms/ratting',
+  //       link: '/dashboard/forms/ratting',
   //       icon: 'ion-ios-star-half',
   //     },
   //     {
   //       key: 'texteditor',
   //       name: 'WYSIWYG Editor',
-  //       link: '/app/forms/wysiwyg-editor',
+  //       link: '/dashboard/forms/wysiwyg-editor',
   //       icon: 'ion-ios-create-outline',
   //     },
   //   ],
@@ -591,13 +591,13 @@ module.exports = [
   //     {
   //       key: 'card_papper',
   //       name: 'Card & Papper',
-  //       link: '/app/ui/card-papper',
+  //       link: '/dashboard/ui/card-papper',
   //       icon: 'ion-ios-card-outline',
   //     },
   //     {
   //       key: 'accordion',
   //       name: 'Accordion',
-  //       link: '/app/ui/accordion',
+  //       link: '/dashboard/ui/accordion',
   //       icon: 'ion-ios-menu-outline',
   //     },
   //     {
@@ -608,31 +608,31 @@ module.exports = [
   //     {
   //       key: 'tab',
   //       name: 'Tabs Navigation',
-  //       link: '/app/ui/tabs',
+  //       link: '/dashboard/ui/tabs',
   //       icon: 'ion-ios-folder-outline',
   //     },
   //     {
   //       key: 'drawer_menu',
   //       name: 'Menu & Drawer',
-  //       link: '/app/ui/drawer-menu',
+  //       link: '/dashboard/ui/drawer-menu',
   //       icon: 'ion-ios-settings-outline',
   //     },
   //     {
   //       key: 'breadcrumbs',
   //       name: 'Breadcrumbs',
-  //       link: '/app/ui/breadcrumbs',
+  //       link: '/dashboard/ui/breadcrumbs',
   //       icon: 'ion-ios-arrow-dropright',
   //     },
   //     {
   //       key: 'paginations',
   //       name: 'Paginations',
-  //       link: '/app/ui/paginations',
+  //       link: '/dashboard/ui/paginations',
   //       icon: 'ion-ios-arrow-round-forward',
   //     },
   //     {
   //       key: 'steppers',
   //       name: 'Steppers',
-  //       link: '/app/ui/steppers',
+  //       link: '/dashboard/ui/steppers',
   //       icon: 'ion-ios-glasses-outline',
   //     },
   //     {
@@ -643,13 +643,13 @@ module.exports = [
   //     {
   //       key: 'dialog_modal',
   //       name: 'Dialog & Modal',
-  //       link: '/app/ui/dialog-modal',
+  //       link: '/dashboard/ui/dialog-modal',
   //       icon: 'ion-ios-glasses-outline',
   //     },
   //     {
   //       key: 'popover_tooltip',
   //       name: 'Popover & Tooltip',
-  //       link: '/app/ui/popover-tooltip',
+  //       link: '/dashboard/ui/popover-tooltip',
   //       icon: 'ion-ios-photos-outline',
   //     },
   //     {
@@ -661,13 +661,13 @@ module.exports = [
   //     {
   //       key: 'badges',
   //       name: 'Badges',
-  //       link: '/app/ui/badges',
+  //       link: '/dashboard/ui/badges',
   //       icon: 'ion-ios-bookmark-outline',
   //     },
   //     {
   //       key: 'snackbar',
   //       name: 'Messages',
-  //       link: '/app/ui/snackbar',
+  //       link: '/dashboard/ui/snackbar',
   //       icon: 'ion-ios-notifications-outline',
   //     },
   //     {
@@ -678,13 +678,13 @@ module.exports = [
   //     {
   //       key: 'list_divider',
   //       name: 'List & Divider',
-  //       link: '/app/ui/list',
+  //       link: '/dashboard/ui/list',
   //       icon: 'ion-ios-menu',
   //     },
   //     {
   //       key: 'custom_dividers',
   //       name: 'Custom Dividers',
-  //       link: '/app/ui/dividers',
+  //       link: '/dashboard/ui/dividers',
   //       icon: 'ion-ios-menu-outline',
   //     },
   //     {
@@ -695,19 +695,19 @@ module.exports = [
   //     {
   //       key: 'avatars',
   //       name: 'Avatars',
-  //       link: '/app/ui/avatars',
+  //       link: '/dashboard/ui/avatars',
   //       icon: 'ion-ios-contact-outline',
   //     },
   //     {
   //       key: 'image_gird',
   //       name: 'Image Grid Gallery',
-  //       link: '/app/ui/image-grid',
+  //       link: '/dashboard/ui/image-grid',
   //       icon: 'ion-ios-apps-outline',
   //     },
   //     {
   //       key: 'slider_carousel',
   //       name: 'Slider & Carousel',
-  //       link: '/app/ui/slider-carousel',
+  //       link: '/dashboard/ui/slider-carousel',
   //       icon: 'ion-ios-images-outline',
   //     },
   //     {
@@ -718,19 +718,19 @@ module.exports = [
   //     {
   //       key: 'typography',
   //       name: 'Typography',
-  //       link: '/app/ui/typography',
+  //       link: '/dashboard/ui/typography',
   //       icon: 'ion-ios-create-outline',
   //     },
   //     {
   //       key: 'icons',
   //       name: 'Material Icons',
-  //       link: '/app/ui/icons',
+  //       link: '/dashboard/ui/icons',
   //       icon: 'ion-ios-heart-outline',
   //     },
   //     {
   //       key: 'ionicons',
   //       name: 'Ion Icons',
-  //       link: '/app/ui/ionicons',
+  //       link: '/dashboard/ui/ionicons',
   //       icon: 'ion-ios-ionic-outline',
   //     },
   //     {
@@ -741,13 +741,13 @@ module.exports = [
   //     {
   //       key: 'progress',
   //       name: 'Progress & Spinners',
-  //       link: '/app/ui/progress',
+  //       link: '/dashboard/ui/progress',
   //       icon: 'ion-ios-glasses-outline',
   //     },
   //     {
   //       key: 'tags',
   //       name: 'Tags',
-  //       link: '/app/ui/tags',
+  //       link: '/dashboard/ui/tags',
   //       icon: 'ion-ios-pricetag-outline',
   //     },
   //   ],
@@ -765,43 +765,43 @@ module.exports = [
   //     {
   //       key: 'line_charts',
   //       name: 'Line',
-  //       link: '/app/charts/line-charts',
+  //       link: '/dashboard/charts/line-charts',
   //       icon: 'ion-ios-pulse-outline',
   //     },
   //     {
   //       key: 'bar_charts',
   //       name: 'Bar',
-  //       link: '/app/charts/bar-charts',
+  //       link: '/dashboard/charts/bar-charts',
   //       icon: 'ion-ios-stats-outline',
   //     },
   //     {
   //       key: 'area_charts',
   //       name: 'Area',
-  //       link: '/app/charts/area-charts',
+  //       link: '/dashboard/charts/area-charts',
   //       icon: 'ion-ios-analytics-outline',
   //     },
   //     {
   //       key: 'pie_charts',
   //       name: 'Pie & Doughnut',
-  //       link: '/app/charts/pie-charts',
+  //       link: '/dashboard/charts/pie-charts',
   //       icon: 'ion-ios-pie-outline',
   //     },
   //     {
   //       key: 'radar_charts',
   //       name: 'Radar',
-  //       link: '/app/charts/radar-charts',
+  //       link: '/dashboard/charts/radar-charts',
   //       icon: 'ion-ios-ionic-outline',
   //     },
   //     {
   //       key: 'scatter_charts',
   //       name: 'Scatter',
-  //       link: '/app/charts/scatter-charts',
+  //       link: '/dashboard/charts/scatter-charts',
   //       icon: 'ion-ios-sunny-outline',
   //     },
   //     {
   //       key: 'compossed_charts',
   //       name: 'Compossed',
-  //       link: '/app/charts/compossed-chart',
+  //       link: '/dashboard/charts/compossed-chart',
   //       icon: 'ion-ios-stats-outline',
   //     },
   //     {
@@ -812,31 +812,31 @@ module.exports = [
   //     {
   //       key: 'doughnut_pie',
   //       name: 'Doughnut & Pie',
-  //       link: '/app/charts/doughnut-pie-charts',
+  //       link: '/dashboard/charts/doughnut-pie-charts',
   //       icon: 'ion-ios-pie-outline',
   //     },
   //     {
   //       key: 'bar_canvas_chart',
   //       name: 'Bar Direction',
-  //       link: '/app/charts/bar-direction-charts',
+  //       link: '/dashboard/charts/bar-direction-charts',
   //       icon: 'ion-ios-stats-outline',
   //     },
   //     {
   //       key: 'line_canvas_chart',
   //       name: 'Line and Scatter',
-  //       link: '/app/charts/line-scatter-charts',
+  //       link: '/dashboard/charts/line-scatter-charts',
   //       icon: 'ion-ios-sunny-outline',
   //     },
   //     {
   //       key: 'area_canvas_chart',
   //       name: 'Area Filled',
-  //       link: '/app/charts/area-filled-charts',
+  //       link: '/dashboard/charts/area-filled-charts',
   //       icon: 'ion-ios-analytics-outline',
   //     },
   //     {
   //       key: 'radar_canvas_chart',
   //       name: 'Radar and Polar',
-  //       link: '/app/charts/radar-polar-chart',
+  //       link: '/dashboard/charts/radar-polar-chart',
   //       icon: 'ion-ios-ionic-outline',
   //     },
   //   ],
@@ -854,31 +854,31 @@ module.exports = [
   //     {
   //       key: 'map_marker',
   //       name: 'Map Marker',
-  //       link: '/app/maps/map-marker',
+  //       link: '/dashboard/maps/map-marker',
   //       icon: 'ion-ios-pin-outline',
   //     },
   //     {
   //       key: 'map_direction',
   //       name: 'Map Direction',
-  //       link: '/app/maps/map-direction',
+  //       link: '/dashboard/maps/map-direction',
   //       icon: 'ion-ios-arrow-dropright',
   //     },
   //     {
   //       key: 'map_searchbox',
   //       name: 'Map with Searchbox',
-  //       link: '/app/maps/map-searchbox',
+  //       link: '/dashboard/maps/map-searchbox',
   //       icon: 'ion-ios-search-outline',
   //     },
   //     {
   //       key: 'map_traffic',
   //       name: 'Traffic Indicator',
-  //       link: '/app/maps/map-traffic',
+  //       link: '/dashboard/maps/map-traffic',
   //       icon: 'ion-ios-car-outline',
   //     },
   //     {
   //       key: 'street_view',
   //       name: 'Street View',
-  //       link: '/app/maps/street-view',
+  //       link: '/dashboard/maps/street-view',
   //       icon: 'ion-ios-eye-outline',
   //     },
   //   ],
@@ -917,6 +917,6 @@ module.exports = [
     key: 'no_child',
     name: 'One Level Menu',
     icon: 'ion-ios-document-outline',
-    linkParent: '/app/pages/blank-page',
+    linkParent: '/dashboard/pages/blank-page',
   },
 ];

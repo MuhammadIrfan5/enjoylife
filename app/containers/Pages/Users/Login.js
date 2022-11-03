@@ -10,7 +10,7 @@ function Login(props) {
   const submitForm = values => {
     setTimeout(() => {
       console.log(`You submitted:\n\n${values}`);
-      window.location.href = '/app';
+      window.location.href = '/dashboard';
     }, 500); // simulate server latency
   };
 

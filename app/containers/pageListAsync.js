@@ -410,9 +410,9 @@ export const listBroadcast = loadable(() => import("./Pages/Broadcasts/listBroad
 export const viewBroadcast = loadable(() => import("./Pages/Broadcasts/viewBroadcast"), {
   fallback: <Loading />,
 });
-export const changePassword = loadable(
-  () => import("./Pages/ChangePassword/ChangePassword"),
-  {
-    fallback: <Loading />,
-  }
-);
+// export const changePassword = loadable(
+//   () => import("./Pages/ChangePassword/ChangePassword"),
+//   {
+//     fallback: <Loading />,
+//   }
+// );
