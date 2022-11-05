@@ -113,25 +113,25 @@ function Application(props) {
       <ToastContainer />
       <Switch>
         {/* User Routes */}
-        <Route path="/app/user/add-user" component={addUser} />
-        <Route path="/app/user/list-user" component={listUser} />
+        <Route path="/dashboard/user/add-user" component={addUser} />
+        <Route path="/dashboard/user/list-user" component={listUser} />
         {/* User Routes */}
-        <Route path="/app/gifts/add-gifts" component={addGifts} />
-        <Route path="/app/user/user-settings" component={userSettings} />
+        <Route path="/dashboard/gifts/add-gifts" component={addGifts} />
+        <Route path="/dashboard/user/user-settings" component={userSettings} />
         {/* Banner Routes */}
-        <Route path="/app/banner/add-banner" component={addBanner} />
+        <Route path="/dashboard/banner/add-banner" component={addBanner} />
         { /* Promotions Routes */}
-        <Route path="/app/promotion/add-promotions" component={addPromotion} />
+        <Route path="/dashboard/promotion/add-promotions" component={addPromotion} />
         { /* Broadcast Routes */}
-        <Route path="/app/broadcasts/list-broadcast" component={listBroadcast} />
-        <Route path="/app/broadcasts/view-broadcast" component={viewBroadcast} />
+        <Route path="/dashboard/broadcasts/list-broadcast" component={listBroadcast} />
+        <Route path="/dashboard/broadcasts/view-broadcast" component={viewBroadcast} />
         {/* Password Routes */}
         <Route
-          path="/app/password/change-password"
+          path="/dashboard/password/change-password"
           component={changePassword}
         />
         {/* Home */}
-        <Route exact path="/" component={PersonalDashboard} />
+        <Route exact path="/dashboard" component={PersonalDashboard} />
         <Route path="/app/crm-dashboard" component={CrmDashboard} />
         <Route path="/app/crypto-dashboard" component={CryptoDashboard} />
         {/* Widgets */}

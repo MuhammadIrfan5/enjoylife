@@ -81,7 +81,7 @@ function listBroadcast(props) {
       </Grid> */}
     <PapperBlock title="Broadcast List" icon="ion-ios-card-outline" desc="Braodcast Details">
            {/* <AdvancedTable tbl_title="Braodcasts List" /> */}
-           <AdvFilter pageRoute="/app/broadcasts/view-broadcast" />
+           <AdvFilter pageRoute="/dashboard/broadcasts/view-broadcast" />
     </PapperBlock>
 
     </div>

@@ -12,7 +12,7 @@ module.exports = [
       {
         key: 'listUser',
         name: 'List User',
-        link: '/app/user/list-user',
+        link: '/dashboard/user/list-user',
       },
       // {
       //   key: 'userSettings',
@@ -29,7 +29,7 @@ module.exports = [
       {
         key: 'addGifts',
         name: 'Add Gifts',
-        link: '/app/gifts/add-gifts',
+        link: '/dashboard/gifts/add-gifts',
       },
     ],
   },
@@ -41,7 +41,7 @@ module.exports = [
       {
         key: 'addBanner',
         name: 'Add Banner',
-        link: '/app/banner/add-banner',
+        link: '/dashboard/banner/add-banner',
       },
     ],
   },
@@ -53,7 +53,7 @@ module.exports = [
       {
         key: 'addPromotions',
         name: 'Add Promotions',
-        link: '/app/promotion/add-promotions',
+        link: '/dashboard/promotion/add-promotions',
       }
     ],
   },
@@ -65,7 +65,7 @@ module.exports = [
       {
         key: 'listBroadcasts',
         name: 'List Broadcasts',
-        link: '/app/broadcasts/list-broadcast',
+        link: '/dashboard/broadcasts/list-broadcast',
       }
     ],
   },
@@ -913,10 +913,10 @@ module.exports = [
   //     },
   //   ],
   // },
-  {
-    key: 'no_child',
-    name: 'One Level Menu',
-    icon: 'ion-ios-document-outline',
-    linkParent: '/app/pages/blank-page',
-  },
+  // {
+  //   key: 'no_child',
+  //   name: 'One Level Menu',
+  //   icon: 'ion-ios-document-outline',
+  //   linkParent: '/app/pages/blank-page',
+  // },
 ];

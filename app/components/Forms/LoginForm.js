@@ -25,6 +25,8 @@ import brand from 'dan-api/dummy/brand';
 import logo from 'dan-images/rabbithead.svg';
 import { TextFieldRedux, CheckboxRedux } from './ReduxFormMUI';
 import styles from './user-jss';
+import { Link, useHistory } from 'react-router-dom';
+
 // import { ContentDivider } from '../Divider';
 
 // validation functions
@@ -40,6 +42,8 @@ const LinkBtn = React.forwardRef(function LinkBtn(props, ref) { // eslint-disabl
 });
 
 function LoginForm(props) {
+  const history = useHistory();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => {
@@ -52,11 +56,16 @@ function LoginForm(props) {
 
   const {
     classes,
-    handleSubmit,
+    // handleSubmit,
     pristine,
     submitting,
     deco,
   } = props;
+
+  const handleSubmit = () => {
+    console.log('hello');
+    history.push('/dashboard');
+  }
   return (
     <Fragment>
       <Hidden mdUp>
@@ -87,8 +96,8 @@ function LoginForm(props) {
         {/* <section className={classes.socmedLogin}>
           <div className={classes.btnArea}>
             <Button variant="outlined" size="small" className={classes.redBtn} type="button">
-              <AllInclusive className={classNames(classes.leftIcon, classes.iconSmall)} />
-              Socmed 1
+            Socmed 1
+            <AllInclusive className={classNames(classes.leftIcon, classes.iconSmall)} />
             </Button>
             <Button variant="outlined" size="small" className={classes.blueBtn} type="button">
               <Brightness5 className={classNames(classes.leftIcon, classes.iconSmall)} />

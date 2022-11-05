@@ -10,5 +10,5 @@ module.exports = {
   pinterest: "#",
   linkedin: "#",
   buy: "#",
-  changepassword: "/app/password/change-password",
+  changepassword: "/dashboard/password/change-password",
 };

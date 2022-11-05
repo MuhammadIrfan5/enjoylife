@@ -29,7 +29,8 @@ const Breadcrumbs = (props) => {
                     const path = ['', ...parts.slice(0, partIndex + 1)].join('/');
                     return (
                       <Fragment key={path}>
-                        <Link to={path}>{part}</Link>
+                        {part}
+                        {/* <Link to={path}></Link> */}
                         { separator }
                       </Fragment>
                     );

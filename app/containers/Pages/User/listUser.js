@@ -24,7 +24,7 @@ function listUser(props) {
       {/* <AdvancedTable tbl_title="User List" /> */}
       <PapperBlock title="User List" icon="ion-ios-card-outline" desc="User Details">
            {/* <AdvancedTable tbl_title="Braodcasts List" /> */}
-           <AdvFilter pageRoute="/app/user/user-settings" />
+           <AdvFilter pageRoute="/dashboard/user/user-settings" />
     </PapperBlock>
     </div>
   );

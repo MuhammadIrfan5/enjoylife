@@ -14,9 +14,9 @@ function App() {
     <ThemeWrapper>
       <Switch>
         {/* <Route path="/" exact component={LandingCorporate} /> */}
-        <Route path="/app" exact component={Auth} />
+        <Route path="/" exact component={Auth} />
         <Route path="/landing-creative" exact component={LandingCreative} />
-        <Route path="/" component={Application} />
+        <Route path="/dashboard" component={Application} />
         <Route path="/blog" component={ArticleNews} />
         <Route component={Auth} />
         <Route component={NotFound} />

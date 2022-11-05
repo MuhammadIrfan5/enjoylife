@@ -149,28 +149,28 @@ function Header(props) {
                   <i className="ion-ios-bulb-outline" />
                 </IconButton>
               </Tooltip>
-              <Tooltip title="Show Guide" placement="bottom">
+              {/* <Tooltip title="Show Guide" placement="bottom">
                 <IconButton className={classes.button} onClick={openGuide}>
                   <i className="ion-ios-help-circle-outline" />
                 </IconButton>
-              </Tooltip>
+              </Tooltip> */}
             </div>
             <Typography component="h2" className={classNames(classes.headerTitle, showTitle && classes.show)}>
               {title}
             </Typography>
           </div>
         </Hidden>
-        <div className={classes.searchWrapper}>
+        {/* <div className={classes.searchWrapper}>
           <div className={classNames(classes.wrapper, classes.light)}>
             <div className={classes.search}>
               <SearchIcon />
             </div>
             <SearchUi history={history} />
           </div>
-        </div>
-        <Hidden xsDown>
+        </div> */}
+        {/* <Hidden xsDown>
           <span className={classes.separatorV} />
-        </Hidden>
+        </Hidden> */}
         <UserMenu />
       </Toolbar>
     </AppBar>
