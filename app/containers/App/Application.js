@@ -3,8 +3,8 @@ import { PropTypes } from "prop-types";
 import { Switch, Route } from "react-router-dom";
 import { ThemeContext } from "./ThemeWrapper";
 import Dashboard from "../Templates/Dashboard";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   PersonalDashboard,
   CrmDashboard,
@@ -120,11 +120,20 @@ function Application(props) {
         <Route path="/dashboard/user/user-settings" component={userSettings} />
         {/* Banner Routes */}
         <Route path="/dashboard/banner/add-banner" component={addBanner} />
-        { /* Promotions Routes */}
-        <Route path="/dashboard/promotion/add-promotions" component={addPromotion} />
-        { /* Broadcast Routes */}
-        <Route path="/dashboard/broadcasts/list-broadcast" component={listBroadcast} />
-        <Route path="/dashboard/broadcasts/view-broadcast" component={viewBroadcast} />
+        {/* Promotions Routes */}
+        <Route
+          path="/dashboard/promotion/add-promotions"
+          component={addPromotion}
+        />
+        {/* Broadcast Routes */}
+        <Route
+          path="/dashboard/broadcasts/list-broadcast"
+          component={listBroadcast}
+        />
+        <Route
+          path="/dashboard/broadcasts/view-broadcast"
+          component={viewBroadcast}
+        />
         {/* Password Routes */}
         <Route
           path="/dashboard/password/change-password"

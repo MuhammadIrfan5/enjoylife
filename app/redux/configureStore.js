@@ -2,12 +2,13 @@
  * Create the store with dynamic reducers
  */
 
-import { createStore, applyMiddleware, compose } from 'redux';
-import { routerMiddleware } from 'connected-react-router';
-import { fromJS } from 'immutable';
-import createSagaMiddleware from 'redux-saga';
-import createReducer from './reducers';
-import userSaga from './saga/userSaga';
+import { createStore, applyMiddleware, compose } from "redux";
+import { routerMiddleware } from "connected-react-router";
+import { fromJS } from "immutable";
+import createSagaMiddleware from "redux-saga";
+import createReducer from "./reducers";
+// import userSaga from './saga/userSaga';
+import rootSaga from "./saga";
 
 export default function configureStore(initialState = {}, history) {
   let composeEnhancers = compose;
@@ -15,9 +16,11 @@ export default function configureStore(initialState = {}, history) {
 
   // If Redux Dev Tools and Saga Dev Tools Extensions are installed, enable them
   /* istanbul ignore next */
-  if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+  if (process.env.NODE_ENV !== "production" && typeof window === "object") {
     /* eslint-disable no-underscore-dangle */
-    if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) { composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}); }
+    if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+      composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({});
+    }
 
     // NOTE: Uncomment the code below to restore support for Redux Saga
     // Dev Tools once it supports redux-saga version 1.x.x
@@ -47,11 +50,11 @@ export default function configureStore(initialState = {}, history) {
   store.runSaga = sagaMiddleware.run;
   store.injectedReducers = {}; // Reducer registry
   store.injectedSagas = {}; // Saga registry
-  sagaMiddleware.run(userSaga);
+  sagaMiddleware.run(rootSaga);
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
   if (module.hot) {
-    module.hot.accept('./reducers', () => {
+    module.hot.accept("./reducers", () => {
       store.replaceReducer(createReducer(store.injectedReducers));
     });
   }

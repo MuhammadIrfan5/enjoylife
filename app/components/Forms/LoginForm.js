@@ -1,58 +1,81 @@
-import React, { Fragment, useState } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-import { Field, reduxForm } from 'redux-form/immutable';
-import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import IconButton from '@material-ui/core/IconButton';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Typography from '@material-ui/core/Typography';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import React, { Fragment, useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import classNames from "classnames";
+import { Field, reduxForm } from "redux-form/immutable";
+import Button from "@material-ui/core/Button";
+import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Typography from "@material-ui/core/Typography";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import TextField from "@material-ui/core/TextField";
 // import AllInclusive from '@material-ui/icons/AllInclusive';
 // import Brightness5 from '@material-ui/icons/Brightness5';
 // import People from '@material-ui/icons/People';
-import ArrowForward from '@material-ui/icons/ArrowForward';
-import Paper from '@material-ui/core/Paper';
+import ArrowForward from "@material-ui/icons/ArrowForward";
+import { createTheme } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
 // import Icon from '@material-ui/core/Icon';
-import Hidden from '@material-ui/core/Hidden';
-import brand from 'dan-api/dummy/brand';
+import Hidden from "@material-ui/core/Hidden";
+import brand from "dan-api/dummy/brand";
 // import logo from 'dan-images/logo.svg';
-import logo from 'dan-images/rabbithead.svg';
-import { TextFieldRedux, CheckboxRedux } from './ReduxFormMUI';
-import styles from './user-jss';
-import { Link, useHistory } from 'react-router-dom';
+import logo from "dan-images/rabbithead.svg";
+import { TextFieldRedux, CheckboxRedux } from "./ReduxFormMUI";
+import styles from "./user-jss";
+import { Link, useHistory } from "react-router-dom";
+// loginAdmin
+import { loginAdmin, resetloginAdmin } from "../../redux/actions/authAction";
+import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import { set } from "lodash";
 
 // import { ContentDivider } from '../Divider';
 
 // validation functions
-const required = value => (value === null ? 'Required' : undefined);
-const email = value => (
+const required = (value) => (value === null ? "Required" : undefined);
+const email = (value) =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? 'Invalid email'
-    : undefined
-);
+    ? "Invalid email"
+    : undefined;
 
-const LinkBtn = React.forwardRef(function LinkBtn(props, ref) { // eslint-disable-line
+const LinkBtn = React.forwardRef(function LinkBtn(props, ref) {
+  // eslint-disable-line
   return <NavLink to={props.to} {...props} innerRef={ref} />; // eslint-disable-line
 });
 
 function LoginForm(props) {
+  const loginData = useSelector((state) => {
+    console.log(state._root.entries[7][1].data, "loginData");
+    return state._root.entries[7][1].data;
+  });
+
+  const loginError = useSelector((state) => {
+    console.log(state._root.entries[7][1].error, "loginError");
+    return state._root.entries[7][1].error;
+  });
+
   const history = useHistory();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [adminEmail, setAdminEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [authLoading, setAuthLoading] = useState(false);
+  const [errMsg, setErrMsg] = useState("bilal");
 
   const handleClickShowPassword = () => {
-    setShowPassword(show => !show);
+    setShowPassword((show) => !show);
   };
 
-  const handleMouseDownPassword = event => {
+  const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  const dispatch = useDispatch();
 
   const {
     classes,
@@ -62,12 +85,81 @@ function LoginForm(props) {
     deco,
   } = props;
 
-  const handleSubmit = () => {
-    console.log('hello');
-    history.push('/dashboard');
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(adminEmail, password, "hello");
+
+    let data = {
+      adminEmail,
+      password,
+    };
+    dispatch(loginAdmin(data));
+    setAuthLoading(true);
+
+    // history.push("/dashboard");
+  };
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetloginAdmin());
+    };
+  }, []);
+
+  useEffect(() => {
+    setErrMsg("");
+    if (loginData) {
+      console.log(loginData.status.toString(), "if useEffect login data");
+
+      // history.push("/dashboard");
+
+      if (loginData.status.toString() == "true") {
+        setAuthLoading(false);
+        console.log("true");
+        toast.success(" Admin Login Successfully!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        history.push("/dashboard");
+        dispatch(resetloginAdmin());
+      } else if (loginData.status.toString() !== true) {
+        setAuthLoading(false);
+        console.log("false");
+        setErrMsg("Authentication Failed");
+        dispatch(resetloginAdmin());
+      }
+    } else if (loginError) {
+      setAuthLoading(false);
+      setErrMsg("Something Went Wrong");
+      console.log(loginError, "if useEffect error");
+    } else {
+      console.log(loginData, "else useEffect login data");
+      setAuthLoading(false);
+      // toast.error("Something Went Wrong", {
+      //   position: "top-center",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "colored",
+      // });
+      dispatch(resetloginAdmin());
+    }
+
+    // return () => {
+    //   dispatch(resetloginAdmin());
+    // };
+  }, [loginData, loginError]);
   return (
     <Fragment>
+      {/* <ToastContainer /> */}
       <Hidden mdUp>
         <NavLink to="/" className={classNames(classes.brand, classes.outer)}>
           <img src={logo} alt={brand.name} />
@@ -90,7 +182,12 @@ function LoginForm(props) {
         <Typography variant="h4" className={classes.title} gutterBottom>
           Sign In
         </Typography>
-        <Typography variant="caption" className={classes.subtitle} gutterBottom align="center">
+        <Typography
+          variant="caption"
+          className={classes.subtitle}
+          gutterBottom
+          align="center"
+        >
           Enjoy Life with live streaming !
         </Typography>
         {/* <section className={classes.socmedLogin}>
@@ -114,6 +211,20 @@ function LoginForm(props) {
           <form onSubmit={handleSubmit}>
             <div>
               <FormControl className={classes.formControl}>
+                {/* <TextField
+                  required
+                  id="firstName"
+                  name="firstName"
+                  label="Your Email"
+                  fullWidth
+                  autoComplete="fname"
+                  onChange={(e) => {
+                    setAdminEmail(e.target.value);
+                  }}
+                  value={adminEmail}
+                  validate={[required, email]}
+                /> */}
+
                 <Field
                   name="email"
                   component={TextFieldRedux}
@@ -122,15 +233,46 @@ function LoginForm(props) {
                   required
                   validate={[required, email]}
                   className={classes.field}
+                  onChange={(e) => {
+                    setAdminEmail(e.target.value);
+                  }}
+                  value={adminEmail}
                 />
               </FormControl>
             </div>
             <div>
               <FormControl className={classes.formControl}>
+                {/* <TextField
+                  required
+                  id="firstName"
+                  name="password"
+                  label="Your Password"
+                  className={classes.field}
+                  type={showPassword ? "text" : "password"}
+                  fullWidth
+                  autoComplete="fname"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="Toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                /> */}
                 <Field
                   name="password"
                   component={TextFieldRedux}
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   label="Your Password"
                   InputProps={{
                     endAdornment: (
@@ -143,22 +285,46 @@ function LoginForm(props) {
                           {showPassword ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
                       </InputAdornment>
-                    )
+                    ),
                   }}
                   required
                   validate={required}
                   className={classes.field}
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                 />
               </FormControl>
             </div>
             <div className={classes.optArea}>
-              <FormControlLabel className={classes.label} control={<Field name="checkbox" component={CheckboxRedux} />} label="Remember" />
-              <Button size="small" component={LinkBtn} to="/reset-password" className={classes.buttonLink}>Forgot Password</Button>
+              <FormControlLabel
+                className={classes.label}
+                control={<Field name="checkbox" component={CheckboxRedux} />}
+                label="Remember"
+              />
+              <Button
+                size="small"
+                component={LinkBtn}
+                to="/reset-password"
+                className={classes.buttonLink}
+              >
+                Forgot Password
+              </Button>
             </div>
+
             <div className={classes.btnArea}>
-              <Button variant="contained" color="primary" size="large" type="submit">
-                Continue
-                <ArrowForward className={classNames(classes.rightIcon, classes.iconSmall)} disabled={submitting || pristine} />
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                type="submit"
+              >
+                {authLoading ? <>Loading</> : <>Continue</>}
+                <ArrowForward
+                  className={classNames(classes.rightIcon, classes.iconSmall)}
+                  disabled={submitting || pristine}
+                />
               </Button>
             </div>
           </form>
@@ -177,18 +343,16 @@ LoginForm.propTypes = {
 };
 
 const LoginFormReduxed = reduxForm({
-  form: 'immutableExample',
+  form: "immutableExample",
   enableReinitialize: true,
 })(LoginForm);
 
-const reducerLogin = 'login';
-const reducerUi = 'ui';
-const FormInit = connect(
-  state => ({
-    force: state,
-    initialValues: state.getIn([reducerLogin, 'usersLogin']),
-    deco: state.getIn([reducerUi, 'decoration'])
-  }),
-)(LoginFormReduxed);
+const reducerLogin = "login";
+const reducerUi = "ui";
+const FormInit = connect((state) => ({
+  force: state,
+  initialValues: state.getIn([reducerLogin, "usersLogin"]),
+  deco: state.getIn([reducerUi, "decoration"]),
+}))(LoginFormReduxed);
 
 export default withStyles(styles)(FormInit);
