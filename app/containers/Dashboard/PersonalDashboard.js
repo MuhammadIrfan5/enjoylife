@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import brand from "dan-api/dummy/brand";
-import { Helmet } from "react-helmet";
-import { withStyles } from "@material-ui/core/styles";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import brand from 'dan-api/dummy/brand';
+import { Helmet } from 'react-helmet';
+import { withStyles } from '@material-ui/core/styles';
 // import Hidden from '@material-ui/core/Hidden';
-import Grid from "@material-ui/core/Grid";
-import Divider from "@material-ui/core/Divider";
+import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 import {
   SliderWidget,
   CounterIconsWidget,
@@ -16,21 +16,21 @@ import {
   // ContactWidget,
   // TimelineWidget,
   // FilesWidget,
-} from "dan-components";
-import styles from "./dashboard-jss";
-import { useDispatch, useSelector } from "react-redux";
+} from 'dan-components';
+import { useDispatch, useSelector } from 'react-redux';
+import styles from './dashboard-jss';
 
 function PersonalDashboard(props) {
-  const loginData = useSelector((state) => {
-    return console.log(state._root.entries[7][1], "loginData");
-  });
+  // const loginData = useSelector((state) => {
+  //   return console.log(state._root.entries[7][1], "loginData");
+  // });
 
-  useEffect(() => {
-    console.log(loginData, "useEffect login data");
-    return () => {};
-  }, [loginData]);
+  // useEffect(() => {
+  //   console.log(loginData, "useEffect login data");
+  //   return () => {};
+  // }, [loginData]);
 
-  const title = brand.name + " - Personal Dashboard";
+  const title = brand.name + ' - Personal Dashboard';
   const description = brand.desc;
   const { classes } = props;
   return (

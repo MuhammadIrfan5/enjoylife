@@ -12,13 +12,13 @@ import CloudUpload from '@material-ui/icons/CloudUpload';
 import 'dan-styles/vendors/react-dropzone/react-dropzone.css';
 import isImage from './helpers/helpers.js';
 
-const styles = theme => ({
+const styles = (theme) => ({
   dropItem: {
     borderColor: theme.palette.divider,
     background: theme.palette.background.default,
     borderRadius: theme.rounded.medium,
     color: theme.palette.text.disabled,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   uploadIconSize: {
     display: 'inline-block',
@@ -26,17 +26,17 @@ const styles = theme => ({
       width: 72,
       height: 72,
       fill: theme.palette.secondary.main,
-    }
+    },
   },
   rightIcon: {
     marginLeft: theme.spacing(1),
     '& svg': {
-      fill: theme.palette.common.white
-    }
+      fill: theme.palette.common.white,
+    },
   },
   button: {
-    marginTop: 20
-  }
+    marginTop: 20,
+  },
 });
 
 function MaterialDropZone(props) {
@@ -55,17 +55,20 @@ function MaterialDropZone(props) {
     ...rest
   } = props;
 
-  const onDrop = useCallback((filesVal) => {
-    let oldFiles = files;
-    const filesLimitVal = filesLimit || '3';
-    oldFiles = oldFiles.concat(filesVal);
-    if (oldFiles.length > filesLimit) {
-      setOpenSnackbar(true);
-      setErrorMessage(`Cannot upload more than ${filesLimitVal} items.`);
-    } else {
-      setFiles(oldFiles);
-    }
-  }, [files, filesLimit]);
+  const onDrop = useCallback(
+    (filesVal) => {
+      let oldFiles = files;
+      const filesLimitVal = filesLimit || '3';
+      oldFiles = oldFiles.concat(filesVal);
+      if (oldFiles.length > filesLimit) {
+        setOpenSnackbar(true);
+        setErrorMessage(`Cannot upload more than ${filesLimitVal} items.`);
+      } else {
+        setFiles(oldFiles);
+      }
+    },
+    [files, filesLimit]
+  );
 
   const onDropRejected = () => {
     setOpenSnackbar(true);
@@ -76,16 +79,19 @@ function MaterialDropZone(props) {
     setOpenSnackbar(false);
   };
 
-  const handleRemove = useCallback((file, fileIndex) => {
-    // This is to prevent memory leaks.
-    window.URL.revokeObjectURL(file.preview);
+  const handleRemove = useCallback(
+    (file, fileIndex) => {
+      // This is to prevent memory leaks.
+      window.URL.revokeObjectURL(file.preview);
 
-    setFiles(thisFiles => {
-      const tempFiles = [...thisFiles];
-      tempFiles.splice(fileIndex, 1);
-      return tempFiles;
-    });
-  }, [files]);
+      setFiles((thisFiles) => {
+        const tempFiles = [...thisFiles];
+        tempFiles.splice(fileIndex, 1);
+        return tempFiles;
+      });
+    },
+    [files]
+  );
 
   const fileSizeLimit = maxSize || 3000000;
   const DeleteBtn = ({ file, index }) => (
@@ -98,7 +104,7 @@ function MaterialDropZone(props) {
 
   DeleteBtn.propTypes = {
     file: PropTypes.object.isRequired,
-    index: PropTypes.number.isRequired
+    index: PropTypes.number.isRequired,
   };
 
   const Previews = ({ filesArray }) => filesArray.map((file, index) => {
@@ -107,7 +113,13 @@ function MaterialDropZone(props) {
       return (
         <div key={index.toString()}>
           <div className="imageContainer col fileIconImg">
-            <figure className="imgWrap"><img className="smallPreviewImg" src={base64Img} alt="preview" /></figure>
+            <figure className="imgWrap">
+              <img
+                className="smallPreviewImg"
+                src={base64Img}
+                alt="preview"
+              />
+            </figure>
             <DeleteBtn file={file} index={index} />
           </div>
         </div>
@@ -124,7 +136,7 @@ function MaterialDropZone(props) {
   });
 
   Previews.propTypes = {
-    filesArray: PropTypes.array.isRequired
+    filesArray: PropTypes.array.isRequired,
   };
 
   let dropzoneRef;
@@ -137,11 +149,16 @@ function MaterialDropZone(props) {
         acceptClassName="stripes"
         rejectClassName="rejectStripes"
         maxSize={fileSizeLimit}
-        ref={(node) => { dropzoneRef = node; }}
+        ref={(node) => {
+          dropzoneRef = node;
+        }}
         {...rest}
       >
         {({ getRootProps, getInputProps }) => (
-          <div {...getRootProps()} className={classNames(classes.dropItem, 'dropZone')}>
+          <div
+            {...getRootProps()}
+            className={classNames(classes.dropItem, 'dropZone')}
+          >
             <div className="dropzoneTextStyle">
               <input {...getInputProps()} />
               <p className="dropzoneParagraph">{text}</p>
