@@ -1,20 +1,46 @@
-import { takeEvery, put } from 'redux-saga/effects';
-// import { PRODUCT_LIST, SET_PRODUCT_LIST } from "./constants";
-import { GET_USER_DATA, SET_USER_DATA } from '../constants/usersConstants';
+import { call, put, takeEvery } from "redux-saga/effects";
 
-function* getAllUsers() {
-  console.log('get product saga called');
+import {
+  GET_USERS_REQUESTED,
+  GET_USERS_SUCCESS,
+  GET_USERS_FAILED,
+} from "../constants/usersConstants";
 
-  let data = yield fetch('https://randomuser.me/api/');
-  data = yield data.json();
-  console.log(data.results, 'api dataaaaaaa');
-  const user = data.results;
+function* getAllUsers(action) {
+  const SessionData = JSON.parse(localStorage.getItem("SessionData"));
+  console.log(SessionData, "tokennnnn");
+  console.log(action, "data from function");
+  //   return;
+  try {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
+    myHeaders.append("Content-Type", "application/json");
 
-  yield put({ type: SET_USER_DATA, user });
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    let data = yield fetch(
+      "http://34.125.246.209:3000/be/api/v1/dashboard/user/all?page=1&size=5",
+      requestOptions
+    );
+    // console.log(data, "Before api dataaaaaaa");
+    data = yield data.json();
+    console.log(data, "api dataaaaaaa");
+
+    // dispatch a success action to the store with the customers
+    yield put({ type: GET_USERS_SUCCESS, data });
+  } catch (error) {
+    console.log(error.message, "error");
+    // dispatch a failure action to the store with the error
+    yield put({ type: GET_USERS_FAILED, error: "Something went wrong" });
+  }
 }
 
 function* userSaga() {
-  yield takeEvery(GET_USER_DATA, getAllUsers);
+  yield takeEvery(GET_USERS_REQUESTED, getAllUsers);
 }
 
 export default userSaga;

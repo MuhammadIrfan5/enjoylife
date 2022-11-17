@@ -1,10 +1,9 @@
-import { GET_USER_DATA } from '../constants/usersConstants';
+import { GET_USERS_REQUESTED } from "./../constants/usersConstants";
 
-export const getUsers = () => {
-  console.log('getUsers action is called');
-
+export function getUsers() {
+  console.log("get users action");
   return {
-    type: GET_USER_DATA,
-    //   data,
+    type: GET_USERS_REQUESTED,
+    // payload: data,
   };
-};
+}

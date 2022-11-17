@@ -1,18 +1,18 @@
-import React,{useState,Fragment} from 'react';
-import { Helmet } from 'react-helmet';
-import brand from 'dan-api/dummy/brand';
-import { PapperBlock,CounterIconsWidget } from 'dan-components';
-import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
-import { AdvancedTable } from '../../pageListAsync';
+import React, { useState, Fragment } from "react";
+import { Helmet } from "react-helmet";
+import brand from "dan-api/dummy/brand";
+import { PapperBlock, CounterIconsWidget } from "dan-components";
+import PropTypes from "prop-types";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import { withStyles } from "@material-ui/core/styles";
+import { AdvancedTable } from "../../pageListAsync";
 // import { AdvFilter } from './demos';
-import AdvFilter from '../../Tables/demos/AdvFilter';
-import classNames from 'classnames';
-const styles = theme => ({
+import AdvFilter from "../../Tables/demos/AdvFilter";
+import classNames from "classnames";
+const styles = (theme) => ({
   demo: {
-    height: 'auto',
+    height: "auto",
   },
   divider: {
     margin: `${theme.spacing(3)}px 0`,
@@ -21,8 +21,8 @@ const styles = theme => ({
     margin: theme.spacing(3),
   },
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap",
   },
   formControl: {
     margin: theme.spacing(3),
@@ -31,7 +31,7 @@ const styles = theme => ({
     margin: theme.spacing(1),
   },
   inputUpload: {
-    display: 'none',
+    display: "none",
   },
   leftIcon: {
     marginRight: theme.spacing(1),
@@ -45,7 +45,7 @@ const styles = theme => ({
 });
 
 function listBroadcast(props) {
-  const title = brand.name + ' - Blank Page';
+  const title = brand.name + " - Blank Page";
   const description = brand.desc;
   const { classes } = props;
 
@@ -72,18 +72,30 @@ function listBroadcast(props) {
               sm={12}
               className={classes.demo}
               > */}
-              <PapperBlock title="Live Braodcast" icon="ion-ios-videocam" desc="Live Broadcast Insights">
-                <div className={classes.container}>
-                    <CounterIconsWidget titleOne="Live Broadcasts" titleTwo="Total Blocked Broadcasts" titleThree="Total Active Broadcasts" titleFour="Total Active Users"/>
-                </div>
-            </PapperBlock>
-            {/* </Grid>
+      <PapperBlock
+        title="Live Braodcast"
+        icon="ion-ios-videocam"
+        desc="Live Broadcast Insights"
+      >
+        <div className={classes.container}>
+          <CounterIconsWidget
+            titleOne="Live Broadcasts"
+            titleTwo="Total Blocked Broadcasts"
+            titleThree="Total Active Broadcasts"
+            titleFour="Total Active Users"
+          />
+        </div>
+      </PapperBlock>
+      {/* </Grid>
       </Grid> */}
-    <PapperBlock title="Broadcast List" icon="ion-ios-card-outline" desc="Braodcast Details">
-           {/* <AdvancedTable tbl_title="Braodcasts List" /> */}
-           <AdvFilter pageRoute="/dashboard/broadcasts/view-broadcast" />
-    </PapperBlock>
-
+      <PapperBlock
+        title="Broadcast List"
+        icon="ion-ios-card-outline"
+        desc="Braodcast Details"
+      >
+        {/* <AdvancedTable tbl_title="Braodcasts List" /> */}
+        {/* <AdvFilter pageRoute="/dashboard/broadcasts/view-broadcast" /> */}
+      </PapperBlock>
     </div>
   );
 }

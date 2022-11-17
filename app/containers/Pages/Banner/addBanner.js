@@ -1,35 +1,33 @@
-import React, {
-  useState, Fragment, useCallback, useEffect
-} from 'react';
-import { Helmet } from 'react-helmet';
-import brand from 'dan-api/dummy/brand';
-import { PapperBlock } from 'dan-components';
-import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
+import React, { useState, Fragment, useCallback, useEffect } from "react";
+import { Helmet } from "react-helmet";
+import brand from "dan-api/dummy/brand";
+import { PapperBlock } from "dan-components";
+import PropTypes from "prop-types";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import { withStyles } from "@material-ui/core/styles";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
 // import FormHelperText from '@material-ui/core/FormHelperText';
 // import { MaterialDropZone } from 'dan-components';
-import Save from '@material-ui/icons/Save';
-import Button from '@material-ui/core/Button';
-import classNames from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
-import AdvFilter from '../../Tables/demos/AdvFilter';
-import { AdvancedTable } from '../../pageListAsync';
-import MaterialDropZone from '../../../components/Forms/MaterialDropZone';
+import Save from "@material-ui/icons/Save";
+import Button from "@material-ui/core/Button";
+import classNames from "classnames";
+import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import AdvFilter from "../../Tables/demos/AdvFilter";
+import { AdvancedTable } from "../../pageListAsync";
+import MaterialDropZone from "../../../components/Forms/MaterialDropZone";
 import {
   postBanner,
   resetAddBanner,
-} from '../../../redux/actions/addBannerActions';
+} from "../../../redux/actions/addBannerActions";
 
 const styles = (theme) => ({
   demo: {
-    height: 'auto',
+    height: "auto",
   },
   divider: {
     margin: `${theme.spacing(3)}px 0`,
@@ -38,8 +36,8 @@ const styles = (theme) => ({
     margin: theme.spacing(3),
   },
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap",
   },
   formControl: {
     margin: theme.spacing(3),
@@ -48,7 +46,7 @@ const styles = (theme) => ({
     margin: theme.spacing(1),
   },
   inputUpload: {
-    display: 'none',
+    display: "none",
   },
   leftIcon: {
     marginRight: theme.spacing(1),
@@ -72,19 +70,19 @@ function addBanner(props) {
   //   return state._root.nodes[7].entry[1].error;
   // });
   const bannerData = useSelector((state) => {
-    console.log(state._root.nodes[5].entry[1].data, 'bannerData');
+    console.log(state._root.nodes[5].entry[1].data, "bannerData");
     return state._root.nodes[5].entry[1].data;
   });
 
   const bannerError = useSelector((state) => {
-    console.log(state._root.nodes[5].entry[1].error, 'bannerError');
+    console.log(state._root.nodes[5].entry[1].error, "bannerError");
     return state._root.nodes[5].entry[1].error;
   });
 
-  const title = brand.name + ' - Blank Page';
+  const title = brand.name + " - Blank Page";
   const description = brand.desc;
   //   const [name, setName] = useState('Title');
-  const [bannerTitle, setBannerTitle] = useState('');
+  const [bannerTitle, setBannerTitle] = useState("");
   const [bannerImage, setBannerImage] = useState([]);
   const [bannerUrl, setBannerUrl] = useState();
   const [authLoading, setAuthLoading] = useState(false);
@@ -93,9 +91,12 @@ function addBanner(props) {
 
   const dispatch = useDispatch();
 
-  useEffect(() => () => {
-    dispatch(resetAddBanner());
-  }, []);
+  useEffect(
+    () => () => {
+      dispatch(resetAddBanner());
+    },
+    []
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -104,7 +105,7 @@ function addBanner(props) {
       bannerTitle,
       bannerImage,
     };
-    console.warn(data, 'Banner page data');
+    console.warn(data, "Banner page data");
     dispatch(postBanner(data));
     setAuthLoading(true);
   };
@@ -118,34 +119,34 @@ function addBanner(props) {
   // );
 
   const handleImage = (e) => {
-    console.log(e[0], 'clicked');
+    console.log(e[0], "clicked");
     setBannerImage(e);
     const url = URL.createObjectURL(e[0]);
     setBannerUrl(url);
-    console.log(url, 'urlll');
+    console.log(url, "urlll");
   };
 
   useEffect(() => {
     if (bannerData) {
-      console.log(bannerData.status.toString(), 'if useEffect login data');
+      console.log(bannerData.status.toString(), "if useEffect login data");
 
       // history.push("/dashboard");
 
-      if (bannerData.status.toString() == 'true') {
+      if (bannerData.status.toString() == "true") {
         setAuthLoading(false);
-        console.log('true');
-        toast.success(' Banner Added  Successfully!', {
-          position: 'top-center',
+        console.log("true");
+        toast.success(" Banner Added  Successfully!", {
+          position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: 'colored',
+          theme: "colored",
         });
 
-        console.warn('banner successssssss', bannerData);
+        console.warn("banner successssssss", bannerData);
 
         // setAdminEmail("");
         // setPassword("");
@@ -153,17 +154,17 @@ function addBanner(props) {
         dispatch(resetAddBanner());
       } else if (bannerData.status.toString() !== true) {
         setAuthLoading(false);
-        console.log('false');
+        console.log("false");
 
-        toast.error('Something went Wrong!', {
-          position: 'top-center',
+        toast.error("Something went Wrong!", {
+          position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: 'colored',
+          theme: "colored",
         });
         // setErrMsg(true);
         dispatch(resetAddBanner());
@@ -171,19 +172,19 @@ function addBanner(props) {
     } else if (bannerError) {
       setAuthLoading(false);
       // setErrMsg(true);
-      console.log(bannerError, 'if useEffect error');
-      toast.error('Something went Wrong!', {
-        position: 'top-center',
+      console.log(bannerError, "if useEffect error");
+      toast.error("Something went Wrong!", {
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: 'colored',
+        theme: "colored",
       });
     } else {
-      console.log(bannerData, 'else useEffect login data');
+      console.log(bannerData, "else useEffect login data");
       // setAuthLoading(false);
       // toast.error("Something Went Wrong", {
       //   position: "top-center",
@@ -252,7 +253,7 @@ function addBanner(props) {
           <Fragment>
             <div>
               <MaterialDropZone
-                acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
+                acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
                 files={files}
                 showPreviews
                 maxSize={5000000}
@@ -283,7 +284,7 @@ function addBanner(props) {
         desc="Banner Details"
       >
         {/* <AdvancedTable tbl_title="Banner List" /> */}
-        <AdvFilter />
+        {/* <AdvFilter /> */}
       </PapperBlock>
     </div>
   );

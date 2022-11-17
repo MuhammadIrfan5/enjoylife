@@ -1,25 +1,25 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Chip from '@material-ui/core/Chip';
-import MUIDataTable from 'mui-datatables';
-import { Link, useHistory } from 'react-router-dom';
+import React from "react";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import Chip from "@material-ui/core/Chip";
+import MUIDataTable from "mui-datatables";
+import { Link, useHistory } from "react-router-dom";
 
 const styles = (theme) => ({
   table: {
-    '& > div': {
-      overflow: 'auto',
+    "& > div": {
+      overflow: "auto",
     },
-    '& table': {
-      '& td': {
-        wordBreak: 'keep-all',
+    "& table": {
+      "& td": {
+        wordBreak: "keep-all",
       },
-      [theme.breakpoints.down('md')]: {
-        '& td': {
+      [theme.breakpoints.down("md")]: {
+        "& td": {
           height: 60,
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
+          overflow: "hidden",
+          textOverflow: "ellipsis",
         },
       },
     },
@@ -31,19 +31,48 @@ const styles = (theme) => ({
   https://github.com/gregnb/mui-datatables/blob/master/README.md
 */
 function AdvFilter(props) {
+  console.log("propsss", props.data);
+  const userData = props.data;
+  const users = [];
+  userData.map((user, index) => {
+    users.push({
+      id: user._id,
+      key: index,
+      name: user.name,
+      email: user.email,
+      DOB: user.date_of_birth,
+      beans_count: user.beans_count,
+    });
+  });
+  console.log("users", users);
+
   console.log(props.pageRoute);
   const history = useHistory();
   const columns = [
     {
-      name: 'name',
-      label: 'Name',
+      name: "name",
+      label: "Name",
       options: {
         filter: true,
       },
     },
     {
-      name: 'email',
-      label: 'Email',
+      name: "email",
+      label: "Email",
+      options: {
+        filter: true,
+      },
+    },
+    {
+      name: "DOB",
+      label: "Date of Birth",
+      options: {
+        filter: true,
+      },
+    },
+    {
+      name: "beans_count",
+      label: "Beans Count",
       options: {
         filter: true,
       },
@@ -61,21 +90,21 @@ function AdvFilter(props) {
     //     ),
     //   },
     // },
-    {
-      name: 'status',
-      options: {
-        filter: true,
-        customBodyRender: (value) => {
-          if (value === 'active') {
-            return <Chip label="Active" color="secondary" />;
-          }
-          if (value === 'non-active') {
-            return <Chip label="Non Active" color="primary" />;
-          }
-          return <Chip label="Unknown" />;
-        },
-      },
-    },
+    // {
+    //   name: "status",
+    //   options: {
+    //     filter: true,
+    //     customBodyRender: (value) => {
+    //       if (value === "active") {
+    //         return <Chip label="Active" color="secondary" />;
+    //       }
+    //       if (value === "non-active") {
+    //         return <Chip label="Non Active" color="primary" />;
+    //       }
+    //       return <Chip label="Unknown" />;
+    //     },
+    //   },
+    // },
     // {
     //   name: "Earnings",
     //   options: {
@@ -94,23 +123,32 @@ function AdvFilter(props) {
     // },
   ];
 
-  const data = [
-    {
-      id: 1, name: 'Joe James', email: 'abc@gmail.com', status: 'active'
-    },
-    {
-      id: 2, name: 'John Walsh', email: 'abc@gmail.com', status: 'active'
-    },
-    {
-      id: 3, name: 'Bob Herm', email: 'abc@gmail.com', status: 'non-active'
-    },
-    {
-      id: 4,
-      name: 'James Houston',
-      email: 'abc@gmail.com',
-      status: 'non-active',
-    },
-  ];
+  // const data = [
+  //   {
+  //     id: 1,
+  //     name: "Joe James",
+  //     email: "abc@gmail.com",
+  //     status: "active",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "John Walsh",
+  //     email: "abc@gmail.com",
+  //     status: "active",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Bob Herm",
+  //     email: "abc@gmail.com",
+  //     status: "non-active",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "James Houston",
+  //     email: "abc@gmail.com",
+  //     status: "non-active",
+  //   },
+  // ];
 
   // const data = [
   //   ["Gabby George", "Business Analyst", 30, "active", 100000],
@@ -152,7 +190,18 @@ function AdvFilter(props) {
   // ];
 
   const handleRowClick = (rowData, rowMeta) => {
-    console.log(rowData, 'row');
+    console.log("row meta => ", rowMeta);
+    console.log(rowData, "row");
+    // rowData.push(props.data[rowMeta.rowIndex].date_of_birth);
+    // rowData.push(props.data[rowMeta.rowIndex].email);
+    // rowData.push(props.data[rowMeta.rowIndex].name);
+    rowData.push(props.data[rowMeta.rowIndex].user_friends_count);
+    rowData.push(props.data[rowMeta.rowIndex].diamond_count);
+    rowData.push(props.data[rowMeta.rowIndex].country);
+    rowData.push(props.data[rowMeta.rowIndex].email_verified);
+    rowData.push(props.data[rowMeta.rowIndex].is_blocked);
+    rowData.push(props.data[rowMeta.rowIndex].phone);
+    rowData.push(props.data[rowMeta.rowIndex].sent_diamond);
     // return;
     // <Link to="/app/user/user-settings" className="btn btn-primary" />;
     // history.push("/app/user/user-settings");
@@ -161,17 +210,15 @@ function AdvFilter(props) {
       // search: '?query=abc',
       state: {
         data: {
-          name: 'bilal',
-          email: 'abc@gmail.com',
-          status: 'active',
+          newData: rowData,
         },
       },
     });
   };
 
   const options = {
-    filterType: 'dropdown',
-    responsive: 'vertical',
+    filterType: "dropdown",
+    responsive: "vertical",
     print: true,
     rowsPerPage: 10,
     page: 0,
@@ -184,7 +231,7 @@ function AdvFilter(props) {
     <div className={classes.table}>
       <MUIDataTable
         title={props.tbl_title}
-        data={data}
+        data={users}
         columns={columns}
         options={options}
       />
