@@ -1,8 +1,8 @@
 module.exports = [
   {
-    key: 'user',
-    name: 'User',
-    icon: 'ion-ios-person-outline',
+    key: "user",
+    name: "User",
+    icon: "ion-ios-person-outline",
     child: [
       // {
       //   key: 'addUser',
@@ -10,9 +10,9 @@ module.exports = [
       //   link: '/app/user/add-user',
       // },
       {
-        key: 'listUser',
-        name: 'List User',
-        link: '/dashboard/user/list-user',
+        key: "listUser",
+        name: "List User",
+        link: "/dashboard/user/list-user",
       },
       // {
       //   key: 'userSettings',
@@ -22,51 +22,51 @@ module.exports = [
     ],
   },
   {
-    key: 'gifts',
-    name: 'Gifts',
-    icon: 'ion-ios-ionitron-outline',
+    key: "gifts",
+    name: "Gifts",
+    icon: "ion-ios-ionitron-outline",
     child: [
       {
-        key: 'addGifts',
-        name: 'Add Gifts',
-        link: '/dashboard/gifts/add-gifts',
+        key: "addGifts",
+        name: "Add Gifts",
+        link: "/dashboard/gifts/add-gifts",
       },
     ],
   },
   {
-    key: 'banner',
-    name: 'Banner',
-    icon: 'ion-ios-card',
+    key: "banner",
+    name: "Banner",
+    icon: "ion-ios-card",
     child: [
       {
-        key: 'addBanner',
-        name: 'Add Banner',
-        link: '/dashboard/banner/add-banner',
+        key: "addBanner",
+        name: "Add Banner",
+        link: "/dashboard/banner/add-banner",
       },
     ],
   },
   {
-    key: 'promotions',
-    name: 'Promotions',
-    icon: 'ion-ios-paper-plane',
+    key: "promotions",
+    name: "Promotions",
+    icon: "ion-ios-paper-plane",
     child: [
       {
-        key: 'addPromotions',
-        name: 'Add Promotions',
-        link: '/dashboard/promotion/add-promotions',
-      }
+        key: "addPromotions",
+        name: "Add Promotions",
+        link: "/dashboard/promotion/add-promotions",
+      },
     ],
   },
   {
-    key: 'broadcasts',
-    name: 'Broadcasts',
-    icon: 'ion-ios-videocam',
+    key: "broadcasts",
+    name: "Broadcasts",
+    icon: "ion-ios-videocam",
     child: [
       {
-        key: 'listBroadcasts',
-        name: 'List Broadcasts',
-        link: '/dashboard/broadcasts/list-broadcast',
-      }
+        key: "listBroadcasts",
+        name: "List Broadcasts",
+        link: "/dashboard/broadcasts/list-broadcast",
+      },
     ],
   },
   // {
