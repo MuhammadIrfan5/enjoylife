@@ -13,6 +13,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { NavLink, Link, useHistory } from 'react-router-dom';
 const styles = theme => ({
   demo: {
     height: 'auto',
@@ -33,10 +34,11 @@ function changePassword(props) {
   const { classes } = props;
   const title = brand.name + " - Blank Page";
   const description = brand.desc;
-
+  const history = useHistory();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,25 +46,84 @@ function changePassword(props) {
     console.log(oldPassword, newPassword, confirmPassword, "password");
   };
 
-  const onClickButton = (e) => {
-    // swal({
-    //   title: "Good job!",
-    //   text: "Password Chnaged Successfully!",
-    //   icon: "success",
-    //   button: "Okay!",
-    // });
-    toast('🦄 Password Changed Successfully!', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      });
 
-  }
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const SessionData = JSON.parse(localStorage.getItem('SessionData'));
+    // const data = {
+    //   userId,
+    // };
+    // dispatch(blockUser(data));
+
+    const myHeaders = new Headers();
+    myHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
+    myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify({
+      "oldPassword": oldPassword,
+      "newPassword": newPassword
+    });
+    const requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
+
+    const response = await fetch(
+      `http://34.125.246.209:3000/be/api/v1/dashboard/change-password`,
+      // ${userId}
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result, 'success');
+        if (result.status.toString() == 'true') {
+          toast.success(`${result.msg}`, {
+            position: 'top-center',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'colored',
+          });
+          setIsLoading(false);
+          localStorage.clear();
+          setTimeout( () => {
+            history.push('/');
+          },2000)
+        } else {
+          toast.error(`${result.msg}`, {
+            position: 'top-center',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'colored',
+          });
+          setIsLoading(false);
+        }
+      })
+      .catch((error) => {
+        toast.error('Something Went Wrong', {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
+        console.log('error', error);
+        setIsLoading(false);
+      });
+  };
+
   
 
   return (
@@ -77,13 +138,13 @@ function changePassword(props) {
       </Helmet>
 
       <PapperBlock title="Password Form" desc="Change Your password from here">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleChangePassword}>
           <Fragment>
             <Typography variant="h5" gutterBottom>
               Password Form
             </Typography>
             <Grid container spacing={3}>
-              <Grid item xs={12} sm={12}>
+              <Grid item xs={4} sm={4}>
                 {/* <Typography variant="h5" gutterBottom>
                   Old Password
                 </Typography> */}
@@ -92,57 +153,40 @@ function changePassword(props) {
                   id="firstName"
                   name="firstName"
                   label="Old Password"
+                  type="password"
                   fullWidth
-                  autoComplete="fname"
-                  // value={name}
-                  // disabled
-                  // onChange={(e) => {
-                  //   setFirstName(e.target.value);
-                  // }}
+                  autoComplete="old_passworf"
+                  onChange={(e) => {
+                    setOldPassword(e.target.value);
+                  }}
                 />
               </Grid>
-              <Grid item xs={12} sm={12}>
+              <Grid item xs={4} sm={4}>
                 <TextField
                   required
                   id="firstName"
                   name="firstName"
                   label="New Password"
                   fullWidth
-                  autoComplete="fname"
-                  // value={email}
-                  // disabled
-                  // onChange={(e) => {
-                  //   setFirstName(e.target.value);
-                  // }}
-                />
-              </Grid>
-              <Grid item xs={12} sm={12}>
-                <TextField
-                  required
-                  id="firstName"
-                  name="firstName"
-                  label="Confirm Password"
-                  fullWidth
-                  autoComplete="fname"
-                  // value={status}
-                  // disabled
-                  // onChange={(e) => {
-                  //   setFirstName(e.target.value);
-                  // }}
+                  type="password"
+                  autoComplete="new_password"
+                  onChange={(e) => {
+                    setNewPassword(e.target.value);
+                  }}
                 />
               </Grid>
             </Grid>
-            <Grid item md={12} sm={12}>
+            <Grid item md={4} sm={4}>
               <div className="fluid-container mt-10">
                 <Button
                   variant="contained"
                   color="primary"
                   // value="submit"
-                  onClick={onClickButton}
+                  // onClick={onClickButton}
                   type="submit"
                   className={classes.margin}
                 >
-                  Update password
+                  {isLoading ? <>Loading ... </> : <>Update Password</>}
                 </Button>
               </div>
             </Grid>

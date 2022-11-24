@@ -399,7 +399,15 @@ export const addBanner = loadable(() => import("./Pages/Banner/addBanner"), {
   fallback: <Loading />,
 });
 
+export const listBanner = loadable(() => import("./Pages/Banner/listBanner"), {
+  fallback: <Loading />,
+});
+
 export const addPromotion = loadable(() => import("./Pages/Promotion/addPromotion"), {
+  fallback: <Loading />,
+});
+
+export const listPromotion = loadable(() => import("./Pages/Promotion/listPromotion"), {
   fallback: <Loading />,
 });
 

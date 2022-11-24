@@ -20,6 +20,7 @@ import { ToastContainer, toast } from "react-toastify";
 import AdvFilter from "../../Tables/demos/AdvFilter";
 import { AdvancedTable } from "../../pageListAsync";
 import MaterialDropZone from "../../../components/Forms/MaterialDropZone";
+import StandardCards from "../../UiElements/demos/Cards/StandardCards";
 import {
   postBanner,
   resetAddBanner,
@@ -283,6 +284,7 @@ function addBanner(props) {
         icon="ion-ios-card-outline"
         desc="Banner Details"
       >
+        <StandardCards />
         {/* <AdvancedTable tbl_title="Banner List" /> */}
         {/* <AdvFilter /> */}
       </PapperBlock>

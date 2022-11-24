@@ -43,6 +43,11 @@ module.exports = [
         name: "Add Banner",
         link: "/dashboard/banner/add-banner",
       },
+      {
+        key: "listBanner",
+        name: "List Banner",
+        link: "/dashboard/banner/list-banner",
+      },
     ],
   },
   {
@@ -54,6 +59,11 @@ module.exports = [
         key: "addPromotions",
         name: "Add Promotions",
         link: "/dashboard/promotion/add-promotions",
+      },
+      {
+        key: "listPromotions",
+        name: "List Promotions",
+        link: "/dashboard/promotion/list-promotions",
       },
     ],
   },

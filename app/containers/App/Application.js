@@ -102,6 +102,8 @@ import {
   listBroadcast,
   viewBroadcast,
   changePassword,
+  listBanner,
+  listPromotion,
 } from "../pageListAsync";
 // import listUser from '../Pages/User/listUser';
 
@@ -120,10 +122,15 @@ function Application(props) {
         <Route path="/dashboard/user/user-settings" component={userSettings} />
         {/* Banner Routes */}
         <Route path="/dashboard/banner/add-banner" component={addBanner} />
+        <Route path="/dashboard/banner/list-banner" component={listBanner} />
         {/* Promotions Routes */}
         <Route
           path="/dashboard/promotion/add-promotions"
           component={addPromotion}
+        />
+        <Route
+          path="/dashboard/promotion/list-promotions"
+          component={listPromotion}
         />
         {/* Broadcast Routes */}
         <Route
