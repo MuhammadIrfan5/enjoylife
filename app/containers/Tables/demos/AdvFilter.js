@@ -1,25 +1,25 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Chip from '@material-ui/core/Chip';
-import MUIDataTable from 'mui-datatables';
-import { Link, useHistory } from 'react-router-dom';
+import React from "react";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import Chip from "@material-ui/core/Chip";
+import MUIDataTable from "mui-datatables";
+import { Link, useHistory } from "react-router-dom";
 
 const styles = (theme) => ({
   table: {
-    '& > div': {
-      overflow: 'auto',
+    "& > div": {
+      overflow: "auto",
     },
-    '& table': {
-      '& td': {
-        wordBreak: 'keep-all',
+    "& table": {
+      "& td": {
+        wordBreak: "keep-all",
       },
-      [theme.breakpoints.down('md')]: {
-        '& td': {
+      [theme.breakpoints.down("md")]: {
+        "& td": {
           height: 60,
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
+          overflow: "hidden",
+          textOverflow: "ellipsis",
         },
       },
     },
@@ -31,7 +31,7 @@ const styles = (theme) => ({
   https://github.com/gregnb/mui-datatables/blob/master/README.md
 */
 function AdvFilter(props) {
-  console.log('propsss', props.data);
+  console.log("propsss", props.data);
   const userData = props.data;
   const users = [];
   userData.map((user, index) => {
@@ -44,35 +44,35 @@ function AdvFilter(props) {
       beans_count: user.beans_count,
     });
   });
-  console.log('users', users);
+  console.log("users", users);
 
   console.log(props.pageRoute);
   const history = useHistory();
   const columns = [
     {
-      name: 'name',
-      label: 'Name',
+      name: "name",
+      label: "Name",
       options: {
         filter: true,
       },
     },
     {
-      name: 'email',
-      label: 'Email',
+      name: "email",
+      label: "Email",
       options: {
         filter: true,
       },
     },
     {
-      name: 'DOB',
-      label: 'Date of Birth',
+      name: "DOB",
+      label: "Date of Birth",
       options: {
         filter: true,
       },
     },
     {
-      name: 'beans_count',
-      label: 'Beans Count',
+      name: "beans_count",
+      label: "Beans Count",
       options: {
         filter: true,
       },
@@ -190,8 +190,8 @@ function AdvFilter(props) {
   // ];
 
   const handleRowClick = (rowData, rowMeta) => {
-    console.log('row meta => ', rowMeta);
-    console.log(rowData, 'row');
+    console.log("row meta => ", rowMeta);
+    console.log(rowData, "row");
     // rowData.push(props.data[rowMeta.rowIndex].date_of_birth);
     // rowData.push(props.data[rowMeta.rowIndex].email);
     // rowData.push(props.data[rowMeta.rowIndex].name);
@@ -206,6 +206,7 @@ function AdvFilter(props) {
     // return;
     // <Link to="/app/user/user-settings" className="btn btn-primary" />;
     // history.push("/app/user/user-settings");
+    localStorage.setItem("UserData", JSON.stringify(rowData));
     history.push({
       pathname: props.pageRoute,
       // search: '?query=abc',
@@ -218,8 +219,8 @@ function AdvFilter(props) {
   };
 
   const options = {
-    filterType: 'dropdown',
-    responsive: 'vertical',
+    filterType: "dropdown",
+    responsive: "vertical",
     print: true,
     rowsPerPage: 10,
     page: 0,

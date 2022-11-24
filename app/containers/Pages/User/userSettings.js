@@ -86,40 +86,54 @@ function userSettings(props) {
 
   const { classes } = props;
 
+  const userData = JSON.parse(localStorage.getItem("UserData"));
+
   useEffect(() => {
-    if (props.location.state.data) {
-      setName(
-        props.location.state.data.newData[0]
-          ? props.location.state.data.newData[0]
-          : ""
-      );
-      setEmail(
-        props.location.state.data.newData[1]
-          ? props.location.state.data.newData[1]
-          : ""
-      );
-      setFriendsCount(
-        props.location.state.data.newData[4]
-          ? props.location.state.data.newData[4]
-          : null
-      );
-      setStatus(
-        props.location.state.data.newData[7] == false
-          ? "not verified"
-          : "verified"
-      );
-      setPhoneNumber(
-        props.location.state.data.newData[9]
-          ? props.location.state.data.newData[9]
-          : ""
-      );
-      setUserId(
-        props.location.state.data.newData[11]
-          ? props.location.state.data.newData[11]
-          : ""
-      );
+    if (userData) {
+      console.log(userData, "userData");
+      setName(userData[0]);
+      setEmail(userData[1]);
+      setFriendsCount(userData[4]);
+      setStatus(userData[4] == false ? "not verified" : "verified");
+      setPhoneNumber(userData[9]);
+      setUserId(userData[11]);
     }
   }, []);
+
+  // useEffect(() => {
+  //   if (props.location.state.data) {
+  //     setName(
+  //       props.location.state.data.newData[0]
+  //         ? props.location.state.data.newData[0]
+  //         : ""
+  //     );
+  //     setEmail(
+  //       props.location.state.data.newData[1]
+  //         ? props.location.state.data.newData[1]
+  //         : ""
+  //     );
+  //     setFriendsCount(
+  //       props.location.state.data.newData[4]
+  //         ? props.location.state.data.newData[4]
+  //         : " "
+  //     );
+  //     setStatus(
+  //       props.location.state.data.newData[7] == false
+  //         ? "not verified"
+  //         : "verified"
+  //     );
+  //     setPhoneNumber(
+  //       props.location.state.data.newData[9]
+  //         ? props.location.state.data.newData[9]
+  //         : ""
+  //     );
+  //     setUserId(
+  //       props.location.state.data.newData[11]
+  //         ? props.location.state.data.newData[11]
+  //         : ""
+  //     );
+  //   }
+  // }, []);
 
   useEffect(() => {
     dispatch(getUsers());
@@ -129,9 +143,9 @@ function userSettings(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
-  const [friendsCount, setFriendsCount] = useState();
-  const [phoneNumber, setPhoneNumber] = useState();
-  const [userId, setUserId] = useState();
+  const [friendsCount, setFriendsCount] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [userId, setUserId] = useState("");
   const [open, setOpen] = useState(false);
   const [blockloading, setBlockLoading] = useState(false);
   const [unblockloading, setUnBlockLoading] = useState(false);
@@ -306,8 +320,10 @@ function userSettings(props) {
             titleTwo="Total Diamond Count"
             titleThree=""
             titleFour=""
-            firstVal={props.location.state.data.newData[3]}
-            secondVal={props.location.state.data.newData[5]}
+            // firstVal={props.location.state.data.newData[3]}
+            // secondVal={props.location.state.data.newData[5]}
+            firstVal={userData[3] ? userData[3] : null}
+            secondVal={userData[5] ? userData[5] : null}
             pageKey="user-settings"
           />
         </div>
