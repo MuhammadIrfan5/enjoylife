@@ -7,7 +7,7 @@ import ProfileCard from '../CardPaper/ProfileCard';
 import styles from './profile-jss';
 
 function Connection(props) {
-  const { classes } = props;
+  const { classes, data } = props;
   return (
     <Grid
       container
@@ -18,16 +18,16 @@ function Connection(props) {
       className={classes.rootx}
     >
       {
-        datas.map((data, index) => (
+        data.map((data, index) => (
           <Grid item md={4} sm={6} xs={12} key={index.toString()}>
             <ProfileCard
-              cover={data.cover}
-              avatar={data.avatar}
-              name={data.name}
-              title={data.title}
-              connection={data.connection}
-              isVerified={data.verified}
-              btnText="See Profile"
+              cover={data.user.photo}
+              avatar=""
+              name={data.user.name}
+              title={data.is_vip == true ? "VIP User" : "Normal User"}
+              connection={data.user.stars}
+              isVerified=""
+              btnText="See Broadcast"
             />
           </Grid>
         ))

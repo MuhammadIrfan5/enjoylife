@@ -17,8 +17,8 @@ import AdvFilter from "../../Tables/demos/AdvFilter";
 import Save from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
 import classNames from "classnames";
-import { AdvancedTable } from "../../pageListAsync";
 import { ToastContainer, toast } from 'react-toastify';
+import { AdvancedTable } from "../../pageListAsync";
 const styles = (theme) => ({
   demo: {
     height: "auto",
@@ -53,48 +53,48 @@ const styles = (theme) => ({
   },
 });
 
-function addGifts(props) {
+function addNotifications(props) {
   const title = brand.name + " - Blank Page";
   const description = brand.desc;
-  const [giftTitle, setGiftTitle] = useState("");
-  const [giftNumber, setGiftNumber] = useState("");
+  //   const [name, setName] = useState('Title');
+  const [notificaitionTitle, setNotificaitionTitle] = useState("");
+  const [notificaitionPath, setNotificaitionPath] = useState("");
+  const [notificaitionDesc, setNotificaitionDesc] = useState("");
   const [files] = useState([]);
-  const [giftImage, setGiftImage] = useState([]);
-  const [giftUrl, setGiftUrl] = useState();
   const { classes } = props;
 
-  
+  const handleChange = (event) => {
+    setName(event.target.value);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(giftTitle, "Gift");
   };
 
-  const handleImage = (e) => {
-    console.log(e[0], "clicked");
-    setGiftImage(e[0]);
-    const url = URL.createObjectURL(e[0]);
-    setGiftUrl(url);
-    console.log(url, "urlll");
-  };
-
-  const addGift = (e) => {
+  const SubmitApi = (e) => {
     e.preventDefault();
     const SessionData = JSON.parse(localStorage.getItem('SessionData'));
    
     const myHeaders = new Headers();
     myHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
-    var formdata = new FormData();
-    formdata.append("file",giftImage);
-    
-    var requestOptions = {
+    myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify({
+        "title": notificaitionTitle,
+        "body": notificaitionDesc,
+        "path": notificaitionPath,
+        "userId": SessionData
+      });
+
+
+    const requestOptions = {
       method: 'POST',
       headers: myHeaders,
-      body: formdata,
-      mode: "cors",
-      redirect: 'follow'
+      body: raw,
+      redirect: 'follow',
     };
 
-    fetch("http://34.125.246.209:3000/be/api/v1/file/admin/upload", requestOptions)
+    fetch("http://34.125.246.209:3000/be/api/v1/dashboard/notification/all/generate", requestOptions)
+  .then(response => response.json())
   .then((result) => {
     console.log(result, 'success');
         if (result.status.toString() == 'true') {
@@ -134,9 +134,9 @@ function addGifts(props) {
       });
   });
 
-  }
 
 
+  };
   return (
     <div>
       <Helmet>
@@ -149,9 +149,9 @@ function addGifts(props) {
       </Helmet>
       <form onSubmit={handleSubmit}>
         <PapperBlock
-          title="Add Gift"
+          title="Add Notifications"
           icon="ion-ios-ionitron-outline"
-          desc="Add Gift Details"
+          desc="Add Notifications Details"
         >
           <Fragment>
             <Grid
@@ -166,77 +166,63 @@ function addGifts(props) {
                 <div className={classes.container}>
                   <TextField
                     required
-                    id="giftTitle"
-                    name="giftTitle"
-                    label="Gift Title"
+                    id="notificationTitle"
+                    name="notificationTitle"
+                    label="Notification Title"
                     fullWidth
-                    autoComplete="Title"
+                    autoComplete="notificationTitle"
                     onChange={(e) => {
-                      setGiftTitle(e.target.value);
-                    }}
+                        setNotificaitionTitle(e.target.value);
+                      }}
                   />
                   {/* <InputLabel htmlFor="noGifts">Number of Diamonds</InputLabel>
                       <Input id="noGifts"  onChange={handleChange} /> */}
                 </div>
+                
                 <div className={classes.container}>
                   <TextField
                     required
-                    id="noGifts"
-                    name="noGifts"
-                    label="No of Diamonds"
+                    id="notificationPath"
+                    name="notificationPath"
+                    label="Notification Path"
                     fullWidth
-                    autoComplete="1"
-                    type="number"
+                    autoComplete="notificationPath"
                     onChange={(e) => {
-                      setGiftNumber(e.target.value);
-                    }}
+                        setNotificaitionPath(e.target.value);
+                      }}
                   />
                   {/* <InputLabel htmlFor="noGifts">Number of Diamonds</InputLabel>
                       <Input id="noGifts"  /> */}
                 </div>
+                <div className={classes.container} >
+                    <TextField
+                        required
+                        id="notificationDesc"
+                        name="notificationDesc"
+                        label="Notification Description"
+                        fullWidth
+                        autoComplete="notificationDesc"
+                        onChange={(e) => {
+                            setNotificaitionDesc(e.target.value);
+                          }}
+                    />
+                </div>
               </Grid>
             </Grid>
           </Fragment>
-          <Typography variant="button" className={classes.divider}>
-            Gift Image
-          </Typography>
-          <Fragment>
-            <div>
-              <MaterialDropZone
-                // acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
-                files={files}
-                showPreviews
-                maxSize={5000000000}
-                filesLimit={5}
-                text="Drag and drop image(s) here or click"
-                onDrop={handleImage}
-              />
-              <Fragment>
-                <img src={giftUrl} />
-              </Fragment>
-            </div>
-          </Fragment>
           
 
-          <Button className={classes.button} onClick={addGift} variant="contained" size="medium">
+          <Button className={classes.button} onClick={SubmitApi} variant="contained" size="medium">
             <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
             Save
           </Button>
         </PapperBlock>
       </form>
-      <PapperBlock
-        title="Gifts List"
-        icon="ion-ios-card-outline"
-        desc="Gifts Details"
-      >
-        {/* <AdvancedTable tbl_title="Gifts List" /> */}
-        {/* <AdvFilter  /> */}
-      </PapperBlock>
     </div>
   );
 }
-addGifts.propTypes = {
+addNotifications.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(addGifts);
+export default withStyles(styles)(addNotifications);

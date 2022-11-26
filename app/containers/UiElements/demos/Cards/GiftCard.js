@@ -42,10 +42,10 @@ const styles = theme => ({
   }
 });
 
-function PromotionCard(props) {
+function GiftCard(props) {
   const { classes,data } = props;
   // const bull = <span className={classes.bullet}>•</span>;
-console.log("Banners here ==> ",data )
+console.log("Gifts here ==> ",data )
 
   return (
     <Grid
@@ -56,20 +56,20 @@ console.log("Banners here ==> ",data )
       spacing={2}
     >
 
-      {data.map((promotion) => (
+      {data.map((gifts) => (
           <Grid item md={6}>
           {/* <Typography variant="button" className={classes.divider}>Media</Typography> */}
           <div>
             <NewsCard
-              image={promotion.image_url}
-              title={promotion.name}
+              image={gifts.url}
+              title={gifts.gift}
             >
               <Typography gutterBottom variant="h5" component="h2">
-                <b>Title : </b>{promotion.name}
+                <b> Title :</b> {gifts.gift}
               </Typography>
-              {/* <Typography component="p">
-                Aliquam venenatis magna et odio lobortis maximus. Nullam in tortor ligula. Proin maximus risus nunc
-              </Typography> */}
+              <Typography gutterBottom variant="h5" component="h2">
+                   <b> Credits : </b> {gifts.credit}
+              </Typography>
             </NewsCard>
           </div>
         </Grid>
@@ -95,8 +95,8 @@ console.log("Banners here ==> ",data )
   );
 }
 
-PromotionCard.propTypes = {
+GiftCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PromotionCard);
+export default withStyles(styles)(GiftCard);

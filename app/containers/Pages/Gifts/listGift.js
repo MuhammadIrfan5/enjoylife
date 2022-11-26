@@ -1,17 +1,26 @@
-import React, { useState,useEffect, Fragment } from "react";
+import React, { useState, Fragment, useCallback, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import brand from "dan-api/dummy/brand";
-import { PapperBlock, CounterIconsWidget } from "dan-components";
+import { PapperBlock } from "dan-components";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
-import { AdvancedTable } from "../../pageListAsync";
-// import { AdvFilter } from './demos';
-import AdvFilter from "../../Tables/demos/AdvFilter";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
+// import FormHelperText from '@material-ui/core/FormHelperText';
+// import { MaterialDropZone } from 'dan-components';
+import Save from "@material-ui/icons/Save";
+import Button from "@material-ui/core/Button";
 import classNames from "classnames";
-import ProfileCard from "../../../components/CardPaper/ProfileCard";
-import Connection from "../../../components/Profile/Connection";
+import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import AdvFilter from "../../Tables/demos/AdvFilter";
+import { AdvancedTable } from "../../pageListAsync";
+import MaterialDropZone from "../../../components/Forms/MaterialDropZone";
+import GiftCard from "../../UiElements/demos/Cards/GiftCard";
 const styles = (theme) => ({
   demo: {
     height: "auto",
@@ -46,14 +55,12 @@ const styles = (theme) => ({
   },
 });
 
-function listBroadcast(props) {
-
-  const [data,setData] = useState([]);
-  const [isData,setIsData] = useState(false)
-
+function listGift(props) {
+  
+    const [data,setData] = useState([]);
+    const [isData,setIsData] = useState(false)
   const title = brand.name + " - Blank Page";
   const description = brand.desc;
-  const { classes } = props;
 
   useEffect( () => {
     // e.preventDefault();
@@ -71,7 +78,7 @@ function listBroadcast(props) {
     };
 
     const response = fetch(
-      `http://34.125.246.209:3000/be/api/v1/dashboard/stream/all?page=&size=`,
+      `http://34.125.246.209:3000/be/api/v1/dashboard/gift/all?page=&size=`,
       // ${userId}
       requestOptions
     )
@@ -79,7 +86,7 @@ function listBroadcast(props) {
       .then((result) => {
         console.log(result, 'success');
         if (result.status.toString() == 'true') {
-            setData(result.streams)
+            setData(result.gifts)
             setIsData(true);
         } else {
         //   setIsLoading(false);
@@ -101,49 +108,19 @@ function listBroadcast(props) {
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
       </Helmet>
-      {/* <Grid
-              container
-              alignItems="flex-start"
-              justify="flex-start"
-              direction="row"
-              spacing={3}
-          >
-              <Grid
-              item
-              md={6}
-              sm={12}
-              className={classes.demo}
-              > */}
       <PapperBlock
-        title="Live Braodcast"
-        icon="ion-ios-videocam"
-        desc="Live Broadcast Insights"
-      >
-        <div className={classes.container}>
-          <CounterIconsWidget
-            titleOne="Live Broadcasts"
-            titleTwo="Total Blocked Broadcasts"
-            titleThree="Total Active Broadcasts"
-            titleFour="Total Active Users"
-          />
-        </div>
-      </PapperBlock>
-      {/* </Grid>
-      </Grid> */}
-      <PapperBlock
-        title="Broadcast List"
+        title="Banners List"
         icon="ion-ios-card-outline"
-        desc="Braodcast Details"
+        desc="Banner Details"
       >
-        <Connection data={data} />
-        {/* <AdvancedTable tbl_title="Braodcasts List" /> */}
-        {/* <AdvFilter pageRoute="/dashboard/broadcasts/view-broadcast" /> */}
+        {data.length > 0 ? <><GiftCard data={data}/></> : <></>}
       </PapperBlock>
     </div>
   );
 }
-listBroadcast.propTypes = {
+
+listGift.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(listBroadcast);
+export default withStyles(styles)(listGift);

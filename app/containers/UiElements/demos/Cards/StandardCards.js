@@ -65,7 +65,7 @@ console.log("Banners here ==> ",data )
               title={banner.name}
             >
               <Typography gutterBottom variant="h5" component="h2">
-                {banner.name}
+                <b> Title : </b>{banner.name}
               </Typography>
               {/* <Typography component="p">
                 Aliquam venenatis magna et odio lobortis maximus. Nullam in tortor ligula. Proin maximus risus nunc

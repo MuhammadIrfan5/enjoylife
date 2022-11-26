@@ -284,7 +284,7 @@ function addBanner(props) {
         icon="ion-ios-card-outline"
         desc="Banner Details"
       >
-        <StandardCards />
+        {/* <StandardCards /> */}
         {/* <AdvancedTable tbl_title="Banner List" /> */}
         {/* <AdvFilter /> */}
       </PapperBlock>

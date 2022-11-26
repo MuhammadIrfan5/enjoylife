@@ -31,6 +31,11 @@ module.exports = [
         name: "Add Gifts",
         link: "/dashboard/gifts/add-gifts",
       },
+      {
+        key: 'listGift',
+        name: 'List Gifts',
+        link: '/dashboard/gifts/list-gift',
+      },
     ],
   },
   {
@@ -77,6 +82,18 @@ module.exports = [
         name: "List Broadcasts",
         link: "/dashboard/broadcasts/list-broadcast",
       },
+    ],
+  },
+  {
+    key: 'notifications',
+    name: 'Notifications',
+    icon: 'ion-ios-ionitron-outline',
+    child: [
+      {
+        key: 'addNotifications',
+        name: 'Add Notifications',
+        link: '/dashboard/notifications/add-notifications',
+      }
     ],
   },
   // {

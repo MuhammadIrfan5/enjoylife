@@ -43,19 +43,20 @@ function ProfileCard(props) {
           {name}
           {isVerified && <VerifiedUser className={classes.verified} />}
         </Typography>
-        <Typography className={classes.subheading} gutterBottom>
-          <span className={Type.regular}>{title}</span>
+        <Typography variant="h6" className={classes.name} gutterBottom>
+          {/* <span className={Type.regular}></span> */}
+          {title}
         </Typography>
-        <Typography variant="caption" component="p">
+        <Typography variant="h6" className={classes.name} gutterBottom>
           {connection}
-            &nbsp;connection
+            &nbsp; Stars
         </Typography>
         <Button className={classes.buttonProfile} size="large" variant="outlined" color="secondary">
           {btnText}
         </Button>
       </CardContent>
       <Divider />
-      <CardActions>
+      {/* <CardActions>
         <BottomNavigation
           showLabels
           className={classes.bottomLink}
@@ -64,7 +65,7 @@ function ProfileCard(props) {
           <BottomNavigationAction label="10 Favorites" icon={<Favorite />} />
           <BottomNavigationAction label="5 Albums" icon={<PhotoLibrary />} />
         </BottomNavigation>
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 }

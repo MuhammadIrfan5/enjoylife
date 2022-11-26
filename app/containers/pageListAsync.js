@@ -388,6 +388,11 @@ export const listUser = loadable(() => import("./Pages/User/listUser"), {
 export const addGifts = loadable(() => import("./Pages/Gifts/addGifts"), {
   fallback: <Loading />,
 });
+
+export const listGift = loadable(() => import("./Pages/Gifts/listGift"), {
+  fallback: <Loading />,
+});
+
 export const userSettings = loadable(
   () => import("./Pages/User/userSettings"),
   {
@@ -418,6 +423,11 @@ export const listBroadcast = loadable(() => import("./Pages/Broadcasts/listBroad
 export const viewBroadcast = loadable(() => import("./Pages/Broadcasts/viewBroadcast"), {
   fallback: <Loading />,
 });
+
+export const addNotifications = loadable(() => import("./Pages/Notifications/addNotifications"), {
+  fallback: <Loading />,
+});
+
 export const changePassword = loadable(
   () => import("./Pages/ChangePassword/ChangePassword"),
   {
