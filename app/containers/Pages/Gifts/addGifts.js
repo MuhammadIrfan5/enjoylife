@@ -95,21 +95,57 @@ function addGifts(props) {
     };
 
     fetch("http://34.125.246.209:3000/be/api/v1/file/admin/upload", requestOptions)
-  .then((result) => {
-    console.log(result, 'success');
+    .then(response => response.json())
+    .then((result) => {
+      console.log(result, 'success');
         if (result.status.toString() == 'true') {
-            toast.success(`${result.msg}`, {
-                position: 'top-center',
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'colored',
-              });
+          let imageUrl = result.link;
+
+          const giftHeaders = new Headers();
+          giftHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
+          giftHeaders.append("Content-Type", "application/json");
+
+          var raw = JSON.stringify({
+            "gift": giftTitle,
+            "credit": giftNumber,
+            "url": imageUrl
+          });
+          
+          var giftRequestOptions = {
+            method: 'POST',
+            headers: giftHeaders,
+            body: raw,
+            redirect: 'follow'
+          };
+          fetch("http://34.125.246.209:3000/be/api/v1/dashboard/gift/add", giftRequestOptions)
+            .then(response => response.json())
+            .then((result) => {
+              console.log(result, 'gift success');
+              toast.success(`${result.msg}`, {
+                  position: 'top-center',
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: 'colored',
+                });
+            }).catch((error) => {
+              toast.error(error, {
+                  position: 'top-center',
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: 'colored',
+                });
+            });
         } else {
-            toast.error(`${result.msg}`, {
+          // `${result.msg}`
+            toast.error('I am here', {
                 position: 'top-center',
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -122,7 +158,8 @@ function addGifts(props) {
         }
   })
   .catch((error) => {
-    toast.error(error, {
+    // error
+    toast.error('I am in catch', {
         position: 'top-center',
         autoClose: 5000,
         hideProgressBar: false,

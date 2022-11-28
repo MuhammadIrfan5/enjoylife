@@ -70,15 +70,15 @@ function addBanner(props) {
   //   console.log(state._root.nodes[7].entry[1].error, "loginError");
   //   return state._root.nodes[7].entry[1].error;
   // });
-  const bannerData = useSelector((state) => {
-    console.log(state._root.nodes[5].entry[1].data, "bannerData");
-    return state._root.nodes[5].entry[1].data;
-  });
+  // const bannerData = useSelector((state) => {
+  //   console.log(state._root.nodes[5].entry[1].data, "bannerData");
+  //   return state._root.nodes[5].entry[1].data;
+  // });
 
-  const bannerError = useSelector((state) => {
-    console.log(state._root.nodes[5].entry[1].error, "bannerError");
-    return state._root.nodes[5].entry[1].error;
-  });
+  // const bannerError = useSelector((state) => {
+  //   console.log(state._root.nodes[5].entry[1].error, "bannerError");
+  //   return state._root.nodes[5].entry[1].error;
+  // });
 
   const title = brand.name + " - Blank Page";
   const description = brand.desc;
@@ -90,120 +90,120 @@ function addBanner(props) {
   const [files] = useState([]);
   const { classes } = props;
 
-  const dispatch = useDispatch();
-
-  useEffect(
-    () => () => {
-      dispatch(resetAddBanner());
-    },
-    []
-  );
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    e.preventDefault();
-    const data = {
-      bannerTitle,
-      bannerImage,
-    };
-    console.warn(data, "Banner page data");
-    dispatch(postBanner(data));
-    setAuthLoading(true);
+    console.log(bannerTitle, "Banner");
   };
-
-  // const handleImage = useCallback(
-  //   (event) => {
-  //     console.log("You clicked ", event);
-  //     setBannerImage(event);
-  //   },
-  //   [props]
-  // );
 
   const handleImage = (e) => {
     console.log(e[0], "clicked");
-    setBannerImage(e);
+    setBannerImage(e[0]);
     const url = URL.createObjectURL(e[0]);
     setBannerUrl(url);
     console.log(url, "urlll");
   };
 
-  useEffect(() => {
-    if (bannerData) {
-      console.log(bannerData.status.toString(), "if useEffect login data");
+  const addBannerClick = (e) => {
+    e.preventDefault();
+    const SessionData = JSON.parse(localStorage.getItem('SessionData'));
+   
+    const myHeaders = new Headers();
+    myHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
+    var formdata = new FormData();
+    formdata.append("file",bannerImage);
+    
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: formdata,
+      mode: "cors",
+      redirect: 'follow'
+    };
 
-      // history.push("/dashboard");
+    fetch("http://34.125.246.209:3000/be/api/v1/file/admin/upload", requestOptions)
+    .then(response => response.json())
+    .then((result) => {
+      console.log(result, 'success');
+        if (result.status.toString() == 'true') {
+          let imageUrl = result.link;
 
-      if (bannerData.status.toString() == "true") {
-        setAuthLoading(false);
-        console.log("true");
-        toast.success(" Banner Added  Successfully!", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+          const bannerHeaders = new Headers();
+          bannerHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
+          bannerHeaders.append("Content-Type", "application/json");
 
-        console.warn("banner successssssss", bannerData);
-
-        // setAdminEmail("");
-        // setPassword("");
-        // history.push("/dashboard");
-        dispatch(resetAddBanner());
-      } else if (bannerData.status.toString() !== true) {
-        setAuthLoading(false);
-        console.log("false");
-
-        toast.error("Something went Wrong!", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-        // setErrMsg(true);
-        dispatch(resetAddBanner());
-      }
-    } else if (bannerError) {
-      setAuthLoading(false);
-      // setErrMsg(true);
-      console.log(bannerError, "if useEffect error");
-      toast.error("Something went Wrong!", {
-        position: "top-center",
+          const raw = JSON.stringify({
+            banners: [
+              {
+                name: bannerTitle,
+                image_url: imageUrl,
+              },
+            ],
+          });
+      
+          
+          var bannerRequestOptions = {
+            method: 'POST',
+            headers: bannerHeaders,
+            body: raw,
+            redirect: 'follow'
+          };
+          fetch("http://34.125.246.209:3000/be/api/v1/dashboard/banner/add", bannerRequestOptions)
+            .then(response => response.json())
+            .then((result) => {
+              console.log(result, 'banner success');
+              toast.success(`${result.msg}`, {
+                  position: 'top-center',
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: 'colored',
+                });
+            }).catch((error) => {
+              toast.error(error, {
+                  position: 'top-center',
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: 'colored',
+                });
+            });
+        } else {
+          // `${result.msg}`
+            toast.error('I am here', {
+                position: 'top-center',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'colored',
+              });
+        }
+  })
+  .catch((error) => {
+    // error
+    toast.error('I am in catch', {
+        position: 'top-center',
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "colored",
+        theme: 'colored',
       });
-    } else {
-      console.log(bannerData, "else useEffect login data");
-      // setAuthLoading(false);
-      // toast.error("Something Went Wrong", {
-      //   position: "top-center",
-      //   autoClose: 5000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "colored",
-      // });
-      dispatch(resetAddBanner());
-    }
+  });
 
-    // return () => {
-    //   dispatch(resetloginAdmin());
-    // };
-  }, [bannerData, bannerError]);
+  }
+
+
   return (
     <div>
       <Helmet>
@@ -219,7 +219,7 @@ function addBanner(props) {
         icon="ion-ios-card-outline"
         desc="Add Banner Details"
       >
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={addBannerClick}>
           <Fragment>
             <Grid
               container
@@ -279,15 +279,7 @@ function addBanner(props) {
           </Button>
         </form>
       </PapperBlock>
-      <PapperBlock
-        title="Banners List"
-        icon="ion-ios-card-outline"
-        desc="Banner Details"
-      >
-        {/* <StandardCards /> */}
-        {/* <AdvancedTable tbl_title="Banner List" /> */}
-        {/* <AdvFilter /> */}
-      </PapperBlock>
+      
     </div>
   );
 }
