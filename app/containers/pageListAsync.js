@@ -429,7 +429,7 @@ export const addNotifications = loadable(() => import("./Pages/Notifications/add
 });
 
 export const changePassword = loadable(
-  () => import("./Pages/ChangePassword/ChangePassword"),
+  () => import("./Pages/ChangePassword/changePassword"),
   {
     fallback: <Loading />,
   }
