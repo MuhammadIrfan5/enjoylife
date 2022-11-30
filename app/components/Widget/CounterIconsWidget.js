@@ -44,7 +44,7 @@ function CounterIconWidget(props) {
               <CounterWidget
                 color={colorfull[2]}
                 start={0}
-                end={90}
+                end={props.thirdVal ? props.thirdVal : 0}
                 duration={3}
                 title={props.titleThree}
               >
@@ -55,8 +55,8 @@ function CounterIconWidget(props) {
               <CounterWidget
                 color={colorfull[3]}
                 start={0}
-                end={10000}
-                duration={3}
+                end={props.fourthVal ? props.fourthVal : 0}
+                duration={5}
                 title={props.titleFour}
               >
                 <CollectionsBookmark className={classes.counterIcon} />
