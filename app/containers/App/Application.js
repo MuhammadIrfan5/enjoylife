@@ -106,6 +106,7 @@ import {
   listPromotion,
   listGift,
   addNotifications,
+  addPrivacyPolicy,
 } from "../pageListAsync";
 // import listUser from '../Pages/User/listUser';
 
@@ -148,6 +149,11 @@ function Application(props) {
         <Route
           path="/dashboard/notifications/add-notifications"
           component={addNotifications}
+        />
+
+        <Route
+          path="/dashboard/privacypolicy/add-privacypolicy"
+          component={addPrivacyPolicy}
         />
         {/* Password Routes */}
         <Route

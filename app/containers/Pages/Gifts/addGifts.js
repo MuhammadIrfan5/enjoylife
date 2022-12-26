@@ -261,14 +261,14 @@ function addGifts(props) {
           </Button>
         </PapperBlock>
       </form>
-      <PapperBlock
+      {/* <PapperBlock
         title="Gifts List"
         icon="ion-ios-card-outline"
         desc="Gifts Details"
       >
-        {/* <AdvancedTable tbl_title="Gifts List" /> */}
-        {/* <AdvFilter  /> */}
-      </PapperBlock>
+        <AdvancedTable tbl_title="Gifts List" /> 
+        <AdvFilter  />
+      </PapperBlock> */}
     </div>
   );
 }

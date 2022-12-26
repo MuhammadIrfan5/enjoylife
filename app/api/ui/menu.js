@@ -96,6 +96,18 @@ module.exports = [
       }
     ],
   },
+  {
+    key: "privacypolicy",
+    name: "PrivacyPolicy",
+    icon: "ion-ios-paper-plane",
+    child: [
+      {
+        key: "addPrivacyPolicy",
+        name: "Add Privacy Policy",
+        link: "/dashboard/privacypolicy/add-privacypolicy",
+      }
+    ],
+  },
   // {
   //   key: 'home',
   //   name: 'Home',

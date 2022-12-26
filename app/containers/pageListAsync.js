@@ -428,6 +428,10 @@ export const addNotifications = loadable(() => import("./Pages/Notifications/add
   fallback: <Loading />,
 });
 
+export const addPrivacyPolicy = loadable(() => import("./Pages/PrivacyPolicy/addPrivacyPolicy"), {
+  fallback: <Loading />,
+});
+
 export const changePassword = loadable(
   () => import("./Pages/ChangePassword/changePassword"),
   {
