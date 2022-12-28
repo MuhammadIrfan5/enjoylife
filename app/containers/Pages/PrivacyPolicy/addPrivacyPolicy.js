@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ToastContainer, toast } from "react-toastify";
 const styles = (theme) => ({
   demo: {
     height: "auto",
@@ -51,8 +52,72 @@ function addPrivacyPolicy(props) {
   const title = brand.name + " - Blank Page";
   const description = brand.desc;
   const { classes } = props;
+  const [policyData, setpolicyData] = useState("");
+  const addPolicyClick = (e) => {
+    console.log("bilal => ",policyData);
+    e.preventDefault();
+    const SessionData = JSON.parse(localStorage.getItem('SessionData'));
+   console.log('session data =>', SessionData);
+    const myHeaders = new Headers();
+    myHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    var urlencoded = new URLSearchParams();
+    var formdata = new FormData();
+    urlencoded.append("data",policyData);
+    urlencoded.append("name", "privacyPolicy")
 
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      mode: "cors",
+      redirect: 'follow'
+    };
 
+    fetch("http://34.125.246.209:3000/be/api/v1/staticContent", requestOptions)
+    .then(response => response.json())
+    .then((result) => {
+      console.log(result, 'success');
+        if (result.status.toString() == 'true') {
+          toast.success(`${result.msg}`, {
+            position: 'top-center',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'colored',
+          });
+        } else {
+          // `${result.msg}`
+            toast.error(`${result.msg}`, {
+                position: 'top-center',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'colored',
+              });
+        }
+  })
+  .catch((error) => {
+    // error
+    toast.error('I am in catch', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
+  });
+
+  }
 
 
   return (
@@ -65,7 +130,7 @@ function addPrivacyPolicy(props) {
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
       </Helmet>
-      <form >
+      <form onSubmit={addPolicyClick}>
         <PapperBlock
           title="Add Privacy Policy"
           icon="ion-ios-ionitron-outline"
@@ -93,7 +158,8 @@ function addPrivacyPolicy(props) {
                             // console.log( 'Editor is ready to use!', editor );
                         } }
                         onChange={ ( event, editor ) => {
-                            const data = editor.getData();
+                            const data = editor.getData();                          
+                            setpolicyData(editor.getData());                          
                             // console.log( { event, editor, data } );
                         } }
                         onBlur={ ( event, editor ) => {
@@ -107,7 +173,7 @@ function addPrivacyPolicy(props) {
               </Grid>
             </Grid>
           </Fragment>
-          <Button className={classes.button} variant="contained" size="medium">
+          <Button className={classes.button} variant="contained" size="medium" type="submit">
             <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
             Save
           </Button>
