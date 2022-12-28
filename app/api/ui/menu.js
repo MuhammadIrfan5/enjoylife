@@ -14,6 +14,18 @@ module.exports = [
         name: "List User",
         link: "/dashboard/user/list-user",
       },
+
+      {
+        key: "createSubAdmin",
+        name: "Sub-Admin",
+        link: "/dashboard/user/create-sub-admin",
+      },
+
+      {
+        key: "createAdmin",
+        name: "Sub-Admin Family",
+        link: "/dashboard/user/create-sub-admin-family",
+      },
       // {
       //   key: 'userSettings',
       //   name: 'User Settings',
@@ -32,9 +44,9 @@ module.exports = [
         link: "/dashboard/gifts/add-gifts",
       },
       {
-        key: 'listGift',
-        name: 'List Gifts',
-        link: '/dashboard/gifts/list-gift',
+        key: "listGift",
+        name: "List Gifts",
+        link: "/dashboard/gifts/list-gift",
       },
     ],
   },
@@ -85,15 +97,15 @@ module.exports = [
     ],
   },
   {
-    key: 'notifications',
-    name: 'Notifications',
-    icon: 'ion-ios-ionitron-outline',
+    key: "notifications",
+    name: "Notifications",
+    icon: "ion-ios-ionitron-outline",
     child: [
       {
-        key: 'addNotifications',
-        name: 'Add Notifications',
-        link: '/dashboard/notifications/add-notifications',
-      }
+        key: "addNotifications",
+        name: "Add Notifications",
+        link: "/dashboard/notifications/add-notifications",
+      },
     ],
   },
   // {
