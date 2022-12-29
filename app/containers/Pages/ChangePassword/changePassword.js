@@ -7,27 +7,27 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import { withStyles } from '@material-ui/core/styles';
-import swal from 'sweetalert';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { NavLink, Link, useHistory } from 'react-router-dom';
-const styles = theme => ({
+import { withStyles } from "@material-ui/core/styles";
+import swal from "sweetalert";
+import classNames from "classnames";
+import PropTypes from "prop-types";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { NavLink, Link, useHistory } from "react-router-dom";
+const styles = (theme) => ({
   demo: {
-    height: 'auto',
+    height: "auto",
   },
   divider: {
     margin: `${theme.spacing(3)}px 0`,
   },
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap",
   },
-  margin:{
-    marginTop:"20px",
-  }
+  margin: {
+    marginTop: "20px",
+  },
 });
 
 function changePassword(props) {
@@ -42,32 +42,27 @@ function changePassword(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     console.log(oldPassword, newPassword, confirmPassword, "password");
   };
-
 
   const handleChangePassword = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    const SessionData = JSON.parse(localStorage.getItem('SessionData'));
-    // const data = {
-    //   userId,
-    // };
-    // dispatch(blockUser(data));
+    const SessionData = JSON.parse(localStorage.getItem("SessionData"));
 
     const myHeaders = new Headers();
-    myHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
+    myHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
     myHeaders.append("Content-Type", "application/json");
     var raw = JSON.stringify({
-      "oldPassword": oldPassword,
-      "newPassword": newPassword
+      oldPassword: oldPassword,
+      newPassword: newPassword,
     });
     const requestOptions = {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
       body: raw,
-      redirect: 'follow',
+      redirect: "follow",
     };
 
     const response = await fetch(
@@ -77,54 +72,52 @@ function changePassword(props) {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result, 'success');
-        if (result.status.toString() == 'true') {
+        console.log(result, "success");
+        if (result.status.toString() == "true") {
           toast.success(`${result.msg}`, {
-            position: 'top-center',
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: 'colored',
+            theme: "colored",
           });
           setIsLoading(false);
           localStorage.clear();
-          setTimeout( () => {
-            history.push('/');
-          },2000)
+          setTimeout(() => {
+            history.push("/");
+          }, 2000);
         } else {
           toast.error(`${result.msg}`, {
-            position: 'top-center',
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: 'colored',
+            theme: "colored",
           });
           setIsLoading(false);
         }
       })
       .catch((error) => {
-        toast.error('Something Went Wrong', {
-          position: 'top-center',
+        toast.error("Something Went Wrong", {
+          position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: 'colored',
+          theme: "colored",
         });
-        console.log('error', error);
+        console.log("error", error);
         setIsLoading(false);
       });
   };
-
-  
 
   return (
     <div>

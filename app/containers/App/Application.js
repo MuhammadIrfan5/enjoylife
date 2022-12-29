@@ -107,6 +107,8 @@ import {
   listGift,
   addNotifications,
   addPrivacyPolicy,
+  createSubAdmin,
+  createSubAdminFamily,
 } from "../pageListAsync";
 // import listUser from '../Pages/User/listUser';
 
@@ -120,6 +122,15 @@ function Application(props) {
         {/* User Routes */}
         <Route path="/dashboard/user/add-user" component={addUser} />
         <Route path="/dashboard/user/list-user" component={listUser} />
+
+        <Route
+          path="/dashboard/user/create-sub-admin"
+          component={createSubAdmin}
+        />
+        <Route
+          path="/dashboard/user/create-sub-admin-family"
+          component={createSubAdminFamily}
+        />
         {/* User Routes */}
         <Route path="/dashboard/gifts/add-gifts" component={addGifts} />
         <Route path="/dashboard/gifts/list-gift" component={listGift} />

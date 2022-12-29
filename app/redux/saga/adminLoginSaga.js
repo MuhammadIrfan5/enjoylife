@@ -29,7 +29,7 @@ function* addProduct(action) {
         body: JSON.stringify({
           email: payload.adminEmail,
           password: payload.password,
-          phone: 921033333333,
+          // phone: 921033333333,
         }),
       }
     );

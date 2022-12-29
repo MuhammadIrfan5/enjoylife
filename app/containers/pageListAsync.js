@@ -385,6 +385,20 @@ export const listUser = loadable(() => import("./Pages/User/listUser"), {
   fallback: <Loading />,
 });
 
+export const createSubAdmin = loadable(
+  () => import("./Pages/User/createSubAdmin"),
+  {
+    fallback: <Loading />,
+  }
+);
+
+export const createSubAdminFamily = loadable(
+  () => import("./Pages/User/createSubAdminFamily"),
+  {
+    fallback: <Loading />,
+  }
+);
+
 export const addGifts = loadable(() => import("./Pages/Gifts/addGifts"), {
   fallback: <Loading />,
 });
@@ -408,25 +422,40 @@ export const listBanner = loadable(() => import("./Pages/Banner/listBanner"), {
   fallback: <Loading />,
 });
 
-export const addPromotion = loadable(() => import("./Pages/Promotion/addPromotion"), {
-  fallback: <Loading />,
-});
+export const addPromotion = loadable(
+  () => import("./Pages/Promotion/addPromotion"),
+  {
+    fallback: <Loading />,
+  }
+);
 
-export const listPromotion = loadable(() => import("./Pages/Promotion/listPromotion"), {
-  fallback: <Loading />,
-});
+export const listPromotion = loadable(
+  () => import("./Pages/Promotion/listPromotion"),
+  {
+    fallback: <Loading />,
+  }
+);
 
-export const listBroadcast = loadable(() => import("./Pages/Broadcasts/listBroadcasts"), {
-  fallback: <Loading />,
-});
+export const listBroadcast = loadable(
+  () => import("./Pages/Broadcasts/listBroadcasts"),
+  {
+    fallback: <Loading />,
+  }
+);
 
-export const viewBroadcast = loadable(() => import("./Pages/Broadcasts/viewBroadcast"), {
-  fallback: <Loading />,
-});
+export const viewBroadcast = loadable(
+  () => import("./Pages/Broadcasts/viewBroadcast"),
+  {
+    fallback: <Loading />,
+  }
+);
 
-export const addNotifications = loadable(() => import("./Pages/Notifications/addNotifications"), {
-  fallback: <Loading />,
-});
+export const addNotifications = loadable(
+  () => import("./Pages/Notifications/addNotifications"),
+  {
+    fallback: <Loading />,
+  }
+);
 
 export const addPrivacyPolicy = loadable(() => import("./Pages/PrivacyPolicy/addPrivacyPolicy"), {
   fallback: <Loading />,
