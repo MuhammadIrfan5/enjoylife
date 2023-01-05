@@ -34,16 +34,18 @@ function AdvFilter(props) {
   console.log("propsss", props.data);
   const userData = props.data;
   const users = [];
-  userData.map((user, index) => {
-    users.push({
-      id: user._id,
-      key: index,
-      name: user.name,
-      email: user.email,
-      DOB: user.date_of_birth,
-      beans_count: user.beans_count,
-    });
-  });
+  userData
+    ? userData.map((user, index) => {
+        users.push({
+          id: user._id,
+          key: index,
+          name: user.name,
+          email: user.email,
+          DOB: user.date_of_birth,
+          beans_count: user.beans_count,
+        });
+      })
+    : null;
   console.log("users", users);
 
   console.log(props.pageRoute);
