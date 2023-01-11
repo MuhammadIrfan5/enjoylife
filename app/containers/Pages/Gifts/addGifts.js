@@ -18,7 +18,8 @@ import Save from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 import { AdvancedTable } from "../../pageListAsync";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
+import { apiActiveURL } from "../../../ApiBaseURL";
 const styles = (theme) => ({
   demo: {
     height: "auto",
@@ -63,7 +64,6 @@ function addGifts(props) {
   const [giftUrl, setGiftUrl] = useState();
   const { classes } = props;
 
-  
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(giftTitle, "Gift");
@@ -79,100 +79,102 @@ function addGifts(props) {
 
   const addGift = (e) => {
     e.preventDefault();
-    const SessionData = JSON.parse(localStorage.getItem('SessionData'));
-   
+    const SessionData = JSON.parse(localStorage.getItem("SessionData"));
+
     const myHeaders = new Headers();
-    myHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
+    myHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
     var formdata = new FormData();
-    formdata.append("file",giftImage);
-    
+    formdata.append("file", giftImage);
+
     var requestOptions = {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
       body: formdata,
       mode: "cors",
-      redirect: 'follow'
+      redirect: "follow",
     };
 
-    fetch("http://34.125.246.209:3000/be/api/v1/file/admin/upload", requestOptions)
-    .then(response => response.json())
-    .then((result) => {
-      console.log(result, 'success');
-        if (result.status.toString() == 'true') {
+    fetch(`${apiActiveURL}be/api/v1/file/admin/upload`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result, "success");
+        if (result.status.toString() == "true") {
           let imageUrl = result.link;
 
           const giftHeaders = new Headers();
-          giftHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
+          giftHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
           giftHeaders.append("Content-Type", "application/json");
 
           var raw = JSON.stringify({
-            "gift": giftTitle,
-            "credit": giftNumber,
-            "url": imageUrl
+            gift: giftTitle,
+            credit: giftNumber,
+            url: imageUrl,
           });
-          
+
           var giftRequestOptions = {
-            method: 'POST',
+            method: "POST",
             headers: giftHeaders,
             body: raw,
-            redirect: 'follow'
+            redirect: "follow",
           };
-          fetch("http://34.125.246.209:3000/be/api/v1/dashboard/gift/add", giftRequestOptions)
-            .then(response => response.json())
+          fetch(
+            `${apiActiveURL}be/api/v1/dashboard/gift/add`,
+            giftRequestOptions
+          )
+            .then((response) => response.json())
             .then((result) => {
-              console.log(result, 'gift success');
+              console.log(result, "gift success");
               toast.success(`${result.msg}`, {
-                  position: 'top-center',
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: 'colored',
-                });
-            }).catch((error) => {
-              toast.error(error, {
-                  position: 'top-center',
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: 'colored',
-                });
-            });
-        } else {
-          // `${result.msg}`
-            toast.error('I am here', {
-                position: 'top-center',
+                position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: 'colored',
+                theme: "colored",
               });
+            })
+            .catch((error) => {
+              toast.error(error, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+            });
+        } else {
+          // `${result.msg}`
+          toast.error("I am here", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         }
-  })
-  .catch((error) => {
-    // error
-    toast.error('I am in catch', {
-        position: 'top-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
+      })
+      .catch((error) => {
+        // error
+        toast.error("I am in catch", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
-  });
-
-  }
-
+  };
 
   return (
     <div>
@@ -253,9 +255,13 @@ function addGifts(props) {
               </Fragment>
             </div>
           </Fragment>
-          
 
-          <Button className={classes.button} onClick={addGift} variant="contained" size="medium">
+          <Button
+            className={classes.button}
+            onClick={addGift}
+            variant="contained"
+            size="medium"
+          >
             <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
             Save
           </Button>

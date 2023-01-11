@@ -17,8 +17,9 @@ import AdvFilter from "../../Tables/demos/AdvFilter";
 import Save from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
 import classNames from "classnames";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import { AdvancedTable } from "../../pageListAsync";
+import { apiActiveURL } from "../../../ApiBaseURL";
 const styles = (theme) => ({
   demo: {
     height: "auto",
@@ -73,69 +74,68 @@ function addNotifications(props) {
 
   const SubmitApi = (e) => {
     e.preventDefault();
-    const SessionData = JSON.parse(localStorage.getItem('SessionData'));
-   
+    const SessionData = JSON.parse(localStorage.getItem("SessionData"));
+
     const myHeaders = new Headers();
-    myHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
+    myHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
     myHeaders.append("Content-Type", "application/json");
     var raw = JSON.stringify({
-        "title": notificaitionTitle,
-        "body": notificaitionDesc,
-        "path": notificaitionPath,
-        "userId": SessionData
-      });
-
+      title: notificaitionTitle,
+      body: notificaitionDesc,
+      path: notificaitionPath,
+      userId: SessionData,
+    });
 
     const requestOptions = {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
       body: raw,
-      redirect: 'follow',
+      redirect: "follow",
     };
 
-    fetch("http://34.125.246.209:3000/be/api/v1/dashboard/notification/all/generate", requestOptions)
-  .then(response => response.json())
-  .then((result) => {
-    console.log(result, 'success');
-        if (result.status.toString() == 'true') {
-            toast.success(`${result.msg}`, {
-                position: 'top-center',
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'colored',
-              });
+    fetch(
+      `${apiActiveURL}be/api/v1/dashboard/notification/all/generate`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result, "success");
+        if (result.status.toString() == "true") {
+          toast.success(`${result.msg}`, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         } else {
-            toast.error(`${result.msg}`, {
-                position: 'top-center',
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'colored',
-              });
+          toast.error(`${result.msg}`, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         }
-  })
-  .catch((error) => {
-    toast.error(error, {
-        position: 'top-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
+      })
+      .catch((error) => {
+        toast.error(error, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
-  });
-
-
-
   };
   return (
     <div>
@@ -172,13 +172,13 @@ function addNotifications(props) {
                     fullWidth
                     autoComplete="notificationTitle"
                     onChange={(e) => {
-                        setNotificaitionTitle(e.target.value);
-                      }}
+                      setNotificaitionTitle(e.target.value);
+                    }}
                   />
                   {/* <InputLabel htmlFor="noGifts">Number of Diamonds</InputLabel>
                       <Input id="noGifts"  onChange={handleChange} /> */}
                 </div>
-                
+
                 <div className={classes.container}>
                   <TextField
                     required
@@ -188,31 +188,35 @@ function addNotifications(props) {
                     fullWidth
                     autoComplete="notificationPath"
                     onChange={(e) => {
-                        setNotificaitionPath(e.target.value);
-                      }}
+                      setNotificaitionPath(e.target.value);
+                    }}
                   />
                   {/* <InputLabel htmlFor="noGifts">Number of Diamonds</InputLabel>
                       <Input id="noGifts"  /> */}
                 </div>
-                <div className={classes.container} >
-                    <TextField
-                        required
-                        id="notificationDesc"
-                        name="notificationDesc"
-                        label="Notification Description"
-                        fullWidth
-                        autoComplete="notificationDesc"
-                        onChange={(e) => {
-                            setNotificaitionDesc(e.target.value);
-                          }}
-                    />
+                <div className={classes.container}>
+                  <TextField
+                    required
+                    id="notificationDesc"
+                    name="notificationDesc"
+                    label="Notification Description"
+                    fullWidth
+                    autoComplete="notificationDesc"
+                    onChange={(e) => {
+                      setNotificaitionDesc(e.target.value);
+                    }}
+                  />
                 </div>
               </Grid>
             </Grid>
           </Fragment>
-          
 
-          <Button className={classes.button} onClick={SubmitApi} variant="contained" size="medium">
+          <Button
+            className={classes.button}
+            onClick={SubmitApi}
+            variant="contained"
+            size="medium"
+          >
             <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
             Save
           </Button>

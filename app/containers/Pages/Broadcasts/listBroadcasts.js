@@ -1,4 +1,4 @@
-import React, { useState,useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Helmet } from "react-helmet";
 import brand from "dan-api/dummy/brand";
 import { PapperBlock, CounterIconsWidget } from "dan-components";
@@ -12,6 +12,7 @@ import AdvFilter from "../../Tables/demos/AdvFilter";
 import classNames from "classnames";
 import ProfileCard from "../../../components/CardPaper/ProfileCard";
 import Connection from "../../../components/Profile/Connection";
+import { apiActiveURL } from "../../../ApiBaseURL";
 const styles = (theme) => ({
   demo: {
     height: "auto",
@@ -47,49 +48,48 @@ const styles = (theme) => ({
 });
 
 function listBroadcast(props) {
-
-  const [data,setData] = useState([]);
-  const [isData,setIsData] = useState(false)
+  const [data, setData] = useState([]);
+  const [isData, setIsData] = useState(false);
 
   const title = brand.name + " - Blank Page";
   const description = brand.desc;
   const { classes } = props;
 
-  useEffect( () => {
+  useEffect(() => {
     // e.preventDefault();
     // setIsLoading(true);
-    const SessionData = JSON.parse(localStorage.getItem('SessionData'));
+    const SessionData = JSON.parse(localStorage.getItem("SessionData"));
 
     const myHeaders = new Headers();
-    myHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
+    myHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
     // myHeaders.append("Content-Type", "application/json");
-    
+
     const requestOptions = {
-      method: 'GET',
+      method: "GET",
       headers: myHeaders,
-      redirect: 'follow',
+      redirect: "follow",
     };
 
     const response = fetch(
-      `http://34.125.246.209:3000/be/api/v1/dashboard/stream/all?page=&size=`,
+      `${apiActiveURL}be/api/v1/dashboard/stream/all?page=&size=`,
       // ${userId}
       requestOptions
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result, 'success');
-        if (result.status.toString() == 'true') {
-            setData(result.streams)
-            setIsData(true);
+        console.log(result, "success");
+        if (result.status.toString() == "true") {
+          setData(result.streams);
+          setIsData(true);
         } else {
-        //   setIsLoading(false);
+          //   setIsLoading(false);
         }
       })
       .catch((error) => {
-        console.log('error', error);
+        console.log("error", error);
         // setIsLoading(false);
       });
-  },[isData])
+  }, [isData]);
 
   return (
     <div>

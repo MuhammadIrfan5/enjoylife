@@ -20,6 +20,7 @@ import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 import { AdvancedTable } from "../../pageListAsync";
 import { ToastContainer, toast } from "react-toastify";
+import { apiActiveURL } from "../../../ApiBaseURL";
 
 const styles = (theme) => ({
   demo: {
@@ -101,10 +102,7 @@ function createSubAdminFamily(props) {
       redirect: "follow",
     };
 
-    fetch(
-      "http://34.125.246.209:3000/be/api/v1/file/admin/upload",
-      requestOptions
-    )
+    fetch(`${apiActiveURL}be/api/v1/file/admin/upload`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         console.log(result, "success");
@@ -128,7 +126,7 @@ function createSubAdminFamily(props) {
             redirect: "follow",
           };
           fetch(
-            "http://34.125.246.209:3000/be/api/v1/dashboard/gift/add",
+            `${apiActiveURL}be/api/v1/dashboard/gift/add`,
             giftRequestOptions
           )
             .then((response) => response.json())

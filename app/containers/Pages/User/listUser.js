@@ -52,7 +52,7 @@ function listUser(props) {
         // });
 
         console.log("user data successssssss", userData);
-        setData(userData.users);
+        setData(userData.data);
 
         // const session_token = loginData.token;
         // const id = loginData._id;

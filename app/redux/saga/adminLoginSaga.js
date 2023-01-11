@@ -1,4 +1,5 @@
 import { call, put, takeEvery } from "redux-saga/effects";
+import { apiActiveURL } from "../../ApiBaseURL";
 
 // import {
 //   ADD_PRODUCT_REQUESTED,
@@ -20,7 +21,8 @@ function* addProduct(action) {
   //   return;
   try {
     let data = yield fetch(
-      "http://34.125.246.209:3000/be/api/v1/dashboard/login",
+      // 34.125.24.0
+      `${apiActiveURL}be/api/v1/dashboard/login`,
       {
         method: "POST",
         headers: {

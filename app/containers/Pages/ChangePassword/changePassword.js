@@ -14,6 +14,7 @@ import PropTypes from "prop-types";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { NavLink, Link, useHistory } from "react-router-dom";
+import { apiActiveURL } from "../../../ApiBaseURL";
 const styles = (theme) => ({
   demo: {
     height: "auto",
@@ -66,7 +67,7 @@ function changePassword(props) {
     };
 
     const response = await fetch(
-      `http://34.125.246.209:3000/be/api/v1/dashboard/change-password`,
+      `${apiActiveURL}be/api/v1/dashboard/change-password`,
       // ${userId}
       requestOptions
     )
