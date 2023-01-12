@@ -58,122 +58,42 @@ const styles = (theme) => ({
 function createSubAdminFamily(props) {
   const title = brand.name + " - Blank Page";
   const description = brand.desc;
-  const [adminName, setAdminName] = useState("");
-  const [adminEmail, setAdminEmail] = useState("");
-
-  const [giftTitle, setGiftTitle] = useState("");
-  const [giftNumber, setGiftNumber] = useState("");
-  const [files] = useState([]);
-  const [giftImage, setGiftImage] = useState([]);
-  const [giftUrl, setGiftUrl] = useState();
+  const [familyName, setFamilyName] = useState("");
   const { classes } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(giftTitle, "Gift");
-  };
-
-  //   const handleImage = (e) => {
-  //     console.log(e[0], "clicked");
-  //     setGiftImage(e[0]);
-  //     const url = URL.createObjectURL(e[0]);
-  //     setGiftUrl(url);
-  //     console.log(url, "urlll");
-  //   };
-
-  const createAdmin = (e) => {
-    e.preventDefault();
-
-    console.log(adminName, adminEmail, "Admin Create");
-    return;
     const SessionData = JSON.parse(localStorage.getItem("SessionData"));
+    console.log(
+      familyName,
+      SessionData[0],
+      "Family Create"
+    );
 
-    const myHeaders = new Headers();
+    // return;
+    var myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
-    var formdata = new FormData();
-    // formdata.append("file", giftImage);
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      name: familyName
+    });
 
     var requestOptions = {
       method: "POST",
       headers: myHeaders,
-      body: formdata,
-      mode: "cors",
+      body: raw,
       redirect: "follow",
     };
 
     fetch(
-      "http://34.125.246.209:3000/be/api/v1/file/admin/upload",
+      `${apiActiveURL}be/api/v1/dashboard/register/subAdmin`,
       requestOptions
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result, "success");
-        if (result.status.toString() == "true") {
-          let imageUrl = result.link;
-
-          const giftHeaders = new Headers();
-          giftHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
-          giftHeaders.append("Content-Type", "application/json");
-
-          var raw = JSON.stringify({
-            gift: giftTitle,
-            credit: giftNumber,
-            url: imageUrl,
-          });
-
-          var giftRequestOptions = {
-            method: "POST",
-            headers: giftHeaders,
-            body: raw,
-            redirect: "follow",
-          };
-          fetch(
-            "http://34.125.246.209:3000/be/api/v1/dashboard/gift/add",
-            giftRequestOptions
-          )
-            .then((response) => response.json())
-            .then((result) => {
-              console.log(result, "gift success");
-              toast.success(`${result.msg}`, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-              });
-            })
-            .catch((error) => {
-              toast.error(error, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-              });
-            });
-        } else {
-          // `${result.msg}`
-          toast.error("I am here", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-        }
-      })
-      .catch((error) => {
-        // error
-        toast.error("I am in catch", {
+        console.log(result);
+        toast.success(`${result.msg}`, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -183,8 +103,29 @@ function createSubAdminFamily(props) {
           progress: undefined,
           theme: "colored",
         });
+      })
+      .catch((error) => {
+        toast.error("Something Went Wrong", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        console.log("error", error);
       });
   };
+
+  //   const handleImage = (e) => {
+  //     console.log(e[0], "clicked");
+  //     setGiftImage(e[0]);
+  //     const url = URL.createObjectURL(e[0]);
+  //     setGiftUrl(url);
+  //     console.log(url, "urlll");
+  //   };
 
   return (
     <div>
@@ -220,31 +161,16 @@ function createSubAdminFamily(props) {
                     autoComplete="adminName"
                     required
                     onChange={(e) => {
-                      setAdminName(e.target.value);
+                      setFamilyName(e.target.value);
                     }}
                   />
                 </div>
-                {/* <div className={classes.container}>
-                  <TextField
-                    id="adminEmail"
-                    name="adminEmail"
-                    label="Email"
-                    fullWidth
-                    autoComplete="1"
-                    type="email"
-                    required
-                    onChange={(e) => {
-                      setAdminEmail(e.target.value);
-                    }}
-                  />
-                </div> */}
               </Grid>
             </Grid>
           </Fragment>
 
           <Button
             className={classes.button}
-            onClick={createAdmin}
             variant="contained"
             size="medium"
             type="submit"
@@ -255,7 +181,7 @@ function createSubAdminFamily(props) {
         </PapperBlock>
       </form>
 
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <PapperBlock
           title="Create Sub Admin Family"
           icon="ion-ios-ionitron-outline"
@@ -312,7 +238,7 @@ function createSubAdminFamily(props) {
             Save
           </Button>
         </PapperBlock>
-      </form>
+      </form> */}
     </div>
   );
 }

@@ -133,109 +133,106 @@ function createSubAdmin(props) {
       });
   };
 
-  const createAdmin = (e) => {
-    e.preventDefault();
+  // const createAdmin = (e) => {
+  //   e.preventDefault();
 
-    return;
-    const SessionData = JSON.parse(localStorage.getItem("SessionData"));
+  //   return;
+  //   const SessionData = JSON.parse(localStorage.getItem("SessionData"));
 
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
-    var formdata = new FormData();
-    // formdata.append("file", giftImage);
+  //   const myHeaders = new Headers();
+  //   myHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
+  //   var formdata = new FormData();
+  //   // formdata.append("file", giftImage);
 
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: formdata,
-      mode: "cors",
-      redirect: "follow",
-    };
+  //   var requestOptions = {
+  //     method: "POST",
+  //     headers: myHeaders,
+  //     body: formdata,
+  //     mode: "cors",
+  //     redirect: "follow",
+  //   };
 
-    fetch(
-      "http://34.125.246.209:3000/be/api/v1/file/admin/upload",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result, "success");
-        if (result.status.toString() == "true") {
-          let imageUrl = result.link;
+  //   fetch(`${apiActiveURL}be/api/v1/file/admin/upload`, requestOptions)
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       console.log(result, "success");
+  //       if (result.status.toString() == "true") {
+  //         let imageUrl = result.link;
 
-          const giftHeaders = new Headers();
-          giftHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
-          giftHeaders.append("Content-Type", "application/json");
+  //         const giftHeaders = new Headers();
+  //         giftHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
+  //         giftHeaders.append("Content-Type", "application/json");
 
-          var raw = JSON.stringify({
-            gift: giftTitle,
-            credit: giftNumber,
-            url: imageUrl,
-          });
+  //         var raw = JSON.stringify({
+  //           gift: giftTitle,
+  //           credit: giftNumber,
+  //           url: imageUrl,
+  //         });
 
-          var giftRequestOptions = {
-            method: "POST",
-            headers: giftHeaders,
-            body: raw,
-            redirect: "follow",
-          };
-          fetch(
-            "http://34.125.246.209:3000/be/api/v1/dashboard/gift/add",
-            giftRequestOptions
-          )
-            .then((response) => response.json())
-            .then((result) => {
-              console.log(result, "gift success");
-              toast.success(`${result.msg}`, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-              });
-            })
-            .catch((error) => {
-              toast.error(error, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-              });
-            });
-        } else {
-          // `${result.msg}`
-          toast.error("I am here", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-        }
-      })
-      .catch((error) => {
-        // error
-        toast.error("I am in catch", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-      });
-  };
+  //         var giftRequestOptions = {
+  //           method: "POST",
+  //           headers: giftHeaders,
+  //           body: raw,
+  //           redirect: "follow",
+  //         };
+  //         fetch(
+  //           `${apiActiveURL}be/api/v1/dashboard/gift/add`,
+  //           giftRequestOptions
+  //         )
+  //           .then((response) => response.json())
+  //           .then((result) => {
+  //             console.log(result, "gift success");
+  //             toast.success(`${result.msg}`, {
+  //               position: "top-center",
+  //               autoClose: 5000,
+  //               hideProgressBar: false,
+  //               closeOnClick: true,
+  //               pauseOnHover: true,
+  //               draggable: true,
+  //               progress: undefined,
+  //               theme: "colored",
+  //             });
+  //           })
+  //           .catch((error) => {
+  //             toast.error(error, {
+  //               position: "top-center",
+  //               autoClose: 5000,
+  //               hideProgressBar: false,
+  //               closeOnClick: true,
+  //               pauseOnHover: true,
+  //               draggable: true,
+  //               progress: undefined,
+  //               theme: "colored",
+  //             });
+  //           });
+  //       } else {
+  //         // `${result.msg}`
+  //         toast.error("I am here", {
+  //           position: "top-center",
+  //           autoClose: 5000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //           theme: "colored",
+  //         });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       // error
+  //       toast.error("I am in catch", {
+  //         position: "top-center",
+  //         autoClose: 5000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //         theme: "colored",
+  //       });
+  //     });
+  // };
 
   return (
     <div>

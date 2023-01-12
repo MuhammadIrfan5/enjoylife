@@ -225,6 +225,7 @@ function AdvFilter(props) {
     rowsPerPage: 10,
     page: 0,
     onRowClick: handleRowClick,
+    selectableRowsHideCheckboxes:true
   };
 
   const { classes } = props;

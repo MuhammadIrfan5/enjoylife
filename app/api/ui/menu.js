@@ -34,6 +34,18 @@ module.exports = [
     ],
   },
   {
+    key: "Sub-admin Family",
+    name: "family",
+    icon: "ion-ios-ionitron-outline",
+    child: [
+      {
+        key: "listFamily",
+        name: "List Family",
+        link: "/dashboard/family/list-family",
+      }
+    ],
+  },
+  {
     key: "gifts",
     name: "Gifts",
     icon: "ion-ios-ionitron-outline",

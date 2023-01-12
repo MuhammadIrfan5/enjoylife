@@ -467,3 +467,10 @@ export const changePassword = loadable(
     fallback: <Loading />,
   }
 );
+
+export const listFamily = loadable(
+  () => import("./Pages/Family/listFamily"),
+  {
+    fallback: <Loading />,
+  }
+);

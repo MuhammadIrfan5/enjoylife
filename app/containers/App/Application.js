@@ -109,6 +109,7 @@ import {
   addPrivacyPolicy,
   createSubAdmin,
   createSubAdminFamily,
+  listFamily,
 } from "../pageListAsync";
 // import listUser from '../Pages/User/listUser';
 
@@ -138,6 +139,9 @@ function Application(props) {
         {/* Banner Routes */}
         <Route path="/dashboard/banner/add-banner" component={addBanner} />
         <Route path="/dashboard/banner/list-banner" component={listBanner} />
+
+        <Route path="/dashboard/family/list-family" component={listFamily} />
+
         {/* Promotions Routes */}
         <Route
           path="/dashboard/promotion/add-promotions"
