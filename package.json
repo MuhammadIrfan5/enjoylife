@@ -39,7 +39,7 @@
     "lint:staged": "lint-staged",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write",
-    "proxy": "http://34.125.246.209:3000/be/api/v1/file/admin/upload"
+    "proxy": "http://34.125.24.0:3000/be/api/v1/file/admin/upload"
   },
   "browserslist": [
     "last 1 version",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -31,9 +31,12 @@ const styles = (theme) => ({
   https://github.com/gregnb/mui-datatables/blob/master/README.md
 */
 function AdvFilter(props) {
-  console.log("propsss", props.data);
+
+    const [rows, setRows] = useState()
+//   console.log("propsss", props.handleSelectRowsData);
   const userData = props.data;
   const users = [];
+
   userData
     ? userData.map((user, index) => {
         users.push({
@@ -46,7 +49,7 @@ function AdvFilter(props) {
         });
       })
     : null;
-  console.log("users", users);
+  console.log("users", users[1]);
 
   console.log(props.pageRoute);
   const history = useHistory();
@@ -197,6 +200,14 @@ function AdvFilter(props) {
     console.log(allRowsSelected, "allRowsSelected");
     console.log(rowsSelected, "rowsSelected");
 
+    // setRows(rowsSelected);
+
+    // if(rows){
+        // props.handleSelectRowsData(rowsSelected);
+    // }
+
+   
+
     
   }
 
@@ -218,15 +229,15 @@ function AdvFilter(props) {
     // <Link to="/app/user/user-settings" className="btn btn-primary" />;
     // history.push("/app/user/user-settings");
     localStorage.setItem("UserData", JSON.stringify(rowData));
-    history.push({
-      pathname: props.pageRoute,
-      // search: '?query=abc',
-      state: {
-        data: {
-          newData: rowData,
-        },
-      },
-    });
+    // history.push({
+    //   pathname: props.pageRoute,
+    //   // search: '?query=abc',
+    //   state: {
+    //     data: {
+    //       newData: rowData,
+    //     },
+    //   },
+    // });
   };
 
   const options = {
@@ -235,8 +246,9 @@ function AdvFilter(props) {
     print: true,
     rowsPerPage: 10,
     page: 0,
-    onRowClick: handleRowClick,
+    // onRowClick: handleRowClick,
     onRowSelectionChange:handleRowsClick
+    // onRowSelectionChange: (rowsSelected) => { props.handleSelectRowsData(rowsSelected)}
     // selectableRowsHideCheckboxes:true
   };
 

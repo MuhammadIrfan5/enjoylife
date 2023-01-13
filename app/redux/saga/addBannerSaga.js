@@ -5,6 +5,7 @@ import {
   ADD_BANNER_SUCCESS,
   ADD_BANNER_FAILED,
 } from "../constants/bannerConstants";
+import { apiActiveURL } from "../../ApiBaseURL";
 
 function* addBanner(action) {
   const SessionData = JSON.parse(localStorage.getItem("SessionData"));
@@ -71,8 +72,6 @@ function* addBanner(action) {
     //   body: imageUpload,
     //   redirect: "follow",
     // };
-
-    // "http://34.125.246.209:3000/be/api/v1/file/admin/upload",
 
     // let data = yield fetch(
     //   "https://7e6c-59-103-203-149.in.ngrok.io/be/api/v1/file/admin/upload",

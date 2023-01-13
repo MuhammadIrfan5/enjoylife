@@ -43,6 +43,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { getUsers, blockUser } from "../../../redux/actions/userActions";
+import { apiActiveURL } from "../../../ApiBaseURL";
 
 import newsData from "../../../api/dummy/newsData";
 
@@ -183,7 +184,7 @@ function userSettings(props) {
     };
 
     const response = await fetch(
-      `http://34.125.246.209:3000/be/api/v1/dashboard/user/block?user_id=${userId}`,
+      `${apiActiveURL}be/api/v1/dashboard/user/block?user_id=${userId}`,
       requestOptions
     )
       .then((response) => response.json())
@@ -251,7 +252,7 @@ function userSettings(props) {
     };
 
     const response = await fetch(
-      `http://34.125.246.209:3000/be/api/v1/dashboard/user/unblock?user_id=${userId}`,
+      `${apiActiveURL}be/api/v1/dashboard/user/unblock?user_id=${userId}`,
       requestOptions
     )
       .then((response) => response.json())

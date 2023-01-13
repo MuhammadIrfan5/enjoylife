@@ -25,6 +25,7 @@ import {
   postBanner,
   resetAddBanner,
 } from "../../../redux/actions/addBannerActions";
+import { apiActiveURL } from "../../../ApiBaseURL";
 
 const styles = (theme) => ({
   demo: {
@@ -105,30 +106,30 @@ function addBanner(props) {
 
   const addBannerClick = (e) => {
     e.preventDefault();
-    const SessionData = JSON.parse(localStorage.getItem('SessionData'));
-   
+    const SessionData = JSON.parse(localStorage.getItem("SessionData"));
+
     const myHeaders = new Headers();
-    myHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
+    myHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
     var formdata = new FormData();
-    formdata.append("file",bannerImage);
-    
+    formdata.append("file", bannerImage);
+
     var requestOptions = {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
       body: formdata,
       mode: "cors",
-      redirect: 'follow'
+      redirect: "follow",
     };
 
-    fetch("http://34.125.246.209:3000/be/api/v1/file/admin/upload", requestOptions)
-    .then(response => response.json())
-    .then((result) => {
-      console.log(result, 'success');
-        if (result.status.toString() == 'true') {
+    fetch(`${apiActiveURL}be/api/v1/file/admin/upload`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result, "success");
+        if (result.status.toString() == "true") {
           let imageUrl = result.link;
 
           const bannerHeaders = new Headers();
-          bannerHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
+          bannerHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
           bannerHeaders.append("Content-Type", "application/json");
 
           const raw = JSON.stringify({
@@ -139,70 +140,71 @@ function addBanner(props) {
               },
             ],
           });
-      
-          
+
           var bannerRequestOptions = {
-            method: 'POST',
+            method: "POST",
             headers: bannerHeaders,
             body: raw,
-            redirect: 'follow'
+            redirect: "follow",
           };
-          fetch("http://34.125.246.209:3000/be/api/v1/dashboard/banner/add", bannerRequestOptions)
-            .then(response => response.json())
+          fetch(
+            `${apiActiveURL}be/api/v1/dashboard/banner/add`,
+            bannerRequestOptions
+          )
+            .then((response) => response.json())
             .then((result) => {
-              console.log(result, 'banner success');
+              console.log(result, "banner success");
               toast.success(`${result.msg}`, {
-                  position: 'top-center',
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: 'colored',
-                });
-            }).catch((error) => {
-              toast.error(error, {
-                  position: 'top-center',
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: 'colored',
-                });
-            });
-        } else {
-          // `${result.msg}`
-            toast.error('I am here', {
-                position: 'top-center',
+                position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: 'colored',
+                theme: "colored",
               });
+            })
+            .catch((error) => {
+              toast.error(error, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+            });
+        } else {
+          // `${result.msg}`
+          toast.error("I am here", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         }
-  })
-  .catch((error) => {
-    // error
-    toast.error('I am in catch', {
-        position: 'top-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
+      })
+      .catch((error) => {
+        // error
+        toast.error("I am in catch", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
-  });
-
-  }
-
+  };
 
   return (
     <div>
@@ -279,7 +281,6 @@ function addBanner(props) {
           </Button>
         </form>
       </PapperBlock>
-      
     </div>
   );
 }

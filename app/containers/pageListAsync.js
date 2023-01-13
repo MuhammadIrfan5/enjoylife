@@ -474,3 +474,10 @@ export const listFamily = loadable(
     fallback: <Loading />,
   }
 );
+
+export const listSubAdmin = loadable(
+  () => import("./Pages/User/listSubAdmin"),
+  {
+    fallback: <Loading />,
+  }
+);

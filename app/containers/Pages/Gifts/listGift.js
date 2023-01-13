@@ -21,6 +21,8 @@ import AdvFilter from "../../Tables/demos/AdvFilter";
 import { AdvancedTable } from "../../pageListAsync";
 import MaterialDropZone from "../../../components/Forms/MaterialDropZone";
 import GiftCard from "../../UiElements/demos/Cards/GiftCard";
+import { apiActiveURL } from "../../../ApiBaseURL";
+
 const styles = (theme) => ({
   demo: {
     height: "auto",
@@ -56,47 +58,46 @@ const styles = (theme) => ({
 });
 
 function listGift(props) {
-  
-    const [data,setData] = useState([]);
-    const [isData,setIsData] = useState(false)
+  const [data, setData] = useState([]);
+  const [isData, setIsData] = useState(false);
   const title = brand.name + " - Blank Page";
   const description = brand.desc;
 
-  useEffect( () => {
+  useEffect(() => {
     // e.preventDefault();
     // setIsLoading(true);
-    const SessionData = JSON.parse(localStorage.getItem('SessionData'));
+    const SessionData = JSON.parse(localStorage.getItem("SessionData"));
 
     const myHeaders = new Headers();
-    myHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
+    myHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
     // myHeaders.append("Content-Type", "application/json");
-    
+
     const requestOptions = {
-      method: 'GET',
+      method: "GET",
       headers: myHeaders,
-      redirect: 'follow',
+      redirect: "follow",
     };
 
     const response = fetch(
-      `http://34.125.246.209:3000/be/api/v1/dashboard/gift/all?page=&size=`,
+      `${apiActiveURL}be/api/v1/dashboard/gift/all?page=&size=`,
       // ${userId}
       requestOptions
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result, 'success');
-        if (result.status.toString() == 'true') {
-            setData(result.gifts)
-            setIsData(true);
+        console.log(result, "success");
+        if (result.status.toString() == "true") {
+          setData(result.gifts);
+          setIsData(true);
         } else {
-        //   setIsLoading(false);
+          //   setIsLoading(false);
         }
       })
       .catch((error) => {
-        console.log('error', error);
+        console.log("error", error);
         // setIsLoading(false);
       });
-  },[isData])
+  }, [isData]);
 
   return (
     <div>
@@ -113,7 +114,13 @@ function listGift(props) {
         icon="ion-ios-card-outline"
         desc="Banner Details"
       >
-        {data.length > 0 ? <><GiftCard data={data}/></> : <></>}
+        {data.length > 0 ? (
+          <>
+            <GiftCard data={data} />
+          </>
+        ) : (
+          <></>
+        )}
       </PapperBlock>
     </div>
   );

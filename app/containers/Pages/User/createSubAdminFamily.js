@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect, } from "react";
 
 import { Helmet } from "react-helmet";
 import brand from "dan-api/dummy/brand";
@@ -20,6 +20,11 @@ import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 import { AdvancedTable } from "../../pageListAsync";
 import { ToastContainer, toast } from "react-toastify";
+import { apiActiveURL } from "../../../ApiBaseURL";
+import { getUsers } from "../../../redux/actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import advAddFamilyUserFilter from "../../Tables/demos/advAddFamilyUserFilter";
+import AdvAddFamilyUserFilter from "../../Tables/demos/advAddFamilyUserFilter";
 
 const styles = (theme) => ({
   demo: {
@@ -59,11 +64,105 @@ function createSubAdminFamily(props) {
   const title = brand.name + " - Blank Page";
   const description = brand.desc;
   const [familyName, setFamilyName] = useState("");
+  const [rows,setRows] = useState({});
+  const [familyData, setFamilyData] = useState();
   const { classes } = props;
 
+  const dispatch = useDispatch();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
+
+  const userData = useSelector((state) => {
+    console.log(state._root.nodes[4].entry[1].data, "userData");
+    return state._root.nodes[4].entry[1].data;
+  });
+
+  const userError = useSelector((state) => {
+    console.log(state._root.nodes[4].entry[1].error, "loginError");
+    return state._root.nodes[4].entry[1].error;
+  });
+
+  useEffect(() => {
+    if (userData) {
+      console.log(userData.status.toString(), "if useEffect login data");
+
+      // history.push("/dashboard");
+
+      if (userData.status.toString() == "true") {
+        // setAuthLoading(false);
+        console.log("true");
+        // toast.success(" Admin Login Successfully!", {
+        //   position: "top-center",
+        //   autoClose: 5000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "colored",
+        // });
+
+        console.log("user data successssssss", userData);
+        setData(userData.data);
+
+        // const session_token = loginData.token;
+        // const id = loginData._id;
+        // const { name } = loginData;
+        // const { email } = loginData;
+        // const { phone } = loginData;
+        // const data = [session_token, id, name, email, phone];
+        // localStorage.setItem('SessionData', JSON.stringify(data));
+        // setAdminEmail('');
+        // setPassword('');
+        // history.push('/dashboard');
+        // dispatch(resetloginAdmin());
+      } else if (userData.status.toString() !== true) {
+        // setAuthLoading(false);
+        console.log("false");
+        // setErrMsg(true);
+        // dispatch(resetloginAdmin());
+      }
+    } else if (userError) {
+      // setAuthLoading(false);
+      // setErrMsg(true);
+      console.log(userError, "if useEffect error");
+    } else {
+      console.log(userData, "else useEffect login data");
+      // setAuthLoading(false);
+      // toast.error("Something Went Wrong", {
+      //   position: "top-center",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "colored",
+      // });
+      // dispatch(resetloginAdmin());
+    }
+
+    // return () => {
+    //   dispatch(resetloginAdmin());
+    // };
+  }, [userData, userError]);
+
+  const handleSelectRowsData = (item) => {
+    
+    // setRows(item);
+    console.log(item, "main page data ")
+    // setRows(data);
+    // setMessage(message);
+  };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("indexs =>",indexes);
     const SessionData = JSON.parse(localStorage.getItem("SessionData"));
+  
     console.log(
       familyName,
       SessionData[0],
@@ -86,14 +185,38 @@ function createSubAdminFamily(props) {
       redirect: "follow",
     };
 
-    fetch(
-      `${apiActiveURL}be/api/v1/dashboard/register/subAdmin`,
-      requestOptions
-    )
+    fetch(`${apiActiveURL}be/api/v1/dashboard/create/familys`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
-        toast.success(`${result.msg}`, {
+        console.log(result, "success");
+        if (result.status.toString() == "true") {          
+          // `${result.msg}`
+          toast.success("Family Created Successfully", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }else{
+          toast.error("Family not created", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      })
+      .catch((error) => {
+        // error
+        toast.error("I am in catch", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -178,8 +301,13 @@ function createSubAdminFamily(props) {
             <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
             Save
           </Button>
+          <AdvAddFamilyUserFilter pageRoute="" data={data} handleSelectRowsData={handleSelectRowsData}/>
         </PapperBlock>
       </form>
+
+    
+
+
 
       {/* <form onSubmit={handleSubmit}>
         <PapperBlock

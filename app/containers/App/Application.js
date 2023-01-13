@@ -110,6 +110,7 @@ import {
   createSubAdmin,
   createSubAdminFamily,
   listFamily,
+  listSubAdmin,
 } from "../pageListAsync";
 // import listUser from '../Pages/User/listUser';
 
@@ -127,6 +128,10 @@ function Application(props) {
         <Route
           path="/dashboard/user/create-sub-admin"
           component={createSubAdmin}
+        />
+        <Route
+          path="/dashboard/user/list-sub-admin"
+          component={listSubAdmin}
         />
         <Route
           path="/dashboard/user/create-sub-admin-family"

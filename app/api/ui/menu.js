@@ -14,17 +14,15 @@ module.exports = [
         name: "List User",
         link: "/dashboard/user/list-user",
       },
-
       {
         key: "createSubAdmin",
-        name: "Sub-Admin",
+        name: "Create Sub-Admin",
         link: "/dashboard/user/create-sub-admin",
       },
-
       {
-        key: "createAdmin",
-        name: "Sub-Admin Family",
-        link: "/dashboard/user/create-sub-admin-family",
+        key: "listSubAdmin",
+        name: "List Sub-Admin",
+        link: "/dashboard/user/list-sub-admin",
       },
       // {
       //   key: 'userSettings',
@@ -38,6 +36,11 @@ module.exports = [
     name: "family",
     icon: "ion-ios-ionitron-outline",
     child: [
+      {
+        key: "createAdmin",
+        name: "Sub-Admin Family",
+        link: "/dashboard/user/create-sub-admin-family",
+      },
       {
         key: "listFamily",
         name: "List Family",

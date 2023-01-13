@@ -19,6 +19,7 @@ import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 import { AdvancedTable } from "../../pageListAsync";
 import { ToastContainer, toast } from "react-toastify";
+import { apiActiveURL } from "../../../ApiBaseURL";
 
 const styles = (theme) => ({
   demo: {
@@ -101,7 +102,7 @@ function createSubAdmin(props) {
     };
 
     fetch(
-      "http://34.125.246.209:3000/be/api/v1/dashboard/register/subAdmin",
+      `${apiActiveURL}be/api/v1/dashboard/register/subAdmin`,
       requestOptions
     )
       .then((response) => response.json())
@@ -152,12 +153,12 @@ function createSubAdmin(props) {
   //     redirect: "follow",
   //   };
 
-  //   fetch(`${apiActiveURL}be/api/v1/file/admin/upload`, requestOptions)
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       console.log(result, "success");
-  //       if (result.status.toString() == "true") {
-  //         let imageUrl = result.link;
+    // fetch(`${apiActiveURL}be/api/v1/file/admin/upload`, requestOptions)
+    //   .then((response) => response.json())
+    //   .then((result) => {
+    //     console.log(result, "success");
+    //     if (result.status.toString() == "true") {
+    //       let imageUrl = result.link;
 
   //         const giftHeaders = new Headers();
   //         giftHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
@@ -169,70 +170,69 @@ function createSubAdmin(props) {
   //           url: imageUrl,
   //         });
 
-  //         var giftRequestOptions = {
-  //           method: "POST",
-  //           headers: giftHeaders,
-  //           body: raw,
-  //           redirect: "follow",
-  //         };
-  //         fetch(
-  //           `${apiActiveURL}be/api/v1/dashboard/gift/add`,
-  //           giftRequestOptions
-  //         )
-  //           .then((response) => response.json())
-  //           .then((result) => {
-  //             console.log(result, "gift success");
-  //             toast.success(`${result.msg}`, {
-  //               position: "top-center",
-  //               autoClose: 5000,
-  //               hideProgressBar: false,
-  //               closeOnClick: true,
-  //               pauseOnHover: true,
-  //               draggable: true,
-  //               progress: undefined,
-  //               theme: "colored",
-  //             });
-  //           })
-  //           .catch((error) => {
-  //             toast.error(error, {
-  //               position: "top-center",
-  //               autoClose: 5000,
-  //               hideProgressBar: false,
-  //               closeOnClick: true,
-  //               pauseOnHover: true,
-  //               draggable: true,
-  //               progress: undefined,
-  //               theme: "colored",
-  //             });
-  //           });
-  //       } else {
-  //         // `${result.msg}`
-  //         toast.error("I am here", {
-  //           position: "top-center",
-  //           autoClose: 5000,
-  //           hideProgressBar: false,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //           theme: "colored",
-  //         });
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       // error
-  //       toast.error("I am in catch", {
-  //         position: "top-center",
-  //         autoClose: 5000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //         theme: "colored",
-  //       });
-  //     });
-  // };
+      //     var giftRequestOptions = {
+      //       method: "POST",
+      //       headers: giftHeaders,
+      //       body: raw,
+      //       redirect: "follow",
+      //     };
+      //     fetch(
+      //       `${apiActiveURL}be/api/v1/dashboard/gift/add`,
+      //       giftRequestOptions
+      //     )
+      //       .then((response) => response.json())
+      //       .then((result) => {
+      //         console.log(result, "gift success");
+      //         toast.success(`${result.msg}`, {
+      //           position: "top-center",
+      //           autoClose: 5000,
+      //           hideProgressBar: false,
+      //           closeOnClick: true,
+      //           pauseOnHover: true,
+      //           draggable: true,
+      //           progress: undefined,
+      //           theme: "colored",
+      //         });
+      //       })
+      //       .catch((error) => {
+      //         toast.error(error, {
+      //           position: "top-center",
+      //           autoClose: 5000,
+      //           hideProgressBar: false,
+      //           closeOnClick: true,
+      //           pauseOnHover: true,
+      //           draggable: true,
+      //           progress: undefined,
+      //           theme: "colored",
+      //         });
+      //       });
+      //   } else {
+      //     // `${result.msg}`
+      //     toast.error("I am here", {
+      //       position: "top-center",
+      //       autoClose: 5000,
+      //       hideProgressBar: false,
+      //       closeOnClick: true,
+      //       pauseOnHover: true,
+      //       draggable: true,
+      //       progress: undefined,
+      //       theme: "colored",
+      //     });
+      //   }
+      // })
+      // .catch((error) => {
+      //   // error
+      //   toast.error("I am in catch", {
+      //     position: "top-center",
+      //     autoClose: 5000,
+      //     hideProgressBar: false,
+      //     closeOnClick: true,
+      //     pauseOnHover: true,
+      //     draggable: true,
+      //     progress: undefined,
+      //     theme: "colored",
+      //   });
+      // });
 
   return (
     <div>
@@ -326,7 +326,7 @@ function createSubAdmin(props) {
       </form>
     </div>
   );
-}
+        }
 createSubAdmin.propTypes = {
   classes: PropTypes.object.isRequired,
 };
