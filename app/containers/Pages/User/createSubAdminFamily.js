@@ -264,7 +264,7 @@ function createSubAdminFamily(props) {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-      name: selected,
+      id: selected,
       users: finalData,
     });
 
@@ -275,13 +275,13 @@ function createSubAdminFamily(props) {
       redirect: "follow",
     };
 
-    fetch(`${apiActiveURL}be/api/v1/dashboard/create/family`, requestOptions)
+    fetch(`${apiActiveURL}be/api/v1/dashboard/addUsers/family`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         console.log(result, "success");
         if (result.status.toString() == "true") {
           // `${result.msg}`
-          toast.success("Family Created Successfully", {
+          toast.success("Users Added Successfully", {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -292,7 +292,7 @@ function createSubAdminFamily(props) {
             theme: "colored",
           });
         } else {
-          toast.error("Family not created", {
+          toast.error("User not added", {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -370,7 +370,7 @@ function createSubAdminFamily(props) {
                     </option>
                     {family.length > 0
                       ? family.map((value, key) => (
-                          <option value={value.name} key={key}>
+                          <option value={value._id} key={value._id}>
                             {value.name}
                           </option>
                         ))
