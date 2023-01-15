@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect, } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 
 import { Helmet } from "react-helmet";
 import brand from "dan-api/dummy/brand";
@@ -64,15 +64,64 @@ function createSubAdminFamily(props) {
   const title = brand.name + " - Blank Page";
   const description = brand.desc;
   const [familyName, setFamilyName] = useState("");
-  const [rows,setRows] = useState({});
+  var finalData = [];
+  const [rows, setRows] = useState();
+  const [state, setState] = useState(false);
   const [familyData, setFamilyData] = useState();
   const { classes } = props;
+  var bilal = [];
+  const options = ["Italy", "Spain", "Greece"];
+  const [family, setFamily] = useState("");
+  const [selected, setSelected] = useState();
 
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     dispatch(getUsers());
+  }, []);
+
+  useEffect(() => {
+    const SessionData = JSON.parse(localStorage.getItem("SessionData"));
+
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${SessionData[0]}`);
+    // myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    const response = fetch(
+      `${apiActiveURL}be/api/v1/dashboard/get/family?fetchAll=true`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.status.toString() == "true") {
+          // setData(result.data);
+          // console.log("name ", result.data[0].name);
+          // console.log(
+          //   "here ",
+          //   result.data.map((val, key) => {
+          //     val;
+          //   }),
+          //   "family----"
+          // );
+          setFamily(result.data);
+          // setOptions(result.data);
+          // setIsData(true);
+        } else {
+          //   setIsLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.log("error", error);
+        // setIsLoading(false);
+      });
   }, []);
 
   const userData = useSelector((state) => {
@@ -107,6 +156,19 @@ function createSubAdminFamily(props) {
 
         console.log("user data successssssss", userData);
         setData(userData.data);
+
+        let users = [];
+        userData.data.map((user, index) => {
+          users.push({
+            _id: user._id,
+            name: user.name,
+            email: user.email ? user.email : "abc@gmail.com",
+            is_online: "false",
+          });
+        });
+        console.log(users, "filtered users------");
+        setFilteredData(users);
+        // setData(users);
 
         // const session_token = loginData.token;
         // const id = loginData._id;
@@ -151,23 +213,50 @@ function createSubAdminFamily(props) {
   }, [userData, userError]);
 
   const handleSelectRowsData = (item) => {
-    
-    // setRows(item);
-    console.log(item, "main page data ")
-    // setRows(data);
-    // setMessage(message);
+    console.log(item, "main page data ");
+    var selectedRows = item.map((x) => filteredData[x]);
+    console.log(selectedRows, "selected rows----");
+    finalData = selectedRows;
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("indexs =>",indexes);
+
+    if (!selected) {
+      toast.error("Please select family from dropdown", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+
+    if (finalData.length == 0) {
+      toast.error("Please select users from list", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+
+    console.log(selected, "selected");
+    console.log(finalData, "final data");
+    // console.log("final data =>", bilal);
+    // setState(!state);
+
+    // return;
     const SessionData = JSON.parse(localStorage.getItem("SessionData"));
-  
-    console.log(
-      familyName,
-      SessionData[0],
-      "Family Create"
-    );
+
+    // console.log(familyName, SessionData[0], "Family Create");
 
     // return;
     var myHeaders = new Headers();
@@ -175,7 +264,8 @@ function createSubAdminFamily(props) {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-      name: familyName
+      name: selected,
+      users: finalData,
     });
 
     var requestOptions = {
@@ -185,11 +275,11 @@ function createSubAdminFamily(props) {
       redirect: "follow",
     };
 
-    fetch(`${apiActiveURL}be/api/v1/dashboard/create/familys`, requestOptions)
+    fetch(`${apiActiveURL}be/api/v1/dashboard/create/family`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         console.log(result, "success");
-        if (result.status.toString() == "true") {          
+        if (result.status.toString() == "true") {
           // `${result.msg}`
           toast.success("Family Created Successfully", {
             position: "top-center",
@@ -201,7 +291,7 @@ function createSubAdminFamily(props) {
             progress: undefined,
             theme: "colored",
           });
-        }else{
+        } else {
           toast.error("Family not created", {
             position: "top-center",
             autoClose: 5000,
@@ -216,7 +306,7 @@ function createSubAdminFamily(props) {
       })
       .catch((error) => {
         // error
-        toast.error("I am in catch", {
+        toast.error("Something went wrong", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -241,14 +331,6 @@ function createSubAdminFamily(props) {
         console.log("error", error);
       });
   };
-
-  //   const handleImage = (e) => {
-  //     console.log(e[0], "clicked");
-  //     setGiftImage(e[0]);
-  //     const url = URL.createObjectURL(e[0]);
-  //     setGiftUrl(url);
-  //     console.log(url, "urlll");
-  //   };
 
   return (
     <div>
@@ -276,7 +358,25 @@ function createSubAdminFamily(props) {
             >
               <Grid item md={6} sm={12} className={classes.demo}>
                 <div className={classes.container}>
-                  <TextField
+                  <Typography variant="h6" gutterBottom>
+                    Please select family
+                  </Typography>
+                  <select
+                    value={selected}
+                    onChange={(e) => setSelected(e.target.value)}
+                  >
+                    <option value="" key={""}>
+                      {"Please select an option"}
+                    </option>
+                    {family.length > 0
+                      ? family.map((value, key) => (
+                          <option value={value.name} key={key}>
+                            {value.name}
+                          </option>
+                        ))
+                      : null}
+                  </select>
+                  {/* <TextField
                     id="adminName"
                     name="adminName"
                     label="Family Name"
@@ -286,7 +386,7 @@ function createSubAdminFamily(props) {
                     onChange={(e) => {
                       setFamilyName(e.target.value);
                     }}
-                  />
+                  /> */}
                 </div>
               </Grid>
             </Grid>
@@ -301,13 +401,13 @@ function createSubAdminFamily(props) {
             <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
             Save
           </Button>
-          <AdvAddFamilyUserFilter pageRoute="" data={data} handleSelectRowsData={handleSelectRowsData}/>
+          <AdvAddFamilyUserFilter
+            pageRoute=""
+            data={data}
+            handleSelectRowsData={handleSelectRowsData}
+          />
         </PapperBlock>
       </form>
-
-    
-
-
 
       {/* <form onSubmit={handleSubmit}>
         <PapperBlock
