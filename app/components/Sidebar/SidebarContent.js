@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Avatar from '@material-ui/core/Avatar';
-import brand from 'dan-api/dummy/brand';
-import dummy from 'dan-api/dummy/dummyContents';
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import classNames from "classnames";
+import { NavLink } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import Avatar from "@material-ui/core/Avatar";
+import brand from "dan-api/dummy/brand";
+import dummy from "dan-api/dummy/dummyContents";
 // import logo from 'dan-images/logo.svg';
-import logo from 'dan-images/rabbithead.svg';
-import MainMenu from './MainMenu';
-import styles from './sidebar-jss';
+import logo from "dan-images/rabbithead.svg";
+import MainMenu from "./MainMenu";
+import styles from "./sidebar-jss";
+import subadminDataMenu from "dan-api/ui/subadminmenu";
 
 function SidebarContent(props) {
   const [transform, setTransform] = useState(0);
@@ -22,11 +23,16 @@ function SidebarContent(props) {
     setTransform(scroll);
   };
 
+  const tokenDetailsString = localStorage.getItem("userDetails");
+  console.log(JSON.parse(tokenDetailsString), "userData");
+  const loginData = JSON.parse(tokenDetailsString);
+
   useEffect(() => {
-    const mainContent = document.getElementById('sidebar');
-    mainContent.addEventListener('scroll', handleScroll);
+    console.log(props.dataMenu, subadminDataMenu, "Header menu");
+    const mainContent = document.getElementById("sidebar");
+    mainContent.addEventListener("scroll", handleScroll);
     return () => {
-      mainContent.removeEventListener('scroll', handleScroll);
+      mainContent.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -43,16 +49,16 @@ function SidebarContent(props) {
     openMenuStatus,
     closeMenuStatus,
     changeStatus,
-    isLogin
+    isLogin,
   } = props;
 
-  const setStatus = st => {
+  const setStatus = (st) => {
     switch (st) {
-      case 'online':
+      case "online":
         return classes.online;
-      case 'idle':
+      case "idle":
         return classes.idle;
-      case 'bussy':
+      case "bussy":
         return classes.bussy;
       default:
         return classes.offline;
@@ -60,16 +66,31 @@ function SidebarContent(props) {
   };
 
   return (
-    <div className={classNames(classes.drawerInner, !drawerPaper ? classes.drawerPaperClose : '')}>
+    <div
+      className={classNames(
+        classes.drawerInner,
+        !drawerPaper ? classes.drawerPaperClose : ""
+      )}
+    >
       <div className={classes.drawerHeader}>
-        <NavLink to="/dashboard" className={classNames(classes.brand, classes.brandBar, turnDarker && classes.darker)}>
+        <NavLink
+          to="/dashboard"
+          className={classNames(
+            classes.brand,
+            classes.brandBar,
+            turnDarker && classes.darker
+          )}
+        >
           <img src={logo} alt={brand.name} />
           {brand.name}
         </NavLink>
         {isLogin && (
           <div
             className={classNames(classes.profile, classes.user)}
-            style={{ opacity: 1 - (transform / 100), marginTop: transform * -0.3 }}
+            style={{
+              opacity: 1 - transform / 100,
+              marginTop: transform * -0.3,
+            }}
           >
             <Avatar
               alt={dummy.user.name}
@@ -79,7 +100,9 @@ function SidebarContent(props) {
             <div>
               <h4>{dummy.user.name}</h4>
               <Button size="small" onClick={openMenuStatus}>
-                <i className={classNames(classes.dotStatus, setStatus(status))} />
+                <i
+                  className={classNames(classes.dotStatus, setStatus(status))}
+                />
                 {status}
               </Button>
               <Menu
@@ -89,20 +112,24 @@ function SidebarContent(props) {
                 onClose={closeMenuStatus}
                 className={classes.statusMenu}
               >
-                <MenuItem onClick={() => changeStatus('online')}>
-                  <i className={classNames(classes.dotStatus, classes.online)} />
+                <MenuItem onClick={() => changeStatus("online")}>
+                  <i
+                    className={classNames(classes.dotStatus, classes.online)}
+                  />
                   Online
                 </MenuItem>
-                <MenuItem onClick={() => changeStatus('idle')}>
+                <MenuItem onClick={() => changeStatus("idle")}>
                   <i className={classNames(classes.dotStatus, classes.idle)} />
                   Idle
                 </MenuItem>
-                <MenuItem onClick={() => changeStatus('bussy')}>
+                <MenuItem onClick={() => changeStatus("bussy")}>
                   <i className={classNames(classes.dotStatus, classes.bussy)} />
                   Bussy
                 </MenuItem>
-                <MenuItem onClick={() => changeStatus('offline')}>
-                  <i className={classNames(classes.dotStatus, classes.offline)} />
+                <MenuItem onClick={() => changeStatus("offline")}>
+                  <i
+                    className={classNames(classes.dotStatus, classes.offline)}
+                  />
                   Offline
                 </MenuItem>
               </Menu>
@@ -112,15 +139,19 @@ function SidebarContent(props) {
       </div>
       <div
         id="sidebar"
-        className={
-          classNames(
-            classes.menuContainer,
-            leftSidebar && classes.rounded,
-            isLogin && classes.withProfile
-          )
-        }
+        className={classNames(
+          classes.menuContainer,
+          leftSidebar && classes.rounded,
+          isLogin && classes.withProfile
+        )}
       >
-        <MainMenu loadTransition={loadTransition} dataMenu={dataMenu} toggleDrawerOpen={toggleDrawerOpen} />
+        <MainMenu
+          loadTransition={loadTransition}
+          dataMenu={
+            loginData.data.role == "super-admin" ? dataMenu : subadminDataMenu
+          }
+          toggleDrawerOpen={toggleDrawerOpen}
+        />
       </div>
     </div>
   );
@@ -139,7 +170,7 @@ SidebarContent.propTypes = {
   openMenuStatus: PropTypes.func.isRequired,
   closeMenuStatus: PropTypes.func.isRequired,
   changeStatus: PropTypes.func.isRequired,
-  isLogin: PropTypes.bool
+  isLogin: PropTypes.bool,
 };
 
 SidebarContent.defaultProps = {

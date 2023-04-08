@@ -138,6 +138,7 @@ function LoginForm(props) {
         });
 
         console.warn("login data successssssss", loginData);
+        localStorage.setItem("userDetails", JSON.stringify(loginData));
 
         const session_token = loginData.data.token;
         const id = loginData.data._id;

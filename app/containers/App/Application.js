@@ -129,10 +129,7 @@ function Application(props) {
           path="/dashboard/user/create-sub-admin"
           component={createSubAdmin}
         />
-        <Route
-          path="/dashboard/user/list-sub-admin"
-          component={listSubAdmin}
-        />
+        <Route path="/dashboard/user/list-sub-admin" component={listSubAdmin} />
         <Route
           path="/dashboard/user/create-sub-admin-family"
           component={createSubAdminFamily}

@@ -42,6 +42,10 @@ function UserMenu(props) {
     setMenuState({ anchorEl: null, openMenu: null });
   };
 
+  const handleLogout = () => {
+    localStorage.clear();
+  };
+
   const { classes, dark } = props;
   const { anchorEl, openMenu } = menuState;
   return (
@@ -98,7 +102,11 @@ function UserMenu(props) {
                 <Error />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary="jhon@gmail.com has been blocked" className={classes.textNotif} secondary={dummy.text.date} />
+            <ListItemText
+              primary="jhon@gmail.com has been blocked"
+              className={classes.textNotif}
+              secondary={dummy.text.date}
+            />
             <ListItemText
               primary={dummy.text.sentences}
               className={classes.textNotif}
@@ -115,7 +123,11 @@ function UserMenu(props) {
                 <Error />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary="Walter@gmail.com has been blocked" className={classes.textNotif} secondary={dummy.text.date} />
+            <ListItemText
+              primary="Walter@gmail.com has been blocked"
+              className={classes.textNotif}
+              secondary={dummy.text.date}
+            />
             <ListItemText
               primary={dummy.text.subtitle}
               className={classes.textNotif}
@@ -131,7 +143,11 @@ function UserMenu(props) {
                 <Warning />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary="300$ has been transferedto your account" className={classes.textNotif} secondary={dummy.text.date} />
+            <ListItemText
+              primary="300$ has been transferedto your account"
+              className={classes.textNotif}
+              secondary={dummy.text.date}
+            />
             <ListItemText
               primary={dummy.text.subtitle}
               className={classes.textNotif}
@@ -147,7 +163,11 @@ function UserMenu(props) {
                 <Info />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary="user@gmail.com has registered" className={classes.textNotif} secondary="Oct 9, 2022" />
+            <ListItemText
+              primary="user@gmail.com has registered"
+              className={classes.textNotif}
+              secondary="Oct 9, 2022"
+            />
             <ListItemText
               primary="Suspendisse pharetra pulvinar sollicitudin. Aenean ut orci eu odio cursus lobortis eget tempus velit. "
               className={classes.textNotif}
@@ -197,7 +217,7 @@ function UserMenu(props) {
           </ListItemIcon>
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose} component={Link} to="/">
+        <MenuItem onClick={handleLogout} component={Link} to="/">
           <ListItemIcon>
             <ExitToApp />
           </ListItemIcon>

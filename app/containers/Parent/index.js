@@ -1,58 +1,60 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
-import { Helmet } from 'react-helmet';
-import brand from 'dan-api/dummy/brand';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
-import MenuContent from 'dan-api/ui/menu';
-import { PapperBlock } from 'dan-components';
+import React, { useEffect } from "react";
+import { PropTypes } from "prop-types";
+import { Helmet } from "react-helmet";
+import brand from "dan-api/dummy/brand";
+import Typography from "@material-ui/core/Typography";
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
+import MenuContent from "dan-api/ui/menu";
+import { PapperBlock } from "dan-components";
 
 const styles = {
   link: {
-    display: 'block',
-    textTransform: 'capitalize'
+    display: "block",
+    textTransform: "capitalize",
   },
   title: {
-    margin: '20px 16px 5px',
-    textTransform: 'uppercase',
+    margin: "20px 16px 5px",
+    textTransform: "uppercase",
     fontSize: 12,
-  }
+  },
 };
+
+useEffect(() => {}, []);
+
+console.log("parent");
 
 function Parent(props) {
   const title = brand.name;
   const description = brand.desc;
   const { classes, history } = props;
   // Get Path Location
-  let parts = history.location.pathname.split('/');
+  let parts = history.location.pathname.split("/");
   const place = parts[parts.length - 1];
   parts = parts.slice(1, parts.length - 1);
-  const menuItems = MenuContent
-    .find(obj => (
-      obj.key === place
-    ));
-  const getMenus = menuArray => menuArray.map((item, index) => {
-    if (item.link) {
+  const menuItems = MenuContent.find((obj) => obj.key === place);
+  const getMenus = (menuArray) =>
+    menuArray.map((item, index) => {
+      if (item.link) {
+        return (
+          <Button
+            key={index.toString()}
+            color="primary"
+            component={Link}
+            className={classes.link}
+            to={item.link}
+          >
+            {item.name}
+          </Button>
+        );
+      }
       return (
-        <Button
-          key={index.toString()}
-          color="primary"
-          component={Link}
-          className={classes.link}
-          to={item.link}
-        >
+        <Typography className={classes.title} variant="h6">
           {item.name}
-        </Button>
+        </Typography>
       );
-    }
-    return (
-      <Typography className={classes.title} variant="h6">
-        { item.name }
-      </Typography>
-    );
-  });
+    });
 
   return (
     <div>
@@ -65,7 +67,7 @@ function Parent(props) {
         <meta property="twitter:description" content={description} />
       </Helmet>
       <PapperBlock title={place} desc="">
-        {menuItems !== undefined && getMenus(menuItems.child, 'key')}
+        {menuItems !== undefined && getMenus(menuItems.child, "key")}
       </PapperBlock>
     </div>
   );
