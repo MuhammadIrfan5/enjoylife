@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import { PropTypes } from "prop-types";
-import { Switch, Route } from "react-router-dom";
-import { ThemeContext } from "./ThemeWrapper";
-import Dashboard from "../Templates/Dashboard";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useContext } from 'react';
+import { PropTypes } from 'prop-types';
+import { Switch, Route } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import { ThemeContext } from './ThemeWrapper';
+import Dashboard from '../Templates/Dashboard';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   PersonalDashboard,
   CrmDashboard,
@@ -111,7 +111,7 @@ import {
   createSubAdminFamily,
   listFamily,
   listSubAdmin,
-} from "../pageListAsync";
+} from '../pageListAsync';
 // import listUser from '../Pages/User/listUser';
 
 function Application(props) {

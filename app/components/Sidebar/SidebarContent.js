@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import classNames from "classnames";
-import { NavLink } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import Avatar from "@material-ui/core/Avatar";
-import brand from "dan-api/dummy/brand";
-import dummy from "dan-api/dummy/dummyContents";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Avatar from '@material-ui/core/Avatar';
+import brand from 'dan-api/dummy/brand';
+import dummy from 'dan-api/dummy/dummyContents';
 // import logo from 'dan-images/logo.svg';
-import logo from "dan-images/rabbithead.svg";
-import MainMenu from "./MainMenu";
-import styles from "./sidebar-jss";
-import subadminDataMenu from "dan-api/ui/subadminmenu";
+import logo from 'dan-images/rabbithead.svg';
+import subadminDataMenu from 'dan-api/ui/subadminmenu';
+import MainMenu from './MainMenu';
+import styles from './sidebar-jss';
 
 function SidebarContent(props) {
   const [transform, setTransform] = useState(0);
@@ -23,16 +23,16 @@ function SidebarContent(props) {
     setTransform(scroll);
   };
 
-  const tokenDetailsString = localStorage.getItem("userDetails");
-  console.log(JSON.parse(tokenDetailsString), "userData");
+  const tokenDetailsString = localStorage.getItem('userDetails');
+  console.log(JSON.parse(tokenDetailsString), 'userData');
   const loginData = JSON.parse(tokenDetailsString);
 
   useEffect(() => {
-    console.log(props.dataMenu, subadminDataMenu, "Header menu");
-    const mainContent = document.getElementById("sidebar");
-    mainContent.addEventListener("scroll", handleScroll);
+    console.log(props.dataMenu, subadminDataMenu, 'Header menu');
+    const mainContent = document.getElementById('sidebar');
+    mainContent.addEventListener('scroll', handleScroll);
     return () => {
-      mainContent.removeEventListener("scroll", handleScroll);
+      mainContent.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -54,11 +54,11 @@ function SidebarContent(props) {
 
   const setStatus = (st) => {
     switch (st) {
-      case "online":
+      case 'online':
         return classes.online;
-      case "idle":
+      case 'idle':
         return classes.idle;
-      case "bussy":
+      case 'bussy':
         return classes.bussy;
       default:
         return classes.offline;
@@ -69,7 +69,7 @@ function SidebarContent(props) {
     <div
       className={classNames(
         classes.drawerInner,
-        !drawerPaper ? classes.drawerPaperClose : ""
+        !drawerPaper ? classes.drawerPaperClose : ''
       )}
     >
       <div className={classes.drawerHeader}>
@@ -112,21 +112,21 @@ function SidebarContent(props) {
                 onClose={closeMenuStatus}
                 className={classes.statusMenu}
               >
-                <MenuItem onClick={() => changeStatus("online")}>
+                <MenuItem onClick={() => changeStatus('online')}>
                   <i
                     className={classNames(classes.dotStatus, classes.online)}
                   />
                   Online
                 </MenuItem>
-                <MenuItem onClick={() => changeStatus("idle")}>
+                <MenuItem onClick={() => changeStatus('idle')}>
                   <i className={classNames(classes.dotStatus, classes.idle)} />
                   Idle
                 </MenuItem>
-                <MenuItem onClick={() => changeStatus("bussy")}>
+                <MenuItem onClick={() => changeStatus('bussy')}>
                   <i className={classNames(classes.dotStatus, classes.bussy)} />
                   Bussy
                 </MenuItem>
-                <MenuItem onClick={() => changeStatus("offline")}>
+                <MenuItem onClick={() => changeStatus('offline')}>
                   <i
                     className={classNames(classes.dotStatus, classes.offline)}
                   />
@@ -148,7 +148,7 @@ function SidebarContent(props) {
         <MainMenu
           loadTransition={loadTransition}
           dataMenu={
-            loginData.data.role == "super-admin" ? dataMenu : subadminDataMenu
+            loginData.data.role == 'super-admin' ? dataMenu : subadminDataMenu
           }
           toggleDrawerOpen={toggleDrawerOpen}
         />

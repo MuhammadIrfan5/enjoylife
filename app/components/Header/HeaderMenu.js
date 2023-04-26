@@ -1,26 +1,26 @@
-import React, { useState, useEffect, Fragment } from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import { NavLink } from "react-router-dom";
-import Toolbar from "@material-ui/core/Toolbar";
-import SearchIcon from "@material-ui/icons/Search";
-import classNames from "classnames";
-import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
+import React, { useState, useEffect, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import { NavLink } from 'react-router-dom';
+import Toolbar from '@material-ui/core/Toolbar';
+import SearchIcon from '@material-ui/icons/Search';
+import classNames from 'classnames';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
 // import logo from 'dan-images/logo.svg';
-import logo from "dan-images/rabbithead.svg";
-import brand from "dan-api/dummy/brand";
-import Hidden from "@material-ui/core/Hidden";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import dummy from "dan-api/dummy/dummyContents";
-import MenuIcon from "@material-ui/icons/Menu";
-import SidebarContent from "../Sidebar/SidebarContent";
-import DropListMenu from "./DropListMenu";
-import MegaMenu from "./MegaMenu";
-import UserMenu from "./UserMenu";
-import styles from "./header-jss";
-import SearchUi from "../Search/SearchUi";
+import logo from 'dan-images/rabbithead.svg';
+import brand from 'dan-api/dummy/brand';
+import Hidden from '@material-ui/core/Hidden';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import dummy from 'dan-api/dummy/dummyContents';
+import MenuIcon from '@material-ui/icons/Menu';
+import SidebarContent from '../Sidebar/SidebarContent';
+import DropListMenu from './DropListMenu';
+import MegaMenu from './MegaMenu';
+import UserMenu from './UserMenu';
+import styles from './header-jss';
+import SearchUi from '../Search/SearchUi';
 
 const elem = document.documentElement;
 
@@ -44,9 +44,9 @@ function HeaderMenu(props) {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -80,10 +80,10 @@ function HeaderMenu(props) {
   };
 
   const turnMode = (mode) => {
-    if (mode === "light") {
-      props.changeMode("dark");
+    if (mode === 'light') {
+      props.changeMode('dark');
     } else {
-      props.changeMode("light");
+      props.changeMode('light');
     }
   };
 
@@ -118,7 +118,7 @@ function HeaderMenu(props) {
       className={classNames(
         classes.appBar,
         classes.attachedbar,
-        fixed ? classes.fixed : ""
+        fixed ? classes.fixed : ''
       )}
     >
       <div className={classes.appMenu}>
@@ -187,7 +187,7 @@ function HeaderMenu(props) {
       </div>
       <Hidden mdDown>
         <Fragment>
-          {type === "mega-menu" ? (
+          {type === 'mega-menu' ? (
             <MegaMenu dataMenu={dataMenu} />
           ) : (
             <DropListMenu dataMenu={dataMenu} />
@@ -239,7 +239,7 @@ HeaderMenu.propTypes = {
 
 HeaderMenu.defaultProps = {
   isLogin: true,
-  logoLink: "/",
+  logoLink: '/',
 };
 
 export default withStyles(styles)(HeaderMenu);

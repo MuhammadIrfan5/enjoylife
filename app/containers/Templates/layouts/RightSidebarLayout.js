@@ -1,13 +1,13 @@
-import React, { Fragment } from "react";
-import { PropTypes } from "prop-types";
-import classNames from "classnames";
-import Fade from "@material-ui/core/Fade";
-import Typography from "@material-ui/core/Typography";
-import { withStyles } from "@material-ui/core/styles";
-import { Header, Sidebar, BreadCrumb } from "dan-components";
-import dataMenu from "dan-api/ui/menu";
-import Decoration from "../Decoration";
-import styles from "../appStyles-jss";
+import React, { Fragment } from 'react';
+import { PropTypes } from 'prop-types';
+import classNames from 'classnames';
+import Fade from '@material-ui/core/Fade';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import { Header, Sidebar, BreadCrumb } from 'dan-components';
+import dataMenu from 'dan-api/ui/menu';
+import Decoration from '../Decoration';
+import styles from '../appStyles-jss';
 
 function RightSidebarLayout(props) {
   const {
@@ -43,7 +43,7 @@ function RightSidebarLayout(props) {
       <main
         className={classNames(
           classes.content,
-          !sidebarOpen ? classes.contentPaddingRight : ""
+          !sidebarOpen ? classes.contentPaddingRight : ''
         )}
         id="mainContent"
       >
@@ -62,7 +62,7 @@ function RightSidebarLayout(props) {
               <Typography
                 component="h4"
                 className={
-                  bgPosition === "header"
+                  bgPosition === 'header'
                     ? classes.darkTitle
                     : classes.lightTitle
                 }
@@ -72,7 +72,7 @@ function RightSidebarLayout(props) {
               </Typography>
               <BreadCrumb
                 separator=" / "
-                theme={bgPosition === "header" ? "dark" : "light"}
+                theme={bgPosition === 'header' ? 'dark' : 'light'}
                 location={history.location}
               />
             </div>
@@ -85,7 +85,7 @@ function RightSidebarLayout(props) {
             />
           )}
           <Fade in={pageLoaded} {...(pageLoaded ? { timeout: 700 } : {})}>
-            <div className={!pageLoaded ? classes.hideApp : ""}>
+            <div className={!pageLoaded ? classes.hideApp : ''}>
               {/* Application content will load here */}
               {children}
             </div>
