@@ -18,6 +18,7 @@ import {
   // FilesWidget,
 } from 'dan-components';
 import { useDispatch, useSelector } from 'react-redux';
+import { apiActiveURL } from '../../ApiBaseURL';
 import styles from './dashboard-jss';
 
 function PersonalDashboard(props) {
@@ -25,7 +26,7 @@ function PersonalDashboard(props) {
   //   return console.log(state._root.entries[7][1], "loginData");
   // });
 
-  const [data, setData] = useState("");
+  const [data, setData] = useState('');
 
   useEffect(() => {
     const SessionData = JSON.parse(localStorage.getItem('SessionData'));
@@ -33,7 +34,7 @@ function PersonalDashboard(props) {
     const myHeaders = new Headers();
     myHeaders.append('Authorization', `Bearer ${SessionData[0]}`);
     // myHeaders.append("Content-Type", "application/json");
-    
+
     const requestOptions = {
       method: 'GET',
       headers: myHeaders,
@@ -41,7 +42,7 @@ function PersonalDashboard(props) {
     };
 
     const response = fetch(
-      `http://34.125.246.209:3000/be/api/v1/dashboard`,
+      `${apiActiveURL}be/api/v1/dashboard/`,
       // ${userId}
       requestOptions
     )
@@ -49,8 +50,9 @@ function PersonalDashboard(props) {
       .then((result) => {
         console.log(result, 'success');
         if (result.status.toString() == 'true') {
-          console.log("result => ",result);
-            setData(result)
+          console.log('result => ', result);
+          setData(result);
+          console.log('counters => ' + result);
         } else {
         //   setIsLoading(false);
         }
@@ -58,7 +60,6 @@ function PersonalDashboard(props) {
       .catch((error) => {
         console.log('error', error);
       });
-
   }, []);
 
   const title = brand.name + ' - Personal Dashboard';

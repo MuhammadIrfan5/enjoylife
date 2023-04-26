@@ -5,7 +5,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { GuideSlider } from 'dan-components';
-import { toggleAction, openAction, playTransitionAction } from 'dan-redux/actions/uiActions';
+import {
+  toggleAction,
+  openAction,
+  playTransitionAction,
+} from 'dan-redux/actions/uiActions';
+import subadminDataMenu from 'dan-api/ui/subadminmenu';
 import LeftSidebarLayout from './layouts/LeftSidebarLayout';
 import RightSidebarLayout from './layouts/RightSidebarLayout';
 import LeftSidebarBigLayout from './layouts/LeftSidebarBigLayout';
@@ -66,24 +71,28 @@ function Dashboard(props) {
     deco,
     bgPosition,
     layout,
-    changeMode
+    changeMode,
   } = props;
-  const titleException = ['/app', '/app/crm-dashboard', '/app/crypto-dashboard'];
+  const titleException = [
+    '/app',
+    '/app/crm-dashboard',
+    '/app/crypto-dashboard',
+  ];
   const parts = history.location.pathname.split('/');
   const place = parts[parts.length - 1].replace('-', ' ');
   return (
     <div
       style={{ minHeight: appHeight }}
-      className={
-        classNames(
-          classes.appFrameInner,
-          layout === 'top-navigation' || layout === 'mega-menu' ? classes.topNav : classes.sideNav,
-          mode === 'dark' ? 'dark-mode' : 'light-mode'
-        )
-      }
+      className={classNames(
+        classes.appFrameInner,
+        layout === 'top-navigation' || layout === 'mega-menu'
+          ? classes.topNav
+          : classes.sideNav,
+        mode === 'dark' ? 'dark-mode' : 'light-mode'
+      )}
     >
       <GuideSlider openGuide={openGuide} closeGuide={handleCloseGuide} />
-      { /* Left Sidebar Layout */
+      {/* Left Sidebar Layout */
         layout === 'left-sidebar' && (
           <LeftSidebarLayout
             history={history}
@@ -100,11 +109,10 @@ function Dashboard(props) {
             titleException={titleException}
             handleOpenGuide={handleOpenGuide}
           >
-            { children }
+            {children}
           </LeftSidebarLayout>
-        )
-      }
-      { /* Left Big-Sidebar Layout */
+        )}
+      {/* Left Big-Sidebar Layout */
         layout === 'big-sidebar' && (
           <LeftSidebarBigLayout
             history={history}
@@ -121,11 +129,10 @@ function Dashboard(props) {
             titleException={titleException}
             handleOpenGuide={handleOpenGuide}
           >
-            { children }
+            {children}
           </LeftSidebarBigLayout>
-        )
-      }
-      { /* Right Sidebar Layout */
+        )}
+      {/* Right Sidebar Layout */
         layout === 'right-sidebar' && (
           <RightSidebarLayout
             history={history}
@@ -142,11 +149,10 @@ function Dashboard(props) {
             titleException={titleException}
             handleOpenGuide={handleOpenGuide}
           >
-            { children }
+            {children}
           </RightSidebarLayout>
-        )
-      }
-      { /* Top Bar with Dropdown Menu */
+        )}
+      {/* Top Bar with Dropdown Menu */
         layout === 'top-navigation' && (
           <DropMenuLayout
             history={history}
@@ -163,11 +169,10 @@ function Dashboard(props) {
             titleException={titleException}
             handleOpenGuide={handleOpenGuide}
           >
-            { children }
+            {children}
           </DropMenuLayout>
-        )
-      }
-      { /* Top Bar with Mega Menu */
+        )}
+      {/* Top Bar with Mega Menu */
         layout === 'mega-menu' && (
           <MegaMenuLayout
             history={history}
@@ -184,10 +189,9 @@ function Dashboard(props) {
             titleException={titleException}
             handleOpenGuide={handleOpenGuide}
           >
-            { children }
+            {children}
           </MegaMenuLayout>
-        )
-      }
+        )}
     </div>
   );
 }
@@ -206,11 +210,11 @@ Dashboard.propTypes = {
   gradient: PropTypes.bool.isRequired,
   deco: PropTypes.bool.isRequired,
   bgPosition: PropTypes.string.isRequired,
-  layout: PropTypes.string.isRequired
+  layout: PropTypes.string.isRequired,
 };
 
 const reducer = 'ui';
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   sidebarOpen: state.getIn([reducer, 'sidebarOpen']),
   pageLoaded: state.getIn([reducer, 'pageLoaded']),
   mode: state.getIn([reducer, 'type']),
@@ -221,7 +225,7 @@ const mapStateToProps = state => ({
   ...state,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   toggleDrawer: () => dispatch(toggleAction),
   initialOpen: bindActionCreators(openAction, dispatch),
   loadTransition: bindActionCreators(playTransitionAction, dispatch),
@@ -232,4 +236,4 @@ const DashboardMaped = connect(
   mapDispatchToProps
 )(Dashboard);
 
-export default (withStyles(styles)(DashboardMaped));
+export default withStyles(styles)(DashboardMaped);

@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Chip from "@material-ui/core/Chip";
 import MUIDataTable from "mui-datatables";
 import { Link, useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core/Button";
+import Save from "@material-ui/icons/Save";
+import classNames from "classnames";
 
 const styles = (theme) => ({
   table: {
@@ -24,6 +27,15 @@ const styles = (theme) => ({
       },
     },
   },
+  button: {
+    margin: theme.spacing(1),
+  },
+  leftIcon: {
+    marginRight: theme.spacing(1),
+  },
+  rightIcon: {
+    marginLeft: theme.spacing(1),
+  },
 });
 /*
   It uses npm mui-datatables. It's easy to use, you just describe columns and data collection.
@@ -31,11 +43,17 @@ const styles = (theme) => ({
   https://github.com/gregnb/mui-datatables/blob/master/README.md
 */
 function AdvFilter(props) {
-
-    const [rows, setRows] = useState()
-//   console.log("propsss", props.handleSelectRowsData);
+  console.log("propsss", props);
   const userData = props.data;
   const users = [];
+  const [adminData, setAdminData] = useState();
+  const [finalData, setFinalData] = useState();
+
+  useEffect(() => {
+    if (props.data) {
+      setAdminData(props.data);
+    }
+  }, [props]);
 
   userData
     ? userData.map((user, index) => {
@@ -49,7 +67,7 @@ function AdvFilter(props) {
         });
       })
     : null;
-  console.log("users", users[1]);
+  console.log("users", users);
 
   console.log(props.pageRoute);
   const history = useHistory();
@@ -194,51 +212,53 @@ function AdvFilter(props) {
   //   ["Mason Ray", "Computer Scientist", 39, "active", 142000],
   // ];
 
-  const handleRowsClick = (currentRowsSelected, allRowsSelected, rowsSelected) => {
-
+  const handleRowsClick = (
+    currentRowsSelected,
+    allRowsSelected,
+    rowsSelected
+  ) => {
     console.log(currentRowsSelected, "currentRowsSelected");
     console.log(allRowsSelected, "allRowsSelected");
     console.log(rowsSelected, "rowsSelected");
+    console.log(users, "users");
 
-    // setRows(rowsSelected);
-
-    // if(rows){
-        // props.handleSelectRowsData(rowsSelected);
-    // }
-
-   
-
-    
-  }
-
-  const handleRowClick = (rowData, rowMeta) => {
-    console.log("row meta => ", rowMeta);
-    console.log(rowData, "row");
-    // rowData.push(props.data[rowMeta.rowIndex].date_of_birth);
-    // rowData.push(props.data[rowMeta.rowIndex].email);
-    // rowData.push(props.data[rowMeta.rowIndex].name);
-    rowData.push(props.data[rowMeta.rowIndex].user_friends_count);
-    rowData.push(props.data[rowMeta.rowIndex].diamond_count);
-    rowData.push(props.data[rowMeta.rowIndex].country);
-    rowData.push(props.data[rowMeta.rowIndex].email_verified);
-    rowData.push(props.data[rowMeta.rowIndex].is_blocked);
-    rowData.push(props.data[rowMeta.rowIndex].phone);
-    rowData.push(props.data[rowMeta.rowIndex].sent_diamond);
-    rowData.push(props.data[rowMeta.rowIndex]._id);
-    // return;
-    // <Link to="/app/user/user-settings" className="btn btn-primary" />;
-    // history.push("/app/user/user-settings");
-    localStorage.setItem("UserData", JSON.stringify(rowData));
-    // history.push({
-    //   pathname: props.pageRoute,
-    //   // search: '?query=abc',
-    //   state: {
-    //     data: {
-    //       newData: rowData,
-    //     },
-    //   },
-    // });
+    props.handleSelectRowsData(rowsSelected);
   };
+
+  // const handleApi = (data) => {
+  //   // console.log(data, "im here api data------------");
+  //   // if (props.state == "true") {
+  //   //   console.log("run api");
+  //   // } else {
+  //   //   console.log("do not run api");
+  //   // }
+  //   // console.log("row meta => ", rowMeta);
+  //   // console.log(rowData, "row");
+  //   // // rowData.push(props.data[rowMeta.rowIndex].date_of_birth);
+  //   // // rowData.push(props.data[rowMeta.rowIndex].email);
+  //   // // rowData.push(props.data[rowMeta.rowIndex].name);
+  //   // rowData.push(props.data[rowMeta.rowIndex].user_friends_count);
+  //   // rowData.push(props.data[rowMeta.rowIndex].diamond_count);
+  //   // rowData.push(props.data[rowMeta.rowIndex].country);
+  //   // rowData.push(props.data[rowMeta.rowIndex].email_verified);
+  //   // rowData.push(props.data[rowMeta.rowIndex].is_blocked);
+  //   // rowData.push(props.data[rowMeta.rowIndex].phone);
+  //   // rowData.push(props.data[rowMeta.rowIndex].sent_diamond);
+  //   // rowData.push(props.data[rowMeta.rowIndex]._id);
+  //   // // return;
+  //   // // <Link to="/app/user/user-settings" className="btn btn-primary" />;
+  //   // // history.push("/app/user/user-settings");
+  //   // localStorage.setItem("UserData", JSON.stringify(rowData));
+  //   // // history.push({
+  //   // //   pathname: props.pageRoute,
+  //   // //   // search: '?query=abc',
+  //   // //   state: {
+  //   // //     data: {
+  //   // //       newData: rowData,
+  //   // //     },
+  //   // //   },
+  //   // // });
+  // };
 
   const options = {
     filterType: "dropdown",
@@ -246,10 +266,9 @@ function AdvFilter(props) {
     print: true,
     rowsPerPage: 10,
     page: 0,
-    // onRowClick: handleRowClick,
-    onRowSelectionChange:handleRowsClick
-    // onRowSelectionChange: (rowsSelected) => { props.handleSelectRowsData(rowsSelected)}
-    // selectableRowsHideCheckboxes:true
+    onRowsDelete: false,
+
+    onRowSelectionChange: handleRowsClick,
   };
 
   const { classes } = props;

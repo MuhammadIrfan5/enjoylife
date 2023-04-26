@@ -13,7 +13,7 @@ import {
   CHANGE_BG_POSITION,
   CHANGE_LAYOUT,
   CHANGE_DIRECTION,
-  LOAD_PAGE
+  LOAD_PAGE,
 } from '../constants/uiConstants';
 
 const initialState = {
@@ -32,14 +32,14 @@ const initialState = {
     { name: 'Monochrome', value: 'greyTheme' },
     { name: 'Pink', value: 'pinkBlueTheme' },
     { name: 'Orange', value: 'greenOrangeTheme' },
-    { name: 'Purple', value: 'purpleRedTheme' }
+    { name: 'Purple', value: 'purpleRedTheme' },
   ]),
   sidebarOpen: true,
   pageLoaded: false,
-  subMenuOpen: []
+  subMenuOpen: [],
 };
 
-const getMenus = menuArray => menuArray.map(item => {
+const getMenus = (menuArray) => menuArray.map((item) => {
   if (item.child) {
     return item.child;
   }

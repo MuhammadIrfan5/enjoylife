@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
@@ -12,14 +12,18 @@ import { PapperBlock } from 'dan-components';
 const styles = {
   link: {
     display: 'block',
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
   },
   title: {
     margin: '20px 16px 5px',
     textTransform: 'uppercase',
     fontSize: 12,
-  }
+  },
 };
+
+useEffect(() => {}, []);
+
+console.log('parent');
 
 function Parent(props) {
   const title = brand.name;
@@ -29,11 +33,8 @@ function Parent(props) {
   let parts = history.location.pathname.split('/');
   const place = parts[parts.length - 1];
   parts = parts.slice(1, parts.length - 1);
-  const menuItems = MenuContent
-    .find(obj => (
-      obj.key === place
-    ));
-  const getMenus = menuArray => menuArray.map((item, index) => {
+  const menuItems = MenuContent.find((obj) => obj.key === place);
+  const getMenus = (menuArray) => menuArray.map((item, index) => {
     if (item.link) {
       return (
         <Button
@@ -49,7 +50,7 @@ function Parent(props) {
     }
     return (
       <Typography className={classes.title} variant="h6">
-        { item.name }
+        {item.name}
       </Typography>
     );
   });

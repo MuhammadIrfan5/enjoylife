@@ -36,7 +36,7 @@ function HeaderMenu(props) {
   const handleScroll = () => {
     const doc = document.documentElement;
     const scroll = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-    const newFlagFixedMenu = (scroll > 64);
+    const newFlagFixedMenu = scroll > 64;
     if (flagFixedMenu !== newFlagFixedMenu) {
       setFixed(newFlagFixedMenu);
       flagFixedMenu = newFlagFixedMenu;
@@ -54,11 +54,14 @@ function HeaderMenu(props) {
     setFullScreen(true);
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) { /* Firefox */
+    } else if (elem.mozRequestFullScreen) {
+      /* Firefox */
       elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    } else if (elem.webkitRequestFullscreen) {
+      /* Chrome, Safari & Opera */
       elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    } else if (elem.msRequestFullscreen) {
+      /* IE/Edge */
       elem.msRequestFullscreen();
     }
   };
@@ -76,7 +79,7 @@ function HeaderMenu(props) {
     }
   };
 
-  const turnMode = mode => {
+  const turnMode = (mode) => {
     if (mode === 'light') {
       props.changeMode('dark');
     } else {
@@ -84,7 +87,7 @@ function HeaderMenu(props) {
     }
   };
 
-  const handleOpen = event => {
+  const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -92,7 +95,7 @@ function HeaderMenu(props) {
     setAnchorEl(null);
   };
 
-  const handleChangeStatus = st => {
+  const handleChangeStatus = (st) => {
     setStatus(st);
     handleClose();
   };
@@ -108,17 +111,15 @@ function HeaderMenu(props) {
     openMobileNav,
     loadTransition,
     isLogin,
-    logoLink
+    logoLink,
   } = props;
   return (
     <AppBar
-      className={
-        classNames(
-          classes.appBar,
-          classes.attachedbar,
-          fixed ? classes.fixed : ''
-        )
-      }
+      className={classNames(
+        classes.appBar,
+        classes.attachedbar,
+        fixed ? classes.fixed : ''
+      )}
     >
       <div className={classes.appMenu}>
         <Hidden lgUp>
@@ -135,19 +136,28 @@ function HeaderMenu(props) {
             <div className={classNames(classes.headerAction, classes.invert)}>
               {fullScreen ? (
                 <Tooltip title="Exit Full Screen" placement="bottom">
-                  <IconButton className={classes.button} onClick={closeFullScreen}>
+                  <IconButton
+                    className={classes.button}
+                    onClick={closeFullScreen}
+                  >
                     <i className="ion-ios-qr-scanner-outline" />
                   </IconButton>
                 </Tooltip>
               ) : (
                 <Tooltip title="Full Screen" placement="bottom">
-                  <IconButton className={classes.button} onClick={openFullScreen}>
+                  <IconButton
+                    className={classes.button}
+                    onClick={openFullScreen}
+                  >
                     <i className="ion-ios-qr-scanner-outline" />
                   </IconButton>
                 </Tooltip>
               )}
               <Tooltip title="Turn Dark/Light" placement="bottom">
-                <IconButton className={classes.button} onClick={() => turnMode(mode)}>
+                <IconButton
+                  className={classes.button}
+                  onClick={() => turnMode(mode)}
+                >
                   <i className="ion-ios-bulb-outline" />
                 </IconButton>
               </Tooltip>
@@ -177,7 +187,11 @@ function HeaderMenu(props) {
       </div>
       <Hidden mdDown>
         <Fragment>
-          { type === 'mega-menu' ? <MegaMenu dataMenu={dataMenu} /> : <DropListMenu dataMenu={dataMenu} />}
+          {type === 'mega-menu' ? (
+            <MegaMenu dataMenu={dataMenu} />
+          ) : (
+            <DropListMenu dataMenu={dataMenu} />
+          )}
         </Fragment>
       </Hidden>
       <Hidden lgUp>
@@ -220,7 +234,7 @@ HeaderMenu.propTypes = {
   loadTransition: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   logoLink: PropTypes.string,
-  isLogin: PropTypes.bool
+  isLogin: PropTypes.bool,
 };
 
 HeaderMenu.defaultProps = {
